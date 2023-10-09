@@ -3,10 +3,10 @@ from flask import Blueprint, abort, jsonify
 from models.User import User
 from connect import db
 
-user_routes = Blueprint('users', __name__)
+user_routes = Blueprint('user_routes', __name__)
 
 
-@user_routes.route("/api/users", methods=["GET"])
+@user_routes.route("/", methods=["GET"])
 def get_users():
     try:
         users = db.session.execute(

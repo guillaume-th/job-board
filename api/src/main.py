@@ -19,7 +19,8 @@ DB_URI = "mysql+pymysql://{user}:{password}@localhost/{db_name}?charset=utf8mb4"
 
 
 app = Flask(__name__)
-app.register_blueprint(user_routes, prefix="/api/users")
+app.register_blueprint(user_routes, url_prefix="/api/users")
+print(app.url_map)
 
 app.config["SQLALCHEMY_DATABASE_URI"] = DB_URI
 db.init_app(app)
