@@ -43,6 +43,7 @@ class User(db.Model):
     company: Mapped["Company"] = relationship(back_populates="company")
     job_applications: Mapped[List["JobApplication"]  # for candidates
                              ] = relationship(back_populates="job_application")
+    messages: Mapped[List["Message"]] = relationship(back_populates="message")
     created_at = Column(DateTime, server_default=func.now())
     updated_at = Column(DateTime, server_default=func.now())
 

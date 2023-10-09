@@ -1,4 +1,5 @@
 import enum
+from typing import List
 from sqlalchemy import Column, DateTime, Enum, ForeignKey, Integer, func
 from sqlalchemy.orm import relationship, mapped_column, Mapped
 
@@ -23,9 +24,10 @@ class JobApplication(db.Model):
     advertisement_id = mapped_column(ForeignKey("advertisement.id"))
     advertisement: Mapped["Advertisement"] = relationship(
         back_populates="advertisement")
+    state = Column(Enum(ApplicationState))
+    messages: Mapped[List["Message"]] = relationship(back_populates="message")
     created_at = Column(DateTime, server_default=func.now())
     updated_at = Column(DateTime, server_default=func.now())
-    state = Column(Enum(ApplicationState))
 
     def __repr__(self):
         return f"<Job application {self.id}>"
