@@ -34,7 +34,7 @@ class Advertisement(db.Model):
     working_time = Column(Float)
     contract_type = Column(Enum(ContractType))
     skills = relationship(
-        'Skill', secondary=advertisement_skills, backref="advertisement")
+        'Skill', secondary=advertisement_skills, back_populates="advertisements")
     recruiter_id: Mapped[int] = mapped_column(ForeignKey("user.id"))
     recruiter: Mapped["User"] = relationship(
         back_populates="created_advertisements")

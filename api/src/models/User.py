@@ -36,7 +36,7 @@ class User(db.Model):
     phone = Column(String(255))
     role = Column(Enum(Role), nullable=False)
     skills: Mapped[List["Skill"]] = relationship(
-        'Skill', secondary=user_skills, backref="user")
+        'Skill', secondary=user_skills, back_populates="users")
     created_advertisements: Mapped[List["Advertisement"]] = relationship(
         back_populates="recruiter")  # for recruiters
     company_id = mapped_column(ForeignKey("company.id"))
