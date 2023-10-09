@@ -12,9 +12,11 @@ class Company(db.Model):
 
     id = Column(Integer, primary_key=True, autoincrement="auto")
     name = Column(String(255), unique=True, nullable=False)
-    users: Mapped[List["User"]] = relationship(back_populates="user")
+    users: Mapped[List["User"]] = relationship(back_populates="company")
     industry_id = mapped_column(ForeignKey("industry.id"))
-    industry: Mapped['Industry'] = relationship(back_populates="company")
+    industry: Mapped['Industry'] = relationship(back_populates="companies")
+    advertisements: Mapped[List["Advertisement"]
+                           ] = relationship(back_populates="company")
     created_at = Column(DateTime, server_default=func.now())
     updated_at = Column(DateTime, server_default=func.now())
 

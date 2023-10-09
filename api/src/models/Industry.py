@@ -13,7 +13,8 @@ class Industry(db.Model):
 
     id = Column(Integer, primary_key=True, autoincrement="auto")
     name = Column(String(255), unique=True, nullable=False)
-    companies: Mapped[List["Company"]] = relationship(back_populates="company")
+    companies: Mapped[List["Company"]] = relationship(
+        back_populates="industry")
     created_at = Column(DateTime, server_default=func.now())
     updated_at = Column(DateTime, server_default=func.now())
 

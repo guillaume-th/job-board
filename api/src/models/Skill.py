@@ -16,9 +16,9 @@ class Skill(db.Model):
     id: Mapped[int] = mapped_column(primary_key=True)
     name = Column(String(255))
     users: Mapped[List["User"]] = relationship(
-        'user', secondary=user_skills, backref="skill")
+        secondary=user_skills, backref="Skill")
     advertisements: Mapped[List["Advertisement"]] = relationship(
-        'advertisement', secondary=advertisement_skills, backref="skill")
+        secondary=advertisement_skills, backref="Skill")
     created_at = Column(DateTime, server_default=func.now())
     updated_at = Column(DateTime, server_default=func.now())
 

@@ -36,14 +36,14 @@ class User(db.Model):
     phone = Column(String(255))
     role = Column(Enum(Role), nullable=False)
     skills: Mapped[List["Skill"]] = relationship(
-        'skill', secondary=user_skills, backref="user")
+        'Skill', secondary=user_skills, backref="user")
     created_advertisements: Mapped[List["Advertisement"]] = relationship(
-        back_populates="advertisement")  # for recruiters
+        back_populates="recruiter")  # for recruiters
     company_id = mapped_column(ForeignKey("company.id"))
-    company: Mapped["Company"] = relationship(back_populates="company")
+    company: Mapped["Company"] = relationship(back_populates="users")
     job_applications: Mapped[List["JobApplication"]  # for candidates
-                             ] = relationship(back_populates="job_application")
-    messages: Mapped[List["Message"]] = relationship(back_populates="message")
+                             ] = relationship(back_populates="candidate")
+    # messages: Mapped[List["Message"]] = relationship()
     created_at = Column(DateTime, server_default=func.now())
     updated_at = Column(DateTime, server_default=func.now())
 

@@ -3,9 +3,6 @@ import enum
 from sqlalchemy import Column, DateTime, ForeignKey, Integer, String, Table, Text, Float, func, Enum
 from sqlalchemy.orm import relationship, Mapped, mapped_column
 
-from models.Company import Company
-from models.JobApplication import JobApplication
-from models.User import User
 from connect import db
 
 
@@ -37,13 +34,14 @@ class Advertisement(db.Model):
     working_time = Column(Float)
     contract_type = Column(Enum(ContractType))
     skills = relationship(
-        'skill', secondary=advertisement_skills, backref="advertisement")
+        'Skill', secondary=advertisement_skills, backref="advertisement")
     recruiter_id: Mapped[int] = mapped_column(ForeignKey("user.id"))
-    recruiter: Mapped["User"] = relationship(back_populates="user")
+    recruiter: Mapped["User"] = relationship(
+        back_populates="created_advertisements")
     company_id: Mapped[int] = mapped_column(ForeignKey("company.id"))
-    company: Mapped["Company"] = relationship(back_populates="company")
+    company: Mapped["Company"] = relationship(back_populates="advertisements")
     job_applications: Mapped[List["JobApplication"]
-                             ] = relationship(back_populates="job_application")
+                             ] = relationship(back_populates="advertisement")
     created_at = Column(DateTime, server_default=func.now())
     updated_at = Column(DateTime, server_default=func.now())
 
