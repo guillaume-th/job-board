@@ -3,9 +3,9 @@ from typing import List
 from sqlalchemy import Column, DateTime, Enum, ForeignKey, Integer, String, Table, Text, func
 from sqlalchemy.orm import relationship, Mapped, mapped_column
 
-from db.models.Company import Company
-from db.models.JobApplication import JobApplication
-from db.connect import db
+from models.Company import Company
+from models.JobApplication import JobApplication
+from api.src.connect import db
 
 
 class Role(enum.Enum):

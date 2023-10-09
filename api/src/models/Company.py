@@ -2,7 +2,7 @@ from typing import List
 from sqlalchemy import Column, DateTime, ForeignKey, Integer, String, func
 from sqlalchemy.orm import relationship, mapped_column, Mapped
 
-from db.connect import db
+from api.src.connect import db
 
 
 class Company(db.Model):

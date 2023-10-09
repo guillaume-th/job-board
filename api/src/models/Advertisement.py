@@ -3,10 +3,10 @@ import enum
 from sqlalchemy import Column, DateTime, ForeignKey, Integer, String, Table, Text, Float, func, Enum
 from sqlalchemy.orm import relationship, Mapped, mapped_column
 
-from db.models.Company import Company
-from db.models.JobApplication import JobApplication
-from db.models.User import User
-from db.connect import db
+from models.Company import Company
+from models.JobApplication import JobApplication
+from models.User import User
+from api.src.connect import db
 
 
 class ContractType(enum.Enum):

@@ -2,10 +2,10 @@ from typing import List
 from sqlalchemy import Column, DateTime, String, func
 from sqlalchemy.orm import mapped_column, Mapped, relationship
 
-from db.models.User import user_skills
-from db.models.Advertisement import advertisement_skills
+from models.User import user_skills
+from models.Advertisement import advertisement_skills
 
-from db.connect import db
+from api.src.connect import db
 
 
 class Skill(db.Model):

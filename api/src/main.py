@@ -1,13 +1,13 @@
 from flask import Flask
 from dotenv import dotenv_values
 
-from db.models.Advertisement import Advertisement
-from db.models.Company import Company
-from db.models.Industry import Industry
-from db.models.JobApplication import JobApplication
-from db.models.Skill import Skill
-from db.models.User import User
-from db.connect import db
+from models.Advertisement import Advertisement
+from models.Company import Company
+from models.Industry import Industry
+from models.JobApplication import JobApplication
+from models.Skill import Skill
+from models.User import User
+from api.src.connect import db
 
 
 config = dotenv_values(".env")

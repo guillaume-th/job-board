@@ -3,7 +3,7 @@ from sqlalchemy import Column, DateTime, Integer, String, func
 from sqlalchemy.orm import relationship, Mapped
 
 
-from db.connect import db
+from api.src.connect import db
 
 
 class Industry(db.Model):
