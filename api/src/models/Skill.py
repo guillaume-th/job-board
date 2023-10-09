@@ -5,7 +5,7 @@ from sqlalchemy.orm import mapped_column, Mapped, relationship
 from models.User import user_skills
 from models.Advertisement import advertisement_skills
 
-from api.src.connect import db
+from connect import db
 
 
 class Skill(db.Model):

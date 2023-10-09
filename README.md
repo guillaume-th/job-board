@@ -12,6 +12,7 @@ npm run start
 cd api
 source venv/bin/activate
 pip install -r requirements.txt
+flask --app src/main run
 ```
 
 # DATABASE

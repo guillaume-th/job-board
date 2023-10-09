@@ -5,7 +5,7 @@ from sqlalchemy.orm import relationship, Mapped, mapped_column
 
 from models.Company import Company
 from models.JobApplication import JobApplication
-from api.src.connect import db
+from connect import db
 
 
 class Role(enum.Enum):

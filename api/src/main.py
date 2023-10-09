@@ -7,7 +7,7 @@ from models.Industry import Industry
 from models.JobApplication import JobApplication
 from models.Skill import Skill
 from models.User import User
-from api.src.connect import db
+from connect import db
 
 
 config = dotenv_values(".env")

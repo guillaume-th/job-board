@@ -6,7 +6,7 @@ from sqlalchemy.orm import relationship, Mapped, mapped_column
 from models.Company import Company
 from models.JobApplication import JobApplication
 from models.User import User
-from api.src.connect import db
+from connect import db
 
 
 class ContractType(enum.Enum):

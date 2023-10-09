@@ -2,7 +2,7 @@ import enum
 from sqlalchemy import Column, DateTime, Enum, ForeignKey, Integer, func
 from sqlalchemy.orm import relationship, mapped_column, Mapped
 
-from api.src.connect import db
+from connect import db
 
 
 class ApplicationState(enum.Enum):
