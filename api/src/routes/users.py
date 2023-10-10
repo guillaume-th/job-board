@@ -16,7 +16,6 @@ def users():
         if request.method == "GET":
             schema = UserSchema(many=True)
             users = UserController().get_all()
-
             response = schema.dump(users)
 
             return {"data": response}
@@ -42,7 +41,6 @@ def user_auth():
         return {"data": UserSchema().dump(user)}
 
     except Exception as e:
-        raise e
         abort(jsonify(message=f"Error on user route: {e}", error=True))
 
 
