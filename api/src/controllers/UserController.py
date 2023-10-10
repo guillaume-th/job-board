@@ -1,6 +1,6 @@
+from datetime import datetime
 import bcrypt
 
-from schema.UpdateUserSchema import UpdateUserSchema
 from models.User import User
 from connect import db
 
@@ -52,6 +52,8 @@ class UserController():
 
         for key, value in data.items():
             setattr(user, key, value)
+
+        user.updated_at = datetime.now()
 
         db.session.commit()
 
