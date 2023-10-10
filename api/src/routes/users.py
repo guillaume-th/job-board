@@ -1,40 +1,30 @@
 from flask import Blueprint, abort, jsonify, request
-import bcrypt
 
-from models.User import User
-from connect import db
+from schema.CreateUserSchema import CreateUserSchema
+
+from controllers.UserController import UserController
 
 user_routes = Blueprint('user_routes', __name__)
 
 
 @user_routes.route("/", methods=["GET", "POST", "DELETE"])
-def get_users():
+def users():
     try:
         if request.method == "GET":
-            users = db.session.execute(
-                db.select(User).order_by(User.username)).all()
-
-            return users
+            return UserController().get_all()
 
         if request.method == "POST":
-            data = request.get_json()
-            password = bytes(data["password"],  encoding="utf-8")
-            salt = bcrypt.gensalt()
-            hashed = bcrypt.hashpw(password, salt)
-            print(salt)
-            data["password"] = hashed
-            user = User(**data)
-            return user
+            schema = CreateUserSchema()
+            data = schema.load(request.get_json()).data
+
+            return UserController().create(data)
     except Exception as e:
         abort(jsonify(message=f"Error on user route: {e}", error=True))
 
 
 @user_routes.route("/<int:id>", methods=["GET"])
-def get_user(id: int):
+def user(id: int):
     try:
-        user = db.session.execute(
-            db.select(User).get(id))
-
-        return user
+        return UserController().get(id)
     except Exception as e:
         abort(jsonify(message=f"Error on user route: {e}", error=True))
