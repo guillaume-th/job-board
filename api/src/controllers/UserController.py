@@ -1,5 +1,4 @@
 from datetime import datetime
-from sqlalchemy import and_
 import bcrypt
 
 from schema.UpdateUserSchema import UpdateUserSchema
@@ -12,7 +11,8 @@ class UserController():
         return
 
     def get_all(self):
-        users = db.session.query(User).order_by(User.username).all()
+        users = db.session.execute(
+            db.select(User).order_by(User.username)).all()
 
         return users
 
