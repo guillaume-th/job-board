@@ -1,13 +1,9 @@
 import { FC, useState } from "react";
 
 import { LoginForm, RegisterForm } from "../components/auth";
-import { useMutation } from "../hooks/useMutation";
 
 const Auth: FC = () => {
   const [isLogin, setIsLogin] = useState(true);
-  const submitData = useMutation<{ test: string }>("/api/");
-
-  // const { error, data } = submitData({ test: string });
 
   return (
     <div className="grid grid-cols-12 h-screen place-items-center">

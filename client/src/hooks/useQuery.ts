@@ -1,17 +1,19 @@
 import { useState } from "react";
 
-export const useQuery = <T extends {}>(url: string) => {
-  const [data, setData] = useState<T>();
-  const [error, setError] = useState<string>();
+type Method = "GET" | "DELETE";
+
+export const useQuery = <T extends {}>(url: string, method: Method = "GET") => {
+  const [data, setData] = useState<T | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   if (!data) {
-    fetch(url)
+    fetch(url, { method })
       .then((res) => res.json())
       .then((res) => {
         if (res?.error) {
           setError(res.message);
         } else {
-          setData(res);
+          setData(res?.data);
         }
       })
       .catch((err) => {

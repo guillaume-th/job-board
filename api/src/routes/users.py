@@ -18,7 +18,7 @@ def users():
 
             response = schema.dump(users)
 
-            return response
+            return {data: response}
 
         if request.method == "POST":
             schema = CreateUserSchema()
@@ -37,17 +37,21 @@ def user(id: int):
         user_controller = UserController()
         if request.method == "GET":
             user = user_controller.get(id)
-            return UserSchema().dump(user)
+            response = UserSchema().dump(user)
+
+            return {data: response}
 
         if request.method == "PUT":
             schema = UpdateUserSchema()
             data = schema.load(request.get_json())
             user = user_controller.update(id, data)
+            response = UserSchema().dump(user)
 
-            return UserSchema().dump(user)
+            return {data: response}
 
         if request.method == "DELETE":
             user_controller.delete(id)
+
             return {"error": False}
 
     except Exception as e:
