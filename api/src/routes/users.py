@@ -1,5 +1,6 @@
 from flask import Blueprint, abort, jsonify, request
 
+from schema.UserSchema import UserSchema
 from schema.CreateUserSchema import CreateUserSchema
 
 from controllers.UserController import UserController
@@ -11,12 +12,18 @@ user_routes = Blueprint('user_routes', __name__)
 def users():
     try:
         if request.method == "GET":
-            return UserController().get_all()
+            schema = UserSchema(many=True)
+            users = UserController().get_all()
+            print(schema, users)
+            response = schema.dump(users)
+
+            return response
 
         if request.method == "POST":
             schema = CreateUserSchema()
             data = schema.load(request.get_json())
             user = UserController().create(data)
+
             return user
 
     except Exception as e:

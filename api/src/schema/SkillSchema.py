@@ -1,7 +1,5 @@
 from marshmallow import Schema, fields
 
-from schema.UserSchema import UserSchema
-
 
 class SkillSchema(Schema):
     id = fields.Int()

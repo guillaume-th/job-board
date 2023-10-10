@@ -3,7 +3,7 @@ from marshmallow import Schema, fields
 from models.JobApplication import ApplicationState
 
 
-class IndustrySchema(Schema):
+class JobApplicationSchema(Schema):
     id = fields.Int()
     candidate = fields.Nested("UserSchema")
     advertisement = fields.Nested("AdvertisementSchema")

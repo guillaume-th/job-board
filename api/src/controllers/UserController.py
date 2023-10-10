@@ -12,7 +12,7 @@ class UserController():
         users = db.session.execute(
             db.select(User).order_by(User.username)).all()
 
-        return users
+        return [user for user, in users]
 
     def get(self, id):
         user = db.session.execute(

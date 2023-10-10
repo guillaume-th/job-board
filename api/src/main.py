@@ -1,6 +1,7 @@
 from flask import Flask
 from dotenv import dotenv_values
 
+# Models
 from models.Advertisement import Advertisement
 from models.Company import Company
 from models.Industry import Industry
@@ -9,6 +10,16 @@ from models.Skill import Skill
 from models.User import User
 from models.Message import Message
 from connect import db
+
+# Schemas
+from schema.AdvertisementSchema import AdvertisementSchema
+from schema.CompanySchema import CompanySchema
+from schema.IndustrySchema import IndustrySchema
+from schema.JobApplicationSchema import JobApplicationSchema
+from schema.MessageSchema import MessageSchema
+from schema.SkillSchema import SkillSchema
+from schema.UserSchema import UserSchema
+
 
 from routes.users import user_routes
 
