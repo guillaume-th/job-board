@@ -1,6 +1,7 @@
 from datetime import datetime
 import bcrypt
 
+from schema.UpdateUserSchema import UpdateUserSchema
 from models.User import User
 from connect import db
 
@@ -12,7 +13,7 @@ class UserController():
     def get_all(self):
         users = db.session.query(User).order_by(User.username).all()
 
-        return [user for user, in users]
+        return users
 
     def get(self, id):
         user = db.session.query(User).where(User.id == id).one_or_none()
