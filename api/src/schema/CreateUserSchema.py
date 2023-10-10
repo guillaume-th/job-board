@@ -1,5 +1,3 @@
-from datetime import date
-
 from marshmallow import Schema, fields
 
 from models.User import Role

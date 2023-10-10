@@ -15,9 +15,10 @@ def users():
 
         if request.method == "POST":
             schema = CreateUserSchema()
-            data = schema.load(request.get_json()).data
+            data = schema.load(request.get_json())
+            user = UserController().create(data)
+            return user
 
-            return UserController().create(data)
     except Exception as e:
         abort(jsonify(message=f"Error on user route: {e}", error=True))
 
