@@ -7,8 +7,7 @@ class CompanyController():
         pass
 
     def get_all(self,params=None):
-        company = db.session.execute(
-        db.select(Company).order_by(params)).all()
+        company = db.session.query(Company).order_by(params).all()
         return company
     def get(self,id):
         company = db.session.query(Company).filter(Company.id == id).one_or_none()

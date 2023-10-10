@@ -4,7 +4,7 @@ POST  http://127.0.0.1:5000/api/industry/ HTTP/1.1
 content-type: application/json
 
 {
-    "name" : "santé"
+    "name" : "finance"
 }
 
 ### Get all industry
@@ -12,3 +12,12 @@ GET  http://127.0.0.1:5000/api/industry/ HTTP/1.1
 
 ### Get industry with id 1
 GET  http://127.0.0.1:5000/api/industry/1 HTTP/1.1
+###delete industry with id 1
+DELETE http://127.0.0.1:5000/api/industry/22 HTTP/1.1
+### update industry
+PUT http://127.0.0.1:5000/api/industry/1 HTTP/1.1
+content-type: application/json
+
+{
+    "name" : "sante"
+}

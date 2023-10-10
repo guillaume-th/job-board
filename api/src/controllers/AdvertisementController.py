@@ -7,8 +7,7 @@ class AdvertisementController():
         pass
 
     def get_all(self,params=None):
-        advertisement = db.session.execute(
-        db.select(Advertisement).order_by(params)).all()
+        advertisement = db.session.query(Advertisement).order_by(params).all()
         return advertisement
     def get(self,id):
         advertisement = db.session.query(Advertisement).filter(Advertisement.id == id).one_or_none()

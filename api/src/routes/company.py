@@ -33,8 +33,7 @@ def Company(id :int):
     if request.method == "PUT":
         try:
             data = request.get_json()
-            company = CompanyController().create(data)
-            db.session.add(company)
+            company = CompanyController().update(data,id)
             db.session.commit()
             return company
         except Exception as e:

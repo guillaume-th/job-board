@@ -33,8 +33,7 @@ def advertisement(id :int):
     if request.method == "PUT":
         try:
             data = request.get_json()
-            advertisements = AdvertisementController().create(data)
-            db.session.add(advertisements)
+            advertisements = AdvertisementController().update(data,id)
             db.session.commit()
             return advertisements
         except Exception as e:
