@@ -15,6 +15,10 @@ const router = createBrowserRouter([
     path: "/auth",
     element: <Auth />,
   },
+  {
+    path: "/board",
+    element: <Auth />,
+  },
 ]);
 
 const root = createRoot(document.getElementById("root") as Element);
