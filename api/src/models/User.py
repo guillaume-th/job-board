@@ -28,7 +28,7 @@ class User(db.Model):
     __tablename__ = "user"
 
     id = Column(Integer, primary_key=True, autoincrement="auto")
-    username = Column(String(255), unique=True, nullable=False)
+    username = Column(String(255), nullable=False)
     email = Column(String(255), unique=True, nullable=False)
     firstname = Column(String(255))
     lastname = Column(String(255))

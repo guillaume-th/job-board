@@ -1,5 +1,6 @@
 import bcrypt
 
+from schema.UpdateUserSchema import UpdateUserSchema
 from models.User import User
 from connect import db
 
@@ -9,14 +10,12 @@ class UserController():
         return
 
     def get_all(self):
-        users = db.session.execute(
-            db.select(User).order_by(User.username)).all()
+        users = db.session.query(User).order_by(User.username).all()
 
-        return [user for user, in users]
+        return users
 
     def get(self, id):
-        user = db.session.execute(
-            db.select(User).get(id))
+        user = db.session.query(User).where(User.id == id).one_or_none()
 
         return user
 
@@ -26,6 +25,13 @@ class UserController():
         hashed = bcrypt.hashpw(password, salt)
 
         data["password"] = hashed
+
+        user_exists = db.session.query(User).where(
+            User.email == data["email"]).one_or_none()
+
+        if user_exists:
+            raise Exception(f"User with email: {data['email']} already exists")
+
         user = User(**data)
 
         db.session.add(user)
@@ -33,5 +39,29 @@ class UserController():
 
         return user
 
-    # def delete(self, id):
-    #     user = db.session.
+    def update(self, id, data):
+        user = db.session.query(User).where(User.id == id).one_or_none()
+
+        if not user:
+            raise Exception(f"Invalid user with id [{id}]")
+
+        if data.get("password"):
+            salt = bcrypt.gensalt()
+            hashed = bcrypt.hashpw(data["password"], salt)
+            user.password = hashed
+
+        for key, value in data.items():
+            setattr(user, key, value)
+
+        db.session.commit()
+
+        return user
+
+    def delete(self, id):
+        user = db.session.query(User).where(User.id == id).one_or_none()
+
+        if not user:
+            raise Exception(f"Invalid user with id [{id}]")
+
+        db.session.delete(user)
+        db.session.commit()

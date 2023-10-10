@@ -17,3 +17,14 @@ GET  http://127.0.0.1:5000/api/users/ HTTP/1.1
 
 ### Get user with id 1
 GET  http://127.0.0.1:5000/api/users/1 HTTP/1.1
+
+###  Update use 
+PUT  http://127.0.0.1:5000/api/users/1 HTTP/1.1
+content-type: application/json
+
+{
+    "username" : "bob_bidouille"
+}
+
+### Delete
+DELETE  http://127.0.0.1:5000/api/users/1 HTTP/1.1

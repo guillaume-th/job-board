@@ -1,6 +1,7 @@
 from flask import Blueprint, abort, jsonify, request
 
 from schema.UserSchema import UserSchema
+from schema.UpdateUserSchema import UpdateUserSchema
 from schema.CreateUserSchema import CreateUserSchema
 
 from controllers.UserController import UserController
@@ -8,13 +9,12 @@ from controllers.UserController import UserController
 user_routes = Blueprint('user_routes', __name__)
 
 
-@user_routes.route("/", methods=["GET", "POST", "DELETE"])
+@user_routes.route("/", methods=["GET", "POST"])
 def users():
     try:
         if request.method == "GET":
             schema = UserSchema(many=True)
             users = UserController().get_all()
-            print(schema, users)
             response = schema.dump(users)
 
             return response
@@ -24,15 +24,30 @@ def users():
             data = schema.load(request.get_json())
             user = UserController().create(data)
 
-            return user
+            return UserSchema().dump(user)
 
     except Exception as e:
         abort(jsonify(message=f"Error on user route: {e}", error=True))
 
 
-@user_routes.route("/<int:id>", methods=["GET"])
+@user_routes.route("/<int:id>", methods=["GET", "PUT", "DELETE"])
 def user(id: int):
     try:
-        return UserController().get(id)
+        user_controller = UserController()
+        if request.method == "GET":
+            user = user_controller.get(id)
+            return UserSchema().dump(user)
+
+        if request.method == "PUT":
+            schema = UpdateUserSchema()
+            data = schema.load(request.get_json())
+            user = user_controller.update(id, data)
+
+            return UserSchema().dump(user)
+
+        if request.method == "DELETE":
+            user_controller.delete(id)
+            return {"error": False}
+
     except Exception as e:
         abort(jsonify(message=f"Error on user route: {e}", error=True))
