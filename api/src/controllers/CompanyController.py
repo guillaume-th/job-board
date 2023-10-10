@@ -16,5 +16,5 @@ class CompanyController():
         company = Company(**data)
         return company
     def update(self,data,id):
-        company = db.session.query(Company).filter(Company.id == id).update(**data)
+        company = db.session.query(Company).filter(Company.id == id).update(data)
         return company

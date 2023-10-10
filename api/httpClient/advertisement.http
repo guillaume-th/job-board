@@ -1,0 +1,30 @@
+
+### Creates advertisements
+POST  http://127.0.0.1:5000/api/advertisements/ HTTP/1.1
+content-type: application/json
+
+{
+    "name" : "bnp",
+    "description" : "bnp",
+    "salary" : 0.0,
+    "place" : "bnp",
+    "working_time" : 0.0,
+    "contract_type" : "permanent_contract",
+    "recruiter_id":1,
+    "company_id":1
+}
+
+### Get all advertisements
+GET  http://127.0.0.1:5000/api/advertisements/ HTTP/1.1
+
+### Get advertisements with id 1
+GET  http://127.0.0.1:5000/api/advertisements/1 HTTP/1.1
+###delete advertisements with id 1
+DELETE http://127.0.0.1:5000/api/advertisements/3 HTTP/1.1
+### update advertisements
+PUT http://127.0.0.1:5000/api/advertisements/1 HTTP/1.1
+content-type: application/json
+
+{
+    "name" : "pas bnp"
+}

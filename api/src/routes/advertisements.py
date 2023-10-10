@@ -1,6 +1,7 @@
 from flask import Blueprint, abort, jsonify, request
 from connect import db
 from controllers.AdvertisementController import AdvertisementController
+from schema.AdvertisementSchema import AdvertisementSchema
 
 advertisements_routes = Blueprint('advertisements_routes', __name__)
 
@@ -9,7 +10,11 @@ advertisements_routes = Blueprint('advertisements_routes', __name__)
 def advertisements(params:str=None):
     if request.method == "GET":
         try:
-            return AdvertisementController().get_all(params)
+            schema = AdvertisementSchema(many=True)
+            advertisements = AdvertisementController().get_all(params)
+            response = schema.dump(advertisements)
+            return response
+    
         except Exception as e:
             abort(jsonify(message=f"Error on advertisements get_all: {e}", error=True))
     
@@ -19,7 +24,9 @@ def advertisements(params:str=None):
             advertisements = AdvertisementController().create(data)
             db.session.add(advertisements)
             db.session.commit()
-            return advertisements
+            schema = AdvertisementSchema()
+            response = schema.dump(advertisements)
+            return response
         except Exception as e:
             abort(jsonify(message=f"Error on advertisements create: {e}", error=True))
     
@@ -27,7 +34,10 @@ def advertisements(params:str=None):
 def advertisement(id :int):
     if request.method == "GET":
         try:
-            return AdvertisementController().get(id)
+            schema = AdvertisementSchema()
+            advertisements = AdvertisementController().get(id)
+            response = schema.dump(advertisements)
+            return response
         except Exception as e:
             abort(jsonify(message=f"Error on advertisements get_one: {e}", error=True))
     if request.method == "PUT":
@@ -35,7 +45,9 @@ def advertisement(id :int):
             data = request.get_json()
             advertisements = AdvertisementController().update(data,id)
             db.session.commit()
-            return advertisements
+            schema = AdvertisementSchema()
+            response = schema.dump(advertisements)
+            return response
         except Exception as e:
             abort(jsonify(message=f"Error on advertisements update: {e}", error=True))
     
@@ -44,6 +56,7 @@ def advertisement(id :int):
             advertisements = AdvertisementController().get(id)
             db.session.delete(advertisements)
             db.session.commit()
+            return {"error":False}
         except Exception as e:
             abort(jsonify(message=f"Error on advertisements delete: {e}", error=True))
         

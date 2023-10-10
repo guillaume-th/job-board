@@ -1,6 +1,7 @@
 from flask import Blueprint, abort, jsonify, request
 from connect import db
 from controllers.CompanyController import CompanyController
+from schema.CompanySchema import CompanySchema
 
 company_routes = Blueprint('company_routes', __name__)
 
@@ -9,7 +10,10 @@ company_routes = Blueprint('company_routes', __name__)
 def company(params:str=None):
     if request.method == "GET":
         try:
-            return CompanyController().get_all(params)
+            schema = CompanySchema(many=True)
+            Company = CompanyController().get_all(params)
+            response = schema.dump(Company)
+            return response
         except Exception as e:
             abort(jsonify(message=f"Error on company get_all: {e}", error=True))
     
@@ -19,7 +23,9 @@ def company(params:str=None):
             company = CompanyController().create(data)
             db.session.add(company)
             db.session.commit()
-            return company
+            schema = CompanySchema()
+            response = schema.dump(company)
+            return response
         except Exception as e:
             abort(jsonify(message=f"Error on company create: {e}", error=True))
     
@@ -27,7 +33,10 @@ def company(params:str=None):
 def Company(id :int):
     if request.method == "GET":
         try:
-            return CompanyController().get(id)
+            schema = CompanySchema()
+            Company = CompanyController().get(id)
+            response = schema.dump(Company)
+            return response
         except Exception as e:
             abort(jsonify(message=f"Error on company get_one: {e}", error=True))
     if request.method == "PUT":
@@ -35,7 +44,9 @@ def Company(id :int):
             data = request.get_json()
             company = CompanyController().update(data,id)
             db.session.commit()
-            return company
+            schema = CompanySchema()
+            response = schema.dump(company)
+            return response
         except Exception as e:
             abort(jsonify(message=f"Error on company update: {e}", error=True))
     
@@ -44,6 +55,7 @@ def Company(id :int):
             company = CompanyController().get(id)
             db.session.delete(company)
             db.session.commit()
+            return {"error":False}
         except Exception as e:
             abort(jsonify(message=f"Error on company delete: {e}", error=True))
         

@@ -1,0 +1,23 @@
+
+### Creates company
+POST  http://127.0.0.1:5000/api/company/ HTTP/1.1
+content-type: application/json
+
+{
+    "name" : "bnp"
+}
+
+### Get all company
+GET  http://127.0.0.1:5000/api/company/ HTTP/1.1
+
+### Get company with id 1
+GET  http://127.0.0.1:5000/api/company/1 HTTP/1.1
+###delete company with id 1
+DELETE http://127.0.0.1:5000/api/company/3 HTTP/1.1
+### update company
+PUT http://127.0.0.1:5000/api/company/1 HTTP/1.1
+content-type: application/json
+
+{
+    "name" : "credit agricole"
+}
