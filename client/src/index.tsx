@@ -2,7 +2,9 @@ import * as React from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
+import "./index.css";
 import App from "./pages/App";
+import Auth from "./pages/Auth";
 
 const router = createBrowserRouter([
   {
@@ -10,8 +12,8 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
-    path: "about",
-    element: <div>About</div>,
+    path: "/auth",
+    element: <Auth />,
   },
 ]);
 
@@ -19,7 +21,9 @@ const root = createRoot(document.getElementById("root") as Element);
 
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <div className="min-h-screen">
+      <RouterProvider router={router} />
+    </div>
   </React.StrictMode>
 );
 

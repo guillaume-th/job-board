@@ -1,5 +1,6 @@
 from flask import Flask
 from dotenv import dotenv_values
+from flask_cors import CORS
 
 # Models
 from models.Advertisement import Advertisement
@@ -32,6 +33,7 @@ DB_URI = "mysql+pymysql://{user}:{password}@localhost/{db_name}?charset=utf8mb4"
 
 
 app = Flask(__name__)
+cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 app.register_blueprint(user_routes, url_prefix="/api/users")
 app.register_blueprint(advertisements_routes, url_prefix="/api/advertisements")
 app.register_blueprint(company_routes,url_prefix="/api/company")
