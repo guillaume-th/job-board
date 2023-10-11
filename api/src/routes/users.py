@@ -31,6 +31,19 @@ def users():
         abort(jsonify(message=f"Error on user route: {e}", error=True))
 
 
+@user_routes.route("/auth", methods=['POST'])
+def user_auth():
+    try:
+        schema = CreateUserSchema()
+        data = schema.load(request.get_json())
+        user = UserController().create(data)
+
+        return UserSchema().dump(user)
+
+    except Exception as e:
+        abort(jsonify(message=f"Error on user route: {e}", error=True))
+
+
 @user_routes.route("/<int:id>", methods=["GET", "PUT", "DELETE"])
 def user(id: int):
     try:

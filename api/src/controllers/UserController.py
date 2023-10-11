@@ -1,4 +1,5 @@
 from datetime import datetime
+from sqlalchemy import and_
 import bcrypt
 
 from schema.UpdateUserSchema import UpdateUserSchema
@@ -19,6 +20,18 @@ class UserController():
         user = db.session.query(User).where(User.id == id).one_or_none()
 
         return user
+
+    def auth(self, data):
+        user = db.session.query(User).where(
+            User.email == data.get("email"))
+
+        if not user:
+            raise Exception(f"User with email [{user.email}] not found")
+
+        if bcrypt.checkpw(data.get("password"), user.password):
+            return user
+        else:
+            raise Exception(f"Invalid password")
 
     def create(self, data):
         password = bytes(data["password"],  encoding="utf-8")

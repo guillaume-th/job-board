@@ -1,18 +1,13 @@
-type MutationResponse<T> =
-  | {
-      error: boolean;
-      message: string;
-    }
-  | { error: boolean; data: T };
-
+type MutationResponse<T> = { error: boolean; data?: T; message?: string };
 type Method = "POST" | "PUT";
+const BASE_URL = "http://localhost:5000/";
 
-export const useMutation = <TBody extends {}>(
+export const useMutation = <TBody extends {}, TResponse extends {}>(
   url: string,
   method: Method = "POST"
 ) => {
-  const fetchFn = async (body: TBody): Promise<MutationResponse<TBody>> => {
-    const raw_response = await fetch(url, {
+  const fetchFn = async (body: TBody): Promise<MutationResponse<TResponse>> => {
+    const raw_response = await fetch(`${BASE_URL}${url}`, {
       method,
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
