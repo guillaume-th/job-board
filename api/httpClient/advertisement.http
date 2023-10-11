@@ -4,11 +4,11 @@ POST  http://127.0.0.1:5000/api/advertisements/ HTTP/1.1
 content-type: application/json
 
 {
-    "name" : "bnp",
-    "description" : "bnp",
-    "salary" : 0.0,
-    "place" : "bnp",
-    "working_time" : 0.0,
+    "name" : "developpeur web",
+    "description" : "un superbe poste dans une entreprise genial avec un mentor fabuleux",
+    "salary" : 1000.0,
+    "place" : "rue de droite",
+    "working_time" : 35.0,
     "contract_type" : "permanent_contract",
     "recruiter_id":1,
     "company_id":1
