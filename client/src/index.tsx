@@ -7,6 +7,8 @@ import App from "./pages/App";
 import Auth from "./pages/Auth";
 import Board from "./pages/Board";
 import Advertisement from "./pages/Advertisement";
+import Profile from "./pages/Profile";
+import Wrapper from "./components/Wrapper";
 
 const router = createBrowserRouter([
   {
@@ -19,11 +21,27 @@ const router = createBrowserRouter([
   },
   {
     path: "/board",
-    element: <Board />,
+    element: (
+      <Wrapper>
+        <Board />
+      </Wrapper>
+    ),
   },
   {
     path: "/board/:id",
-    element: <Advertisement />,
+    element: (
+      <Wrapper>
+        <Advertisement />
+      </Wrapper>
+    ),
+  },
+  {
+    path: "/profile/me",
+    element: (
+      <Wrapper>
+        <Profile />
+      </Wrapper>
+    ),
   },
 ]);
 
