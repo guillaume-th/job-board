@@ -23,7 +23,11 @@ const Profile: FC = () => {
       </div>
     );
   }
-  return data ? <ProfileTemplate user={data} /> : <ErrorMessage text={error} />;
+  return (
+    <div className="flex items-center justify-center w-full">
+      {data ? <ProfileTemplate user={data} /> : <ErrorMessage text={error} />}
+    </div>
+  );
 };
 
 export default Profile;
