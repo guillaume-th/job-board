@@ -7,6 +7,7 @@ const Wrapper: FC<Props> = ({ children }) => {
   return (
     <>
       <Header />
+      <ul className="flex gap-2"></ul>
       {children}
     </>
   );

@@ -1,14 +1,15 @@
 import { FC } from "react";
 
 type Props = {
-  fill?: string;
+  fill: string;
   height: string;
   width: string;
+  onClick: () => void;
 };
 
-const AvatarIcon: FC<Props> = ({ fill, height, width }) => {
+const AvatarIcon: FC<Props> = ({ fill, height, width, onClick }) => {
   return (
-    <div className="cursor-pointer">
+    <div className="cursor-pointer" onClick={onClick}>
       <svg
         viewBox="0 0 16 16"
         xmlns="http://www.w3.org/2000/svg"

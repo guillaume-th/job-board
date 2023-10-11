@@ -17,7 +17,7 @@ export const useMutation = <TBody extends {}, TResponse extends {}>(
     if (response?.error) {
       return { error: true, message: response?.message };
     } else {
-      return { error: false, data: response };
+      return { error: false, data: response.data };
     }
   };
 
