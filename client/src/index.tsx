@@ -5,6 +5,7 @@ import reportWebVitals from "./reportWebVitals";
 import "./index.css";
 import App from "./pages/App";
 import Auth from "./pages/Auth";
+import Board from "./pages/Board";
 
 const router = createBrowserRouter([
   {
@@ -17,7 +18,7 @@ const router = createBrowserRouter([
   },
   {
     path: "/board",
-    element: <Auth />,
+    element: <Board />,
   },
 ]);
 
