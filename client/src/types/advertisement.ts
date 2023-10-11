@@ -1,3 +1,6 @@
+import { Company } from "./company";
+import { User } from "./user";
+
 export type Advertisement = {
     id:number,
     name:string,
@@ -9,4 +12,6 @@ export type Advertisement = {
     skills:string[],
     created_at:Date,
     updated_at:Date,
+    company:Company,
+    recruiter:User,
 };

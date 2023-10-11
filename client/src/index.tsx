@@ -6,6 +6,7 @@ import "./index.css";
 import App from "./pages/App";
 import Auth from "./pages/Auth";
 import Board from "./pages/Board";
+import Advertisement from "./pages/Advertisement";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
   {
     path: "/board",
     element: <Board />,
+  },
+  {
+    path: "/board/:id",
+    element: <Advertisement />,
   },
 ]);
 

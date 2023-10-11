@@ -1,7 +1,7 @@
 import { FC } from "react";
 import BoardContainer from "../components/board/BoardContainer";
 
-const Auth: FC = () => {
+const Board: FC = () => {
 
   return (
     <div className="grid grid-cols-12 h-screen">
@@ -10,4 +10,4 @@ const Auth: FC = () => {
   );
 };
 
-export default Auth;
+export default Board;
