@@ -17,6 +17,9 @@ class Company(db.Model):
     industry: Mapped['Industry'] = relationship(back_populates="companies")
     advertisements: Mapped[List["Advertisement"]
                            ] = relationship(back_populates="company")
+    description = Column(String(255))
+    avatar = Column(String(2000))
+    banner = Column(String(1000))
     created_at = Column(DateTime, server_default=func.now())
     updated_at = Column(DateTime, server_default=func.now())
 

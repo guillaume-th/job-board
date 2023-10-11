@@ -19,6 +19,7 @@ class Skill(db.Model):
         secondary=user_skills, back_populates="skills")
     advertisements: Mapped[List["Advertisement"]] = relationship(
         secondary=advertisement_skills, back_populates="skills")
+    color = Column(String(255))
     created_at = Column(DateTime, server_default=func.now())
     updated_at = Column(DateTime, server_default=func.now())
 

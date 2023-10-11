@@ -15,6 +15,7 @@ class Industry(db.Model):
     name = Column(String(255), unique=True, nullable=False)
     companies: Mapped[List["Company"]] = relationship(
         back_populates="industry")
+    color = Column(String(255))
     created_at = Column(DateTime, server_default=func.now())
     updated_at = Column(DateTime, server_default=func.now())
 

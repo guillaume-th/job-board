@@ -6,5 +6,6 @@ class SkillSchema(Schema):
     name = fields.Str()
     users = fields.List(fields.Nested("UserSchema"))
     advertisements = fields.List(fields.Nested("AdvertisementSchema"))
+    color = fields.Str()
     created_at = fields.DateTime()
     updated_at = fields.DateTime()
