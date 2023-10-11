@@ -7,7 +7,11 @@ const Input = forwardRef<HTMLInputElement, Props>(
     return (
       <label className="block m-2">
         <span className="block m-2">{label}</span>
-        <input {...props} ref={ref} className="block m-2 p-2 w-full" />
+        <input
+          {...props}
+          ref={ref}
+          className="block m-2 p-2 w-full text-[#2F2963]"
+        />
       </label>
     );
   }

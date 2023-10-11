@@ -13,7 +13,7 @@ def company(params: str = None):
             schema = CompanySchema(many=True)
             Company = CompanyController().get_all(params)
             response = schema.dump(Company)
-            return {data: response}
+            return {"data": response}
         except Exception as e:
             abort(
                 jsonify(message=f"Error on company get_all: {e}", error=True))
@@ -26,7 +26,7 @@ def company(params: str = None):
             db.session.commit()
             schema = CompanySchema()
             response = schema.dump(company)
-            return {data: response}
+            return {"data": response}
         except Exception as e:
             abort(jsonify(message=f"Error on company create: {e}", error=True))
 
@@ -39,7 +39,7 @@ def Company(id: int):
             Company = CompanyController().get(id)
             response = schema.dump(Company)
 
-            return {data: response}
+            return {"data": response}
 
         except Exception as e:
             abort(
@@ -53,7 +53,7 @@ def Company(id: int):
             schema = CompanySchema()
             response = schema.dump(company)
 
-            return {data: response}
+            return {"data": response}
 
         except Exception as e:
             abort(jsonify(message=f"Error on company update: {e}", error=True))

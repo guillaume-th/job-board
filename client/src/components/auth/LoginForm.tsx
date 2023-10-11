@@ -4,16 +4,18 @@ import { useMutation } from "../../hooks/useMutation";
 import { User } from "../../types/user";
 import ErrorMessage from "../ui/Error";
 import { save } from "../../helpers/storage";
+import { useNavigate } from "react-router-dom";
 
 type Props = { className?: string; onSwitchForm: () => void };
 
 type Body = { email: string; password: string };
 
 const LoginForm: FC<Props> = ({ className, onSwitchForm }) => {
-  const submit = useMutation<Body, User>("/api/users/auth");
+  const submit = useMutation<Body, User>("api/users/auth");
   const emailRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
   const [error, setError] = useState(false);
+  const navigate = useNavigate();
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -28,6 +30,7 @@ const LoginForm: FC<Props> = ({ className, onSwitchForm }) => {
     } else if (data) {
       setError(false);
       save("user", JSON.stringify(data));
+      navigate("/board");
     }
   };
 
@@ -59,7 +62,7 @@ const LoginForm: FC<Props> = ({ className, onSwitchForm }) => {
           <Button text="Submit" type="submit" />
         </div>
       </div>
-      [error && <ErrorMessage text="Something went wrong, please try again." />]
+      {error && <ErrorMessage text="Something went wrong, please try again." />}
       <p className="text-[#01200F]">
         Don't have an account? Register{" "}
         <span className="underline cursor-pointer" onClick={onSwitchForm}>

@@ -23,12 +23,13 @@ class UserController():
 
     def auth(self, data):
         user = db.session.query(User).where(
-            User.email == data.get("email"))
+            User.email == data.get("email")).one_or_none()
 
         if not user:
-            raise Exception(f"User with email [{user.email}] not found")
+            raise Exception(f"User with email [{data['email']}] not found")
 
-        if bcrypt.checkpw(data.get("password"), user.password):
+        encoded_pass = bytes(data.get("password"), "utf-8")
+        if bcrypt.checkpw(encoded_pass, user.password.encode("utf-8")):
             return user
         else:
             raise Exception(f"Invalid password")

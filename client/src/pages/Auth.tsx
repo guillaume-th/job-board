@@ -15,12 +15,12 @@ const Auth: FC = () => {
       </div>
       {isLogin ? (
         <LoginForm
-          className="col-span-5 w-7/12"
+          className="col-span-5 w-8/12"
           onSwitchForm={() => setIsLogin(false)}
         />
       ) : (
         <RegisterForm
-          className="col-span-5 w-7/12"
+          className="col-span-5 w-8/12"
           onSwitchForm={() => setIsLogin(true)}
         />
       )}

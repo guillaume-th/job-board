@@ -14,7 +14,7 @@ def advertisements(params: str = None):
             advertisements = AdvertisementController().get_all(params)
             response = schema.dump(advertisements)
 
-            return {data: response}
+            return {"data": response}
 
         except Exception as e:
             abort(
@@ -29,7 +29,7 @@ def advertisements(params: str = None):
             schema = AdvertisementSchema()
             response = schema.dump(advertisements)
 
-            return {data: response}
+            return {"data": response}
 
         except Exception as e:
             abort(
@@ -44,7 +44,7 @@ def advertisement(id: int):
             advertisements = AdvertisementController().get(id)
             response = schema.dump(advertisements)
 
-            return {data: response}
+            return {"data": response}
 
         except Exception as e:
             abort(
@@ -57,7 +57,7 @@ def advertisement(id: int):
             schema = AdvertisementSchema()
             response = schema.dump(advertisements)
 
-            return {data: response}
+            return {"data": response}
 
         except Exception as e:
             abort(

@@ -14,7 +14,7 @@ def industry(params: str = None):
             Industry = IndustryController().get_all(params)
             response = schema.dump(Industry)
 
-            return {data: response}
+            return {"data": response}
 
         except Exception as e:
             abort(
@@ -29,7 +29,7 @@ def industry(params: str = None):
             schema = IndustrySchema()
             response = schema.dump(industry)
 
-            return {data: response}
+            return {"data": response}
 
         except Exception as e:
             abort(
@@ -45,7 +45,7 @@ def Industry(id: int):
             Industry = IndustryController().get(id)
             response = schema.dump(Industry)
 
-            return {data: response}
+            return {"data": response}
 
         except Exception as e:
             abort(
@@ -59,7 +59,7 @@ def Industry(id: int):
             schema = IndustrySchema()
             response = schema.dump(industry)
 
-            return {data: response}
+            return {"data": response}
 
         except Exception as e:
             abort(
