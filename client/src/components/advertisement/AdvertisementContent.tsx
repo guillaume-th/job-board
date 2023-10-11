@@ -5,7 +5,7 @@ import { Button } from "../ui";
 
 type Props = { data: Advertisement };
 
-const BoardContent: FC<Props> = ({ data }) => {
+const AdvertisementContent: FC<Props> = ({ data }) => {
   return (
       <div className="w-screen h-screen flex flex-column">
             <div className="box-content w-5/6 m-4 p-4 shadow-md rounded-md">
@@ -30,4 +30,4 @@ const BoardContent: FC<Props> = ({ data }) => {
   );
 };
 
-export default BoardContent;
+export default AdvertisementContent;
