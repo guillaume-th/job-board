@@ -1,4 +1,5 @@
 from datetime import datetime
+from sqlalchemy import and_
 import bcrypt
 
 from schema.UpdateUserSchema import UpdateUserSchema
