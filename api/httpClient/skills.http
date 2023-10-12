@@ -1,0 +1,26 @@
+
+### Creates admin skill
+POST  http://127.0.0.1:5000/api/skills/ HTTP/1.1
+content-type: application/json
+
+{
+    "name" : "PHP", 
+    "color" : "#91b9fa"
+}
+
+### Get all skills
+GET  http://127.0.0.1:5000/api/skills/ HTTP/1.1
+
+### Get skill with id 1
+GET  http://127.0.0.1:5000/api/skills/1 HTTP/1.1
+
+###  Update use 
+PUT  http://127.0.0.1:5000/api/skills/1 HTTP/1.1
+content-type: application/json
+
+{
+    "name" : "PHPouille"
+}
+
+### Delete
+DELETE  http://127.0.0.1:5000/api/skills/1 HTTP/1.1

@@ -1,8 +1,8 @@
 import { FC, FormEvent, useRef, useState } from "react";
-import { Button, Input } from "../ui";
+import { Button, Input } from "../ui/atoms";
 import { useMutation } from "../../hooks/useMutation";
 import { User } from "../../types/user";
-import ErrorMessage from "../ui/Error";
+import ErrorMessage from "../ui/atoms/Error";
 import { save } from "../../helpers/storage";
 import { useNavigate } from "react-router-dom";
 
