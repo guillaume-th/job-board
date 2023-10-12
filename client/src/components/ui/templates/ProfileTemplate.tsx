@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { User } from "../../../types/user";
 import { capitalize } from "../../../helpers/format";
-import Skills from "../organisms/Skills";
+import Chips from "../organisms/Chips";
 import { Card } from "../molecules";
 import { Button } from "../atoms";
 import { useNavigate } from "react-router-dom";
@@ -43,7 +43,7 @@ const ProfileTemplate: FC<Props> = ({ user, editable }) => {
         {user.skills && (
           <div className="my-8">
             <h4 className="underline text-lg text-[#2F2963]">Skills</h4>
-            <Skills skills={user.skills} />
+            <Chips data={user.skills} />
           </div>
         )}
         <Card className="bg-[#2F2963] text-white ">

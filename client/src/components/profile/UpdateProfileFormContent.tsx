@@ -5,7 +5,7 @@ import { useMutation } from "../../hooks/useMutation";
 import { useNavigate } from "react-router-dom";
 import Dropdown from "../Dropdown";
 import { Skill } from "../../types/skill";
-import { Skills } from "../ui/organisms";
+import { Chips } from "../ui/organisms";
 
 type Props = {
   user: User;
@@ -71,7 +71,7 @@ const UpdateProfileFormContent: FC<Props> = ({ user, skills }) => {
         <Input label="Phone number" defaultValue={user.phone} name="phone" />
         <Input label="Avatar (URL)" defaultValue={user.avatar} name="avatar" />
 
-        {skills && <Skills skills={userSkills} />}
+        {skills && <Chips data={userSkills} />}
         <Dropdown
           elements={skills.map(({ id, name }) => ({ id, name }))}
           onSelectValue={onAddSkill}

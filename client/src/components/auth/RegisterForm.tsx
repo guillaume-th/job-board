@@ -31,7 +31,6 @@ const LoginForm: FC<Props> = ({ className, onSwitchForm }) => {
 
     if (error) {
       setError(true);
-      console.error(error);
     } else if (data) {
       setError(false);
       save("user", JSON.stringify(data));

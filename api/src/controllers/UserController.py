@@ -1,9 +1,8 @@
 from datetime import datetime
-from sqlalchemy import and_
 import bcrypt
 
-from schema.UpdateUserSchema import UpdateUserSchema
 from models.User import User
+from controllers.SkillController import SkillController
 from connect import db
 
 
@@ -12,7 +11,7 @@ class UserController():
         return
 
     def get_all(self):
-        users = db.session.query(User).order_by(User.username).all()
+        users = db.session.query(User).all()
 
         return users
 
@@ -47,7 +46,15 @@ class UserController():
         if user_exists:
             raise Exception(f"User with email: {data['email']} already exists")
 
+        if data.get("skills"):
+            del data["skills"]
+
         user = User(**data)
+
+        for skill_id in data.get("skills", []):
+            skill = SkillController.get(skill_id)
+            print(skill)
+            user.append(skill)
 
         db.session.add(user)
         db.session.commit()
@@ -66,9 +73,13 @@ class UserController():
             user.password = hashed
 
         for key, value in data.items():
-            setattr(user, key, value)
+            if key not in ["skills"]:
+                setattr(user, key, value)
 
         user.updated_at = datetime.now()
+
+        for skill_id in data.get("skills", []):
+            user.append(SkillController.get(skill_id))
 
         db.session.commit()
 

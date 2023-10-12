@@ -21,5 +21,7 @@ export const useMutation = <TBody extends {}, TResponse extends {}>(
     }
   };
 
-  return fetchFn;
+  return url !== "forbidden"
+    ? fetchFn
+    : () => ({ data: null, error: true, message: "Invalid endpoint" });
 };

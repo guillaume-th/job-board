@@ -21,8 +21,6 @@ const Profile: FC<Props> = ({ edit = false }) => {
     currentUser?.role === "admin" ||
     Number(id) === currentUser?.id;
 
-  console.log(id, currentUser);
-
   if (!userId) {
     return <ErrorMessage text="Something went wrong. Please log in." />;
   }

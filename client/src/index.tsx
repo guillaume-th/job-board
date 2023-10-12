@@ -9,6 +9,9 @@ import Board from "./pages/Board";
 import Advertisement from "./pages/Advertisement";
 import Profile from "./pages/Profile";
 import Wrapper from "./components/Wrapper";
+import AdminList from "./pages/AdminList";
+import AdminForm from "./pages/AdminForm";
+import AdminEditContainer from "./pages/AdminEditContainer";
 
 const router = createBrowserRouter([
   {
@@ -48,6 +51,30 @@ const router = createBrowserRouter([
     element: (
       <Wrapper>
         <Profile edit />
+      </Wrapper>
+    ),
+  },
+  {
+    path: "/admin/:resource",
+    element: (
+      <Wrapper>
+        <AdminList />
+      </Wrapper>
+    ),
+  },
+  {
+    path: "/admin/:resource/create",
+    element: (
+      <Wrapper>
+        <AdminForm />
+      </Wrapper>
+    ),
+  },
+  {
+    path: "/admin/:resource/:id/edit",
+    element: (
+      <Wrapper>
+        <AdminEditContainer />
       </Wrapper>
     ),
   },
