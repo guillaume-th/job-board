@@ -5,13 +5,23 @@ import { User } from "../types/user";
 import { useQuery } from "../hooks/useQuery";
 import { ErrorMessage, Spinner } from "../components/ui/atoms";
 import { ProfileTemplate } from "../components/ui/templates";
+import UpdateProfileFormContainer from "../components/profile/UpdateProfileFormContainer";
 
-const Profile: FC = () => {
+type Props = {
+  edit?: boolean;
+};
+
+const Profile: FC<Props> = ({ edit = false }) => {
   const { id } = useParams();
   const currentUser = get<User>("user");
   const userId = id === "me" ? currentUser.id : id;
   const { data, error } = useQuery<User>(`api/users/${userId}`);
-  console.log({ data, currentUser });
+  const isEditable =
+    id === "me" ||
+    currentUser?.role === "admin" ||
+    Number(id) === currentUser?.id;
+
+  console.log(id, currentUser);
 
   if (!userId) {
     return <ErrorMessage text="Something went wrong. Please log in." />;
@@ -24,9 +34,15 @@ const Profile: FC = () => {
       </div>
     );
   }
+
+  const component = edit ? (
+    <UpdateProfileFormContainer user={data!} />
+  ) : (
+    <ProfileTemplate user={data!} editable={isEditable} />
+  );
   return (
     <div className="flex items-center justify-center w-full">
-      {data ? <ProfileTemplate user={data} /> : <ErrorMessage text={error} />}
+      {data ? component : <ErrorMessage text={error} />}
     </div>
   );
 };

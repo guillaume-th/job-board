@@ -3,19 +3,34 @@ import { User } from "../../../types/user";
 import { capitalize } from "../../../helpers/format";
 import Skills from "../organisms/Skills";
 import { Card } from "../molecules";
+import { Button } from "../atoms";
+import { useNavigate } from "react-router-dom";
 
 type Props = {
   user: User;
+  editable: boolean;
 };
 
-const ProfileTemplate: FC<Props> = ({ user }) => {
+const ProfileTemplate: FC<Props> = ({ user, editable }) => {
+  const navigate = useNavigate();
+
   return (
     <div className="w-6/12 flex m-10 flex-col">
-      <div>
-        <h2 className="text-3xl font-semibold text-[#57CC99]">
-          {capitalize(user.firstname)} {capitalize(user.lastname)}
-        </h2>
-        <p className="text-[#DED9E2] text-md font-italic">@{user.username}</p>
+      <div className="flex justify-between">
+        <div>
+          <h2 className="text-3xl font-semibold text-[#57CC99]">
+            {capitalize(user.firstname)} {capitalize(user.lastname)}
+          </h2>
+          <p className="text-[#DED9E2] text-md font-italic">@{user.username}</p>
+        </div>
+        {editable && (
+          <Button
+            text="Edit"
+            onClick={() => {
+              navigate("/profile/:id/edit");
+            }}
+          />
+        )}
       </div>
       <hr className="h-2 bg-[#57CC99] w-full block my-4" />
 

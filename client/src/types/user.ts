@@ -18,6 +18,7 @@ export type User = {
   job_applications?: JobApplication[];
   avatar: string;
   description: string;
+  adress?: string;
   created_at: Date;
   updated_at: Date;
 };

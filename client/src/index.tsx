@@ -43,6 +43,14 @@ const router = createBrowserRouter([
       </Wrapper>
     ),
   },
+  {
+    path: "/profile/:id/edit",
+    element: (
+      <Wrapper>
+        <Profile edit />
+      </Wrapper>
+    ),
+  },
 ]);
 
 const root = createRoot(document.getElementById("root") as Element);
