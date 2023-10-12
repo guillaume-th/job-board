@@ -24,8 +24,8 @@ from schema.UserSchema import UserSchema
 
 from routes.users import user_routes
 from routes.advertisements import advertisements_routes
-from routes.company import company_routes
-from routes.industry import industry_routes
+from api.src.routes.companies import company_routes
+from api.src.routes.industries import industry_routes
 
 config = dotenv_values(".env")
 DB_URI = "mysql+pymysql://{user}:{password}@localhost/{db_name}?charset=utf8mb4".format(
@@ -36,8 +36,9 @@ app = Flask(__name__)
 cors = CORS(app, resources={r"/api/*": {"origins": "*"}})
 app.register_blueprint(user_routes, url_prefix="/api/users")
 app.register_blueprint(advertisements_routes, url_prefix="/api/advertisements")
-app.register_blueprint(company_routes,url_prefix="/api/company")
-app.register_blueprint(industry_routes,url_prefix="/api/industry")
+app.register_blueprint(company_routes, url_prefix="/api/companies")
+app.register_blueprint(industry_routes, url_prefix="/api/industries")
+app.register_blueprint(industry_routes, url_prefix="/api/skills")
 
 app.config["SQLALCHEMY_DATABASE_URI"] = DB_URI
 db.init_app(app)
