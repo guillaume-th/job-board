@@ -6,8 +6,8 @@ type Props = { skills: Skill[] };
 const Skills: FC<Props> = ({ skills }) => {
   return (
     <div>
-      {skills.map(({ name }) => (
-        <span>{name}</span>
+      {skills.map(({ name, color }) => (
+        <span className={`bg-[${color}] p-4`}>{name}</span>
       ))}
     </div>
   );

@@ -10,7 +10,7 @@ content-type: application/json
     "place" : "rue de droite",
     "working_time" : 35.0,
     "contract_type" : "permanent_contract",
-    "recruiter_id":2,
+    "recruiter_id":1,
     "company_id":1
 }
 

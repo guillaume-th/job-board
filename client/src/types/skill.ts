@@ -6,6 +6,7 @@ export type Skill = {
   name: string;
   users: User[];
   advertisements: Advertisement[];
+  color?: string;
   created_at: Date;
   updated_at: Date;
 };

@@ -12,10 +12,12 @@ export type User = {
   password: string;
   phone?: string;
   role: string;
-  skills: Skill[];
+  skills?: Skill[];
   created_advertisements?: Advertisement[];
   company: Company;
   job_applications?: JobApplication[];
+  avatar: string;
+  description: string;
   created_at: Date;
   updated_at: Date;
 };

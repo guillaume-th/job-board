@@ -11,6 +11,7 @@ const Profile: FC = () => {
   const currentUser = get<User>("user");
   const userId = id === "me" ? currentUser.id : id;
   const { data, error } = useQuery<User>(`api/users/${userId}`);
+  console.log({ data, currentUser });
 
   if (!userId) {
     return <ErrorMessage text="Something went wrong. Please log in." />;

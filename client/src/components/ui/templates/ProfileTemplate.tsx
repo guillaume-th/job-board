@@ -25,10 +25,12 @@ const ProfileTemplate: FC<Props> = ({ user }) => {
         molestias provident, odit earum modi deleniti cumque quos dolor beatae!
       </p>
       <div className="grid grid-cols-2">
-        <div className="my-8">
-          <h4 className="underline text-lg text-[#2F2963]">Skills</h4>
-          <Skills skills={user.skills} />
-        </div>
+        {user.skills && (
+          <div className="my-8">
+            <h4 className="underline text-lg text-[#2F2963]">Skills</h4>
+            <Skills skills={user.skills} />
+          </div>
+        )}
         <Card className="bg-[#2F2963] text-white ">
           <h4 className="text-lg ">Contact</h4>
           <a href={`mailto:${user.email}`} className="text-[#57CC99]">
