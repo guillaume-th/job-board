@@ -1,6 +1,6 @@
 from marshmallow import Schema, fields
 
 
-class SkillSchema(Schema):
+class UpdateSkillSchema(Schema):
     name = fields.Str()
     color = fields.Str()

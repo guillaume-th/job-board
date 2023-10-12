@@ -10,7 +10,7 @@ class SkillController():
         pass
 
     def get_all(self):
-        skills = db.session.query(Skill).order_by(Skill.skillname).all()
+        skills = db.session.query(Skill).order_by(Skill.name).all()
 
         return skills
 
