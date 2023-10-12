@@ -1,6 +1,6 @@
 import enum
 from typing import List
-from sqlalchemy import Column, DateTime, Enum, ForeignKey, Integer, func
+from sqlalchemy import Column, DateTime, Enum, ForeignKey, Integer, String, func
 from sqlalchemy.orm import relationship, mapped_column, Mapped
 
 from connect import db
@@ -21,6 +21,10 @@ class JobApplication(db.Model):
     id = Column(Integer, primary_key=True, autoincrement="auto")
     candidate_id = mapped_column(ForeignKey("user.id"))
     candidate: Mapped["User"] = relationship(back_populates="job_applications")
+    candidate_name = Column(String(255))
+    candidate_text = Column(String(1000))
+    candidate_email = Column(String(255))
+    candidate_phone = Column(String(255))
     advertisement_id = mapped_column(ForeignKey("advertisement.id"))
     advertisement: Mapped["Advertisement"] = relationship(
         back_populates="job_applications")
