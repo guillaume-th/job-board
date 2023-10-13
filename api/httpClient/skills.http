@@ -1,12 +1,12 @@
 
-### Creates admin skill
+### Creates skill
 POST  http://127.0.0.1:5000/api/skills/ HTTP/1.1
 content-type: application/json
 
 {
-    "name" : "PHP", 
-    "color" : "#91b9fa"
-}
+        "name" : "PHP", 
+        "color" : "#91b9fa"
+    }
 
 ### Get all skills
 GET  http://127.0.0.1:5000/api/skills/ HTTP/1.1
