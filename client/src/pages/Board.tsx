@@ -1,11 +1,26 @@
-import { FC } from "react";
+import { FC, useState } from "react";
 import BoardContainer from "../components/board/BoardContainer";
+import Filter from "../components/filter/Filter";
 
 const Board: FC = () => {
+  const [location, setLocation] = useState<string>();
+  if (location) {
+    window.history.replaceState(
+      null,
+      "",
+      "http://localhost:3000/board?" + location
+    );
+  }
+  console.log(location);
 
   return (
-    <div className="grid grid-cols-12 h-screen">
-      <BoardContainer />
+    <div className="grid grid-cols-12 h-full overflow-x-hidden">
+      <div className="col-span-3">
+        <Filter onLocationChange={setLocation} />
+      </div>
+      <div className="col-span-8">
+        <BoardContainer query={location ?? ""} />
+      </div>
     </div>
   );
 };

@@ -4,10 +4,13 @@ import { useQuery } from "../../hooks/useQuery";
 import { Advertisement } from "../../types/advertisement";
 import BoardContent from "./BoardContent";
 
-const BoardContainer: FC = () => {
-  let params = document.location.search;
+type Props = {
+  query: string;
+};
+
+const BoardContainer: FC<Props> = ({ query }) => {
   const { data, error } = useQuery<Advertisement[]>(
-    `api/advertisements/${params}`
+    `api/advertisements?${query}`
   );
 
   if (data) {
