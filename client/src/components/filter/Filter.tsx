@@ -27,7 +27,20 @@ const Filter: FC<Props> = ({ onLocationChange }) => {
           <Input type="text" label="Place" name="place" />
           <Input type="number" label="Salary" name="salary" />
           <Input type="number" label="Working Time" name="working_time" />
-          <Input type="text" label="Contract Type" name="contract_type" />
+          <div className="flex flex-col justify-center">
+            <label htmlFor="contract_type" className="block m-2">
+              <span className="block m-2">Contract Type</span>
+              <select
+                name="contract_type"
+                className="block m-2 p-2 w-full text-[#2F2963] border-solid border-2 rounded"
+              >
+                <option value="permanent_contract">Permanent Contract</option>
+                <option value="temporary_contract">Temporary Contract</option>
+                <option value="internship">Internship</option>
+                <option value="apprenticeship">Apprenticeship</option>
+              </select>
+            </label>
+          </div>
         </div>
         <br />
         <div className="flex justify-center">
