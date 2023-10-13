@@ -34,6 +34,7 @@ const Filter: FC<Props> = ({ onLocationChange }) => {
                 name="contract_type"
                 className="block m-2 p-2 w-full text-[#2F2963] border-solid border-2 rounded"
               >
+                <option value="">-----------</option>
                 <option value="permanent_contract">Permanent Contract</option>
                 <option value="temporary_contract">Temporary Contract</option>
                 <option value="internship">Internship</option>
