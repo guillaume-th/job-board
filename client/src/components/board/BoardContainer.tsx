@@ -5,7 +5,10 @@ import { Advertisement } from "../../types/advertisement";
 import BoardContent from "./BoardContent";
 
 const BoardContainer: FC = () => {
-  const { data, error } = useQuery<Advertisement[]>("api/advertisements/");
+  let params = document.location.search;
+  const { data, error } = useQuery<Advertisement[]>(
+    `api/advertisements/${params}`
+  );
 
   if (data) {
     return <BoardContent data={data} />;

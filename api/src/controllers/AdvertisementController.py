@@ -1,4 +1,5 @@
 from models.Advertisement import Advertisement
+from schema.AdvertisementSchema import AdvertisementSchema
 from connect import db
 from controllers.CompanyController import CompanyController
 from controllers.UserController import UserController
@@ -9,7 +10,11 @@ class AdvertisementController():
         pass
 
     def get_all(self,params=None):
-        advertisement = db.session.query(Advertisement).order_by(params).all()
+        my_list = []
+        for i in params.keys():
+            if not AdvertisementSchema().validate(data={i:params[i]},partial=True):
+                my_list.append(getattr(Advertisement,i).like("%"+params[i].lower()+"%"))
+        advertisement = db.session.query(Advertisement).filter(*my_list).all()
         return advertisement
     def get(self,id):
         advertisement = db.session.query(Advertisement).where(Advertisement.id == id).one_or_none()
