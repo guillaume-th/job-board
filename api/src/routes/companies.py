@@ -39,7 +39,6 @@ def Company(id: int):
             company = CompanyController().get(id)
             response = schema.dump(company)
 
-            print(company.users)
             return {"data": response}
 
         except Exception as e:

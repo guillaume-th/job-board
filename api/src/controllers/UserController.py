@@ -66,8 +66,9 @@ class UserController():
             salt = bcrypt.gensalt()
             encoded = bytes(data["password"], "utf-8")
             hashed = bcrypt.hashpw(encoded, salt)
-            user.password = hashed
-        elif data.get("password"):
+            data["password"] = hashed
+
+        elif data.get("password") == "":
             del data["password"]
 
         data["skills"] = SkillController().get_from_ids(data.get("skills", []))
