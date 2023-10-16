@@ -3,12 +3,15 @@ import { InputProps } from "./components/ui/atoms/Input";
 export type Field = Partial<InputProps> & {
   dropdown?: string;
   fields?: string[];
+  special?: string;
+  k?: string;
 };
 type Conf = {
   fields: Field[];
   title: string;
   dropdown?: string;
   columns?: string[];
+  auth: string[];
 };
 
 export const adminConfig: Record<string, Conf> = {
@@ -19,6 +22,7 @@ export const adminConfig: Record<string, Conf> = {
       { name: "color", type: "color" },
     ],
     columns: ["id", "name", "color"],
+    auth: ["admin"],
   },
   companies: {
     title: "company",
@@ -30,6 +34,7 @@ export const adminConfig: Record<string, Conf> = {
       { name: "users", placeholder: "Browse users", dropdown: "users" },
     ],
     columns: ["id", "name", "description"],
+    auth: ["admin"],
   },
   users: {
     title: "user",
@@ -51,11 +56,13 @@ export const adminConfig: Record<string, Conf> = {
       { name: "skills", placeholder: "Browse skills", dropdown: "skills" },
     ],
     columns: ["id", "email", "firstname", "lastname", "role"],
+    auth: ["admin", "recruiter", "candidate"],
   },
   industries: {
     title: "industry",
     columns: ["id", "name", "color"],
     fields: [{ name: "name", placeholder: "IT" }],
+    auth: ["admin"],
   },
   advertisements: {
     title: "advertisement",
@@ -68,7 +75,24 @@ export const adminConfig: Record<string, Conf> = {
       },
       { name: "salary", placeholder: "3500.0", type: "number" },
       { name: "place", placeholder: "Paris 11" },
-      { name: "working_time (in hours)", placeholder: "35" },
+      {
+        name: "working_time",
+        placeholder: "35",
+        label: "Working time (in hours)",
+      },
+      {
+        name: "skills",
+        placeholder: "Browse skills",
+        dropdown: "skills",
+        label: "Skills you are looking for:",
+      },
+      {
+        name: "company_id",
+        label: "Company",
+        special: "ad-company",
+        placeholder: "Browse companies...",
+      },
+      { special: "prefill", k: "id", name: "recruiter_id" },
     ],
     columns: [
       "id",
@@ -79,5 +103,6 @@ export const adminConfig: Record<string, Conf> = {
       "working_time",
       "contract_type",
     ],
+    auth: ["admin", "recruiter"],
   },
 };

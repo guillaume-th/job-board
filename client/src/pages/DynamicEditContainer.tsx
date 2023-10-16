@@ -1,5 +1,5 @@
 import { FC } from "react";
-import AdminForm from "./AdminForm";
+import AdminForm from "./DynamicFormPage";
 import { useQuery } from "../hooks/useQuery";
 import { useParams } from "react-router-dom";
 import { adminConfig } from "../adminConfig";

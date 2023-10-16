@@ -4,6 +4,7 @@ import { TextArea, Input } from "../ui/atoms";
 import { Chips } from "../ui/organisms";
 import { capitalize } from "../../helpers/format";
 import { InputProps } from "../ui/atoms/Input";
+import SpecialDynamicInput from "./SpecialDynamicInput";
 
 const nameToLabel = (name: string) => {
   return capitalize(name.replace("_", " "));
@@ -14,6 +15,8 @@ type Props = Partial<InputProps> & {
   setDropdownValues: Dispatch<SetStateAction<Record<string, unknown[]>>>;
   dropdownValues: Record<string, unknown[]>;
   fields?: string[];
+  special?: string;
+  k?: string;
 };
 
 const DynamicInput: FC<Props> = ({
@@ -27,7 +30,10 @@ const DynamicInput: FC<Props> = ({
   value,
   fields,
   defaultValue,
+  special,
+  k,
 }) => {
+  console.log({ k });
   const props = {
     name,
     label: label ?? nameToLabel(name || ""),
@@ -36,6 +42,10 @@ const DynamicInput: FC<Props> = ({
     value,
     defaultValue: name === "password" ? "" : defaultValue,
   };
+
+  if (special) {
+    return <SpecialDynamicInput {...props} special={special} k={k} />;
+  }
 
   if (name === "description") {
     return <TextArea {...props} />;

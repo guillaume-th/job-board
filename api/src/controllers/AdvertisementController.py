@@ -1,8 +1,10 @@
 from models.Advertisement import Advertisement
 from schema.AdvertisementSchema import AdvertisementSchema
 from connect import db
+
 from controllers.CompanyController import CompanyController
 from controllers.UserController import UserController
+from controllers.SkillController import SkillController
 
 
 class AdvertisementController():
@@ -27,16 +29,24 @@ class AdvertisementController():
         return advertisement
 
     def create(self, data):
+        data["skills"] = SkillController().get_from_ids(data.get("skills", []))
         company = CompanyController().get(data["company_id"])
         recruiter = UserController().get(data["recruiter_id"])
+
         advertisement = Advertisement(**data)
+
         advertisement.company = company
         advertisement.recruiter = recruiter
 
         return advertisement
 
     def update(self, data, id):
-        advertisement = db.session.query(Advertisement).filter(
-            Advertisement.id == id).update(data)
+        data["skills"] = SkillController().get_from_ids(data.get("skills", []))
+        advertisement = self.get(id)
+
+        for key, value in data.items():
+            setattr(advertisement, key, value)
+
+        advertisement.updated_at = datetime.now()
 
         return advertisement

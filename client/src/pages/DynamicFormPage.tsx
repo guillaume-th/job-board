@@ -41,7 +41,7 @@ const AdminForm: FC<Props> = ({ defaultValues }) => {
   const formRef = useRef<HTMLFormElement>(null);
   const currentUser = get<User>("user");
 
-  if (currentUser?.role !== "admin") {
+  if (!config.auth.includes(currentUser?.role)) {
     return (
       <div className="flex w-full justify-center items-center m-4">
         <ErrorMessage text="You don't have enough rights to access this resource" />
@@ -78,7 +78,7 @@ const AdminForm: FC<Props> = ({ defaultValues }) => {
   };
 
   const onBack = () => {
-    navigate(`/admin/${resource}`);
+    navigate(`/${resource}`);
   };
 
   return (

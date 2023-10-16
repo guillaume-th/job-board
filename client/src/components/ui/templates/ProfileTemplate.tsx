@@ -52,11 +52,14 @@ const ProfileTemplate: FC<Props> = ({ user, editable }) => {
         )}
         <Card className="bg-[#2F2963] text-white ">
           <h4 className="text-lg ">Contact</h4>
-          <a href={`mailto:${user.email}`} className="text-[#57CC99]">
+          <a
+            href={`mailto:${user.email}`}
+            className="text-[#57CC99] block my-2"
+          >
             {user.email}
           </a>
           {user.phone && (
-            <a href={`tel:${user.phone}`} className="text-[#57CC99]">
+            <a href={`tel:${user.phone}`} className="text-[#57CC99] block my-2">
               {user.phone}
             </a>
           )}

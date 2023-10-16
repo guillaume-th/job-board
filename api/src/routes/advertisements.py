@@ -10,7 +10,7 @@ advertisements_routes = Blueprint('advertisements_routes', __name__)
 def advertisements(params: str = None):
     if request.method == "GET":
         try:
-            params=request.args.to_dict()
+            params = request.args.to_dict()
             schema = AdvertisementSchema(many=True)
             advertisements = AdvertisementController().get_all(params)
             response = schema.dump(advertisements)

@@ -40,7 +40,7 @@ class UserController():
         hashed = bcrypt.hashpw(password, salt)
 
         data["password"] = hashed
-        data["skills"] = SkillController().get_from_ids(data.get("skills"), [])
+        data["skills"] = SkillController().get_from_ids(data.get("skills", []))
 
         user_exists = db.session.query(User).where(
             User.email == data["email"]).one_or_none()

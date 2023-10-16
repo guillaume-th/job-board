@@ -10,10 +10,10 @@ import Advertisement from "./pages/Advertisement";
 import Profile from "./pages/Profile";
 import Wrapper from "./components/Wrapper";
 import AdminList from "./pages/AdminList";
-import AdminForm from "./pages/AdminForm";
-import AdminEditContainer from "./pages/AdminEditContainer";
 import ApplicationList from "./pages/ApplicationList";
 import Message from "./pages/Message";
+import DynamicForm from "./pages/DynamicFormPage";
+import DynamicEditContainer from "./pages/DynamicEditContainer";
 
 const router = createBrowserRouter([
   {
@@ -57,7 +57,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/admin/:resource",
+    path: "/:resource",
     element: (
       <Wrapper>
         <AdminList />
@@ -65,18 +65,18 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/admin/:resource/create",
+    path: "/:resource/create",
     element: (
       <Wrapper>
-        <AdminForm />
+        <DynamicForm />
       </Wrapper>
     ),
   },
   {
-    path: "/admin/:resource/:id/edit",
+    path: "/:resource/:id/edit",
     element: (
       <Wrapper>
-        <AdminEditContainer />
+        <DynamicEditContainer />
       </Wrapper>
     ),
   },

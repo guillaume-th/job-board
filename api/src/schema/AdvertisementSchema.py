@@ -11,9 +11,13 @@ class AdvertisementSchema(Schema):
     place = fields.Str()
     working_time = fields.Float()
     contract_type = fields.Enum(ContractType)
-    skills = fields.Nested("SkillSchema", many=True, exclude=("advertisements", ) )
-    recruiter = fields.Nested("UserSchema", exclude=("created_advertisements", ))
-    company = fields.Nested("CompanySchema", exclude=("advertisements", ))
-    job_applications = fields.Nested("JobApplicationSchema", many=True, excludes=("advertisement"))
+    skills = fields.Nested("SkillSchema", many=True,
+                           exclude=("advertisements", "users",))
+    recruiter = fields.Nested(
+        "UserSchema", exclude=("created_advertisements", "skills", "job_applications", "company"))
+    company = fields.Nested(
+        "CompanySchema", exclude=("advertisements", "users"))
+    job_applications = fields.Nested(
+        "JobApplicationSchema", many=True, exclude=("advertisement",))
     created_at = fields.DateTime()
     updated_at = fields.DateTime()

@@ -41,7 +41,7 @@ const AdminList: FC = () => {
   }
 
   const onCreateClick = () => {
-    navigate(`/admin/${resource}/create`);
+    navigate(`/${resource}/create`);
   };
 
   if (data) {
