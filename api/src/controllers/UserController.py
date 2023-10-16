@@ -40,6 +40,7 @@ class UserController():
         hashed = bcrypt.hashpw(password, salt)
 
         data["password"] = hashed
+        data["skills"] = SkillController().get_from_ids(data.get("skills"), [])
 
         user_exists = db.session.query(User).where(
             User.email == data["email"]).one_or_none()
@@ -47,15 +48,7 @@ class UserController():
         if user_exists:
             raise Exception(f"User with email: {data['email']} already exists")
 
-        if data.get("skills"):
-            del data["skills"]
-
         user = User(**data)
-
-        for skill_id in data.get("skills", []):
-            skill = SkillController.get(skill_id)
-            print(skill)
-            user.append(skill)
 
         db.session.add(user)
         db.session.commit()
@@ -63,24 +56,26 @@ class UserController():
         return user
 
     def update(self, id, data):
+
         user = db.session.query(User).where(User.id == id).one_or_none()
 
         if not user:
             raise Exception(f"Invalid user with id [{id}]")
 
-        if data.get("password"):
+        if data.get("password", "") != "":
             salt = bcrypt.gensalt()
-            hashed = bcrypt.hashpw(data["password"], salt)
+            encoded = bytes(data["password"], "utf-8")
+            hashed = bcrypt.hashpw(encoded, salt)
             user.password = hashed
+        elif data.get("password"):
+            del data["password"]
+
+        data["skills"] = SkillController().get_from_ids(data.get("skills", []))
 
         for key, value in data.items():
-            if key not in ["skills"]:
-                setattr(user, key, value)
+            setattr(user, key, value)
 
         user.updated_at = datetime.now()
-
-        for skill_id in data.get("skills", []):
-            user.append(SkillController.get(skill_id))
 
         db.session.commit()
 

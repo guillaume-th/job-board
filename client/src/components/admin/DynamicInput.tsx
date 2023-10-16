@@ -34,10 +34,9 @@ const DynamicInput: FC<Props> = ({
     type: type ?? "text",
     placeholder,
     value,
-    defaultValue,
+    defaultValue: name === "password" ? "" : defaultValue,
   };
 
-  console.log(defaultValue);
   if (name === "description") {
     return <TextArea {...props} />;
   }
@@ -69,7 +68,7 @@ const DynamicInput: FC<Props> = ({
     };
 
     const rawValues = [
-      ...(defaultValue as unknown as Record<string, string>[]),
+      ...((defaultValue as unknown as Record<string, string>[]) || []),
       ...((dropdownValues[dropdown] as Record<string, string>[]) || []),
     ];
 

@@ -14,6 +14,10 @@ type Props = {
 const ProfileTemplate: FC<Props> = ({ user, editable }) => {
   const navigate = useNavigate();
 
+  const logout = () => {
+    navigate("/auth");
+  };
+
   return (
     <div className="w-6/12 flex m-10 flex-col">
       <div className="flex justify-between">
@@ -58,6 +62,16 @@ const ProfileTemplate: FC<Props> = ({ user, editable }) => {
           )}
         </Card>
       </div>
+      {editable && (
+        <div className="w-full flex items-end justify-end mt-32">
+          <span
+            className="underline cursor-pointer block w-fit"
+            onClick={logout}
+          >
+            Logout
+          </span>
+        </div>
+      )}
     </div>
   );
 };
