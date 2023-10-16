@@ -4,7 +4,7 @@ POST  http://127.0.0.1:5000/api/advertisements/ HTTP/1.1
 content-type: application/json
 
 {
-    "name" : "developpeur web",
+    "name" : "developpeur fullStack",
     "description" : "un superbe poste dans une entreprise genial avec un mentor fabuleux",
     "salary" : 1000.0,
     "place" : "rue de droite",

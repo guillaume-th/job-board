@@ -11,14 +11,10 @@ class Message(db.Model):
 
     id = Column(Integer, primary_key=True, autoincrement="auto")
 
-    recruiter_id: Mapped[int] = Column(ForeignKey("user.id"))
-    recruiter: Mapped["User"] = relationship(
-        foreign_keys=[recruiter_id])
-
-    candidate_id: Mapped[int] = Column(ForeignKey("user.id"))
-    candidate: Mapped["User"] = relationship(
-        foreign_keys=[candidate_id])
-
+    content = Column(String(1024), nullable=False)
+    author_id: Mapped[int] = Column(ForeignKey("user.id"))
+    author: Mapped["User"] = relationship(
+        foreign_keys=[author_id])
     job_application_id = Column(ForeignKey("job_application.id"))
     job_application: Mapped["JobApplication"] = relationship(
         back_populates="messages")

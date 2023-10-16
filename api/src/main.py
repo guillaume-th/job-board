@@ -27,6 +27,8 @@ from routes.advertisements import advertisements_routes
 from routes.companies import company_routes
 from routes.industries import industry_routes
 from routes.skills import skill_routes
+from routes.message import message_routes
+from routes.job_application import JobApplication_routes
 
 config = dotenv_values(".env")
 DB_URI = "mysql+pymysql://{user}:{password}@localhost/{db_name}?charset=utf8mb4".format(
@@ -40,6 +42,8 @@ app.register_blueprint(advertisements_routes, url_prefix="/api/advertisements")
 app.register_blueprint(company_routes, url_prefix="/api/companies")
 app.register_blueprint(industry_routes, url_prefix="/api/industries")
 app.register_blueprint(skill_routes, url_prefix="/api/skills")
+app.register_blueprint(message_routes, url_prefix="/api/message")
+app.register_blueprint(JobApplication_routes, url_prefix="/api/JobApplication")
 
 app.config["SQLALCHEMY_DATABASE_URI"] = DB_URI
 db.init_app(app)

@@ -1,0 +1,28 @@
+
+### Creates message
+POST  http://127.0.0.1:5000/api/message/ HTTP/1.1
+content-type: application/json
+
+    {
+    "candidate" : 1,
+    "recruiter" : 1,
+    "job_application" : 1,
+    "content" : "bonjour ceci es un message"
+    }
+
+### Get all message
+GET  http://127.0.0.1:5000/api/message/ HTTP/1.1
+
+### Get message with id 1
+GET  http://127.0.0.1:5000/api/message/1 HTTP/1.1
+
+###  Update use 
+PUT  http://127.0.0.1:5000/api/message/1 HTTP/1.1
+content-type: application/json
+
+{
+    "content" : "PHPouille"
+}
+
+### Delete
+DELETE  http://127.0.0.1:5000/api/message/1 HTTP/1.1

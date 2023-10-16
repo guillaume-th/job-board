@@ -1,0 +1,29 @@
+
+### Creates JobApplication
+POST  http://127.0.0.1:5000/api/JobApplication/ HTTP/1.1
+content-type: application/json
+
+{
+    "candidate_id" : 1,
+    "candidate_name" : "bob",
+    "candidate_text" : "text",
+    "candidate_email" : "bob@mail.com",
+    "candidate_phone" : "0123456789",
+    "advertisement_id" : 1,
+    "state" : "sent"
+}
+
+### Get all JobApplication
+GET  http://127.0.0.1:5000/api/JobApplication/ HTTP/1.1
+
+### Get JobApplication with id 1
+GET  http://127.0.0.1:5000/api/JobApplication/1 HTTP/1.1
+###delete JobApplication with id 1
+DELETE http://127.0.0.1:5000/api/JobApplication/22 HTTP/1.1
+### update JobApplication
+PUT http://127.0.0.1:5000/api/JobApplication/1 HTTP/1.1
+content-type: application/json
+
+{
+    "name" : "sante"
+}

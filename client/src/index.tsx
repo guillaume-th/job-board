@@ -12,6 +12,8 @@ import Wrapper from "./components/Wrapper";
 import AdminList from "./pages/AdminList";
 import AdminForm from "./pages/AdminForm";
 import AdminEditContainer from "./pages/AdminEditContainer";
+import ApplicationList from "./pages/ApplicationList";
+import Message from "./pages/Message";
 
 const router = createBrowserRouter([
   {
@@ -75,6 +77,22 @@ const router = createBrowserRouter([
     element: (
       <Wrapper>
         <AdminEditContainer />
+      </Wrapper>
+    ),
+  },
+  {
+    path: "/Application",
+    element: (
+      <Wrapper>
+        <ApplicationList />
+      </Wrapper>
+    ),
+  },
+  {
+    path: "/Application/:id",
+    element: (
+      <Wrapper>
+        <Message />
       </Wrapper>
     ),
   },
