@@ -4,7 +4,6 @@ import { TextArea, Input } from "../ui/atoms";
 import { Chips } from "../ui/organisms";
 import { capitalize } from "../../helpers/format";
 import { InputProps } from "../ui/atoms/Input";
-import { ChipsProps } from "../ui/organisms/Chips";
 
 const nameToLabel = (name: string) => {
   return capitalize(name.replace("_", " "));
@@ -37,8 +36,8 @@ const DynamicInput: FC<Props> = ({
     value,
     defaultValue,
   };
-  // TODO: handle when there is no name
 
+  console.log(defaultValue);
   if (name === "description") {
     return <TextArea {...props} />;
   }
@@ -69,8 +68,10 @@ const DynamicInput: FC<Props> = ({
       }));
     };
 
-    const rawValues =
-      (dropdownValues[dropdown] as Record<string, string>[]) || [];
+    const rawValues = [
+      ...(defaultValue as unknown as Record<string, string>[]),
+      ...((dropdownValues[dropdown] as Record<string, string>[]) || []),
+    ];
 
     const chipsData = rawValues.map((values) => {
       if (name === "users") {

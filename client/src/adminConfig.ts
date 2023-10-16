@@ -26,6 +26,7 @@ export const adminConfig: Record<string, Conf> = {
       { name: "banner", placeholder: "http://url.com/banner.png" },
       { name: "users", placeholder: "Browse users", dropdown: "users" },
     ],
+    columns: ["id", "name", "description"],
   },
   users: {
     title: "user",
@@ -46,15 +47,7 @@ export const adminConfig: Record<string, Conf> = {
       { name: "adress", placeholder: "31 rue de la Paix, Paris" },
       { name: "skills", placeholder: "Browse skills", dropdown: "skills" },
     ],
-    columns: [
-      "id",
-      "email",
-      "firstname",
-      "lastname",
-      "role",
-      "adress",
-      "description",
-    ],
+    columns: ["id", "email", "firstname", "lastname", "role"],
   },
   industries: {
     title: "industry",

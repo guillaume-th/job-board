@@ -1,4 +1,5 @@
 from datetime import datetime
+from typing import List
 import bcrypt
 
 from models.Skill import Skill
@@ -57,3 +58,7 @@ class SkillController():
 
         db.session.delete(skill)
         db.session.commit()
+
+    def get_from_ids(self, ids: List[int]):
+        return db.session.query(Skill).filter(
+            Skill.id.in_(ids)).all()

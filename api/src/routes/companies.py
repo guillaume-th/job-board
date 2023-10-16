@@ -36,9 +36,10 @@ def Company(id: int):
     if request.method == "GET":
         try:
             schema = CompanySchema()
-            Company = CompanyController().get(id)
-            response = schema.dump(Company)
+            company = CompanyController().get(id)
+            response = schema.dump(company)
 
+            print(company.users)
             return {"data": response}
 
         except Exception as e:

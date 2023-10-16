@@ -1,4 +1,5 @@
 from datetime import datetime
+from typing import List
 import bcrypt
 
 from models.User import User
@@ -93,3 +94,7 @@ class UserController():
 
         db.session.delete(user)
         db.session.commit()
+
+    def get_from_ids(self, ids: List[int]):
+        return db.session.query(User).filter(
+            User.id.in_(ids)).all()
