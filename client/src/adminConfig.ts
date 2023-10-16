@@ -1,6 +1,9 @@
 import { InputProps } from "./components/ui/atoms/Input";
 
-type Field = Partial<InputProps> & { dropdown?: string; fields?: string[] };
+export type Field = Partial<InputProps> & {
+  dropdown?: string;
+  fields?: string[];
+};
 type Conf = {
   fields: Field[];
   title: string;

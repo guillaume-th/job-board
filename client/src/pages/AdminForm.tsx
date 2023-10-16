@@ -4,9 +4,19 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Button, ErrorMessage } from "../components/ui/atoms";
 import { get } from "../helpers/storage";
 import { User } from "../types/user";
-import { adminConfig } from "../adminConfig";
+import { Field, adminConfig } from "../adminConfig";
 import DynamicInput from "../components/admin/DynamicInput";
 import AdminNav from "../components/admin/AdminNav";
+
+const getDefaultDropdownValues = (
+  fields: Field[],
+  defaultValues: Record<string, string>
+) =>
+  fields.reduce(
+    (acc, { name = "", dropdown }) =>
+      dropdown ? { ...acc, [name]: defaultValues?.[name] } : acc,
+    {}
+  ) as DropdownValue;
 
 type DropdownValue = Record<string, unknown[]>;
 
@@ -22,13 +32,14 @@ const AdminForm: FC<Props> = ({ defaultValues }) => {
     endpoint,
     isEdit ? "PUT" : "POST"
   );
+  const config = adminConfig[resource ?? ""];
   const [error, setError] = useState<string>();
-  const [dropdownValues, setDropdownValues] = useState<DropdownValue>({});
+  const [dropdownValues, setDropdownValues] = useState<DropdownValue>(
+    getDefaultDropdownValues(config.fields, defaultValues ?? {})
+  );
   const navigate = useNavigate();
   const formRef = useRef<HTMLFormElement>(null);
   const currentUser = get<User>("user");
-
-  const config = adminConfig[resource ?? ""];
 
   if (currentUser?.role !== "admin") {
     return (
