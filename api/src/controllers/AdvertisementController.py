@@ -1,3 +1,4 @@
+from datetime import datetime
 from models.Advertisement import Advertisement
 from schema.AdvertisementSchema import AdvertisementSchema
 from connect import db
@@ -43,10 +44,11 @@ class AdvertisementController():
     def update(self, data, id):
         data["skills"] = SkillController().get_from_ids(data.get("skills", []))
         advertisement = self.get(id)
-
+        
         for key, value in data.items():
             setattr(advertisement, key, value)
 
         advertisement.updated_at = datetime.now()
+        
 
         return advertisement

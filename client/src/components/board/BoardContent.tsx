@@ -18,7 +18,7 @@ const BoardContent: FC<Props> = ({ data }) => {
         {data.map((item) => (
           <li
             key={item.id}
-            className="box-content w-4/6 min-h-1/6 m-4  p-4 shadow-md rounded-md"
+            className="box-content w-4/6 min-h-1/6 m-4 p-4 shadow-md rounded-md"
           >
             <div>
               <strong>
@@ -34,8 +34,8 @@ const BoardContent: FC<Props> = ({ data }) => {
             <hr />
             <div className="text-gray-400 italic">{item.place}</div>
             <br />
-            <div className="flex justify-between">
-              <span>{item.description}</span>
+            <div className="flex justify-between w-5/6">
+              <p className="truncate ...">{item.description}</p>
             </div>
             <div className="flex flex-row-reverse space-x-4 space-x-reverse items-end">
               <span>

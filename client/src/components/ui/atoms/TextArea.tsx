@@ -12,7 +12,7 @@ const Input = forwardRef<HTMLTextAreaElement, Props>(
         <textarea
           {...props}
           ref={ref}
-          className="block m-2 p-2 w-full text-[#2F2963] border-solid border-2 rounded"
+          className="block m-2 p-2 w-full text-[#2F2963] border-solid border-2 rounded whitespace-pre-wrap"
         />
       </label>
     );
