@@ -31,18 +31,14 @@ const ProfileTemplate: FC<Props> = ({ user, editable }) => {
           <Button
             text="Edit"
             onClick={() => {
-              navigate("/profile/:id/edit");
+              navigate(`/users/${user.id}/edit`);
             }}
           />
         )}
       </div>
       <hr className="h-2 bg-[#57CC99] w-full block my-4" />
 
-      <p className="my-4">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Consectetur
-        quos, neque unde magnam assumenda modi qui? Iusto dolore quam quae
-        molestias provident, odit earum modi deleniti cumque quos dolor beatae!
-      </p>
+      <p className="my-4">{user.description}</p>
       <div className="grid grid-cols-2">
         {user.skills && (
           <div className="my-8">

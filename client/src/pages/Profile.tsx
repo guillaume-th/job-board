@@ -5,13 +5,10 @@ import { User } from "../types/user";
 import { useQuery } from "../hooks/useQuery";
 import { ErrorMessage, Spinner } from "../components/ui/atoms";
 import { ProfileTemplate } from "../components/ui/templates";
-import UpdateProfileFormContainer from "../components/profile/UpdateProfileFormContainer";
 
-type Props = {
-  edit?: boolean;
-};
+type Props = {};
 
-const Profile: FC<Props> = ({ edit = false }) => {
+const Profile: FC<Props> = () => {
   const { id } = useParams();
   const currentUser = get<User>("user");
   const userId = id === "me" ? currentUser.id : id;
@@ -33,14 +30,13 @@ const Profile: FC<Props> = ({ edit = false }) => {
     );
   }
 
-  const component = edit ? (
-    <UpdateProfileFormContainer user={data!} />
-  ) : (
-    <ProfileTemplate user={data!} editable={isEditable} />
-  );
   return (
     <div className="flex items-center justify-center w-full">
-      {data ? component : <ErrorMessage text={error} />}
+      {data ? (
+        <ProfileTemplate user={data!} editable={isEditable} />
+      ) : (
+        <ErrorMessage text={error} />
+      )}
     </div>
   );
 };

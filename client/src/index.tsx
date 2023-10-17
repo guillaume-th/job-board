@@ -49,14 +49,6 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/profile/:id/edit",
-    element: (
-      <Wrapper>
-        <Profile edit />
-      </Wrapper>
-    ),
-  },
-  {
     path: "/:resource",
     element: (
       <Wrapper>

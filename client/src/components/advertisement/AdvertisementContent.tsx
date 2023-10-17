@@ -12,9 +12,11 @@ const AdvertisementContent: FC<Props> = ({ data }) => {
         <h1 className="items-center justify-center">
           {data.name.toUpperCase()}
         </h1>
-        <span className="text-gray-400 italic">
-          {data.contract_type.replace("_", " ")}
-        </span>
+        {data.contract_type && (
+          <span className="text-gray-400 italic">
+            {data.contract_type.replace("_", " ")}
+          </span>
+        )}
         <span> - </span>
         <span className="text-gray-400 italic">{data.place}</span>
         <hr />
