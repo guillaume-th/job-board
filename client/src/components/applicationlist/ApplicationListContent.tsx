@@ -3,7 +3,6 @@ import { FC } from "react";
 import { JobApplication } from "../../types/jobApplication";
 import { User } from "../../types/user";
 import { Link } from "react-router-dom";
-import { Button } from "../ui/atoms";
 
 type Props = { user: User };
 
@@ -65,7 +64,7 @@ const ApplicationContent: FC<Props> = ({ user }) => {
   } else {
     return (
       <div>
-        <p>Vous n'avez pas candidater</p>
+        <p>No applications found...</p>
       </div>
     );
   }

@@ -5,10 +5,17 @@ import { User } from "../../types/user";
 import DropdownContainer, { DropdownElement } from "../DropdownContainer";
 import { Input } from "../ui/atoms";
 import { InputProps } from "../ui/atoms/Input";
+import { useSearchParams } from "react-router-dom";
 
 type Props = Pick<
   InputProps,
-  "name" | "label" | "type" | "placeholder" | "value" | "defaultValue"
+  | "name"
+  | "label"
+  | "type"
+  | "placeholder"
+  | "value"
+  | "defaultValue"
+  | "hidden"
 > & { special: string; k?: string; resource?: string; labelK?: string };
 
 const SpecialDynamicInput: FC<Props> = ({
@@ -23,11 +30,10 @@ const SpecialDynamicInput: FC<Props> = ({
     label?: string;
     value?: string;
   }>({});
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [searchParams] = useSearchParams();
 
-  console.log(special, resource, labelK, k);
   if (special === "prefill-admin" && resource && labelK && k) {
-    console.log("in", resource);
-
     if (currentUser.role !== "admin" && !specialInput.value) {
       setSpecialInput({
         label: eval(labelK),
@@ -38,13 +44,14 @@ const SpecialDynamicInput: FC<Props> = ({
     const handleAddValue = (element: DropdownElement) => {
       setSpecialInput({
         value: String(element.id),
-        label: element?.name as string,
+        label: (element?.name ?? element?.email) as string,
       });
     };
+
     return (
       <>
         <p className="p-4">
-          Selected {props.label}:{" "}
+          Selected {props.label.toLowerCase()}:{" "}
           <span className="font-semibold">{specialInput.label ?? "None"}</span>
         </p>
         {currentUser?.role === "admin" && (
@@ -57,10 +64,9 @@ const SpecialDynamicInput: FC<Props> = ({
         )}
         <Input
           {...props}
-          value={specialInput.value}
-          wrapperClassName="hidden"
-          hidden
-          required
+          defaultValue={specialInput.value}
+          wrapperClassName={props.hidden ? "hidden" : undefined}
+          hidden={props.hidden}
         />
       </>
     );
@@ -70,10 +76,9 @@ const SpecialDynamicInput: FC<Props> = ({
     return (
       <Input
         {...props}
-        value={String(currentUser[k as keyof User])}
-        wrapperClassName="hidden"
-        hidden
-        required
+        defaultValue={eval(k)}
+        wrapperClassName={props.hidden ? "hidden" : undefined}
+        hidden={props.hidden}
       />
     );
   }

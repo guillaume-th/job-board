@@ -1,6 +1,6 @@
 from flask import Blueprint, abort, jsonify, request
 from connect import db
-from controllers.Job_applicationController import JobApplicationController
+from controllers.JobApplicationController import JobApplicationController
 from schema.JobApplicationSchema import JobApplicationSchema
 
 job_application_routes = Blueprint('applications', __name__)

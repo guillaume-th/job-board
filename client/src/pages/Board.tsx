@@ -11,7 +11,6 @@ const Board: FC = () => {
       "http://localhost:3000/board?" + location
     );
   }
-  console.log(location);
 
   return (
     <div className="grid grid-cols-12 h-full overflow-x-hidden">

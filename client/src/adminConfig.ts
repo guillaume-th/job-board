@@ -1,3 +1,4 @@
+/* eslint-disable no-template-curly-in-string */
 import { InputProps } from "./components/ui/atoms/Input";
 
 export type Field = Partial<InputProps> & {
@@ -95,6 +96,7 @@ export const adminConfig: Record<string, Conf> = {
         name: "company_id",
         placeholder: "Browse companies...",
         resource: "companies",
+        hidden: true,
       },
       { name: "place", placeholder: "12 Tech Street" },
       {
@@ -107,7 +109,12 @@ export const adminConfig: Record<string, Conf> = {
           "apprenticeship",
         ],
       },
-      { special: "prefill", k: "id", name: "recruiter_id" },
+      {
+        special: "prefill",
+        k: "currentUser.id",
+        name: "recruiter_id",
+        hidden: true,
+      },
     ],
     columns: [
       "id",
@@ -126,10 +133,41 @@ export const adminConfig: Record<string, Conf> = {
         label: "Candidate",
         special: "prefill-admin",
         k: "currentUser.id",
-        labelK: "currentUser.user.email",
-        name: "recruiter_id",
+        labelK: "currentUser.email",
+        name: "candidate_id",
         resource: "users",
+        hidden: true,
       },
+      {
+        special: "prefill",
+        name: "candidate_name",
+        k: "`${currentUser.firstname} ${currentUser.lastname}`",
+        placeholder: "Bob Bidou",
+        label: "Name",
+      },
+      {
+        special: "prefill",
+        name: "candidate_email",
+        k: "currentUser.email",
+        placeholder: "bob@mail.com",
+        label: "Email",
+      },
+      {
+        special: "prefill",
+        name: "candidate_phone",
+        k: "currentUser.phone",
+        placeholder: "01 02 03 04 05",
+        label: "Phone number",
+      },
+      {
+        special: "prefill-admin",
+        labelK: "searchParams.get('advertisement_id')",
+        k: "searchParams.get('advertisement_id')",
+        name: "advertisement_id",
+        resource: "advertisements",
+        hidden: true,
+      },
+      { special: "prefill", name: "state", k: "'sent'", hidden: true },
     ],
     title: "application",
     auth: ["admin", "recruiter", "user"],

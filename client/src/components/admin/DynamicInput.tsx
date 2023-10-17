@@ -36,6 +36,7 @@ const DynamicInput: FC<Props> = ({
   k,
   labelK,
   resource,
+  hidden,
 }) => {
   const props = {
     name,
@@ -54,6 +55,7 @@ const DynamicInput: FC<Props> = ({
         k={k}
         labelK={labelK}
         resource={resource}
+        hidden={hidden}
       />
     );
   }

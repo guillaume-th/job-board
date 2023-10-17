@@ -77,7 +77,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/applications",
+    path: "/applications/me",
     element: (
       <Wrapper>
         <ApplicationList />
@@ -85,7 +85,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/applications/:id",
+    path: "/applications/me/:id",
     element: (
       <Wrapper>
         <Message />
