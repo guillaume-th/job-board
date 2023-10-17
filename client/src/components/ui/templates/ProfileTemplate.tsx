@@ -5,6 +5,7 @@ import Chips from "../organisms/Chips";
 import { Card } from "../molecules";
 import { Button } from "../atoms";
 import { useNavigate } from "react-router-dom";
+import LastApplications from "../organisms/LastApplications";
 
 type Props = {
   user: User;
@@ -16,13 +17,6 @@ const ProfileTemplate: FC<Props> = ({ user, editable }) => {
 
   const logout = () => {
     navigate("/auth");
-  };
-  const application = () => {
-    if (user.role == "recruiter") {
-      navigate("/candidate");
-    } else if (user.role == "cadidate") {
-      navigate("/Application");
-    }
   };
 
   return (
@@ -68,6 +62,7 @@ const ProfileTemplate: FC<Props> = ({ user, editable }) => {
           )}
         </Card>
       </div>
+      <LastApplications user={user} />
       {editable && (
         <div className="w-full flex items-end justify-end mt-32">
           <span
@@ -77,16 +72,6 @@ const ProfileTemplate: FC<Props> = ({ user, editable }) => {
             Logout
           </span>
         </div>
-      )}
-      {(user.role == "recruiter" || user.role == "candidate") && (
-        <Card className="bg-[#2F2963] text-white ">
-          <span
-            className="underline cursor-pointer block w-fit"
-            onClick={application}
-          >
-            job Advertisment
-          </span>
-        </Card>
       )}
     </div>
   );

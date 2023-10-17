@@ -50,7 +50,7 @@ const ApplicationContent: FC<Props> = ({ user }) => {
                 <div className="flex flex-row-reverse space-x-4 space-x-reverse items-end">
                   <Link
                     className="font-medium hover:underline text-[#DED9E2]"
-                    to={"/Application/" + item.id}
+                    to={"/applications/me/" + item.id}
                   >
                     View Message
                   </Link>
