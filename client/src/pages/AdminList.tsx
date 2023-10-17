@@ -59,8 +59,8 @@ const AdminList: FC = () => {
               <Button onClick={onCreateClick} text="New" />
             </div>
             <List
-              data={data!}
               {...params}
+              data={data!}
               resource={resource!}
               refetch={refetch}
             />

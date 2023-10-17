@@ -53,7 +53,7 @@ const CandidateContent: FC<Props> = ({ user }) => {
                 <br />
                 <div className="flex justify-between">
                   <span>
-                    Candidat : {item.candidate_name} - {item.candidate_email}
+                    Candidate : {item.candidate_name} - {item.candidate_email}
                   </span>
                 </div>
                 <div className="flex flex-row-reverse space-x-4 space-x-reverse items-end">
@@ -73,7 +73,7 @@ const CandidateContent: FC<Props> = ({ user }) => {
   } else {
     return (
       <div>
-        <p>Vous n'avez pas candidater</p>
+        <p>No applications received yet...</p>
       </div>
     );
   }

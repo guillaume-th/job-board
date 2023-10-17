@@ -1,6 +1,6 @@
 import { FC, FormEvent, useRef, useState } from "react";
 import { JobApplication } from "../../types/jobApplication";
-import { Spinner, TextArea } from "../ui/atoms";
+import { ErrorMessage, Spinner, TextArea } from "../ui/atoms";
 import { Button } from "../ui/atoms";
 import { Message } from "../../types/message";
 import { useMutation } from "../../hooks/useMutation";
@@ -73,7 +73,7 @@ const MessageContent: FC<Props> = ({ data }) => {
         </span>
         <hr />
         <p>Actually : {newData.state}</p>
-        {currentUser.role == "recruiter" && (
+        {currentUser.role === "recruiter" && (
           <div>
             <Button
               text="processing"
@@ -83,7 +83,7 @@ const MessageContent: FC<Props> = ({ data }) => {
             <Button text="accepted" onClick={() => changeState("accepted")} />
           </div>
         )}
-        {currentUser.role == "admin" && (
+        {currentUser.role === "admin" && (
           <div>
             <div>
               <Button
@@ -124,6 +124,7 @@ const MessageContent: FC<Props> = ({ data }) => {
           <TextArea label="Message" name="content"></TextArea>
           <Button text="Envoi" type="submit"></Button>
         </form>
+        {error && <ErrorMessage />}
       </div>
     </div>
   );

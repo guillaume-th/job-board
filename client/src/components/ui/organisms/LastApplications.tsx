@@ -2,6 +2,7 @@ import { FC } from "react";
 import { Card } from "../molecules";
 import { useNavigate } from "react-router-dom";
 import { User } from "../../../types/user";
+import { Button } from "../atoms";
 
 type Props = {
   user: User;
@@ -37,8 +38,8 @@ const LastApplications: FC<Props> = ({ user }) => {
       <h3 className="mb-4 text-[#2F2963] font-semibold">
         Your last applications
       </h3>
-      <div className="grid grid-cols-3 text-sm">
-        {data.map((application) => (
+      <div className="grid grid-cols-4 text-sm">
+        {data.slice(0, 2).map((application) => (
           <Card className="bg-white min-h-[100px]">
             <p>{application?.advertisement.name}</p>
             {application && (
@@ -56,6 +57,12 @@ const LastApplications: FC<Props> = ({ user }) => {
             )}
           </Card>
         ))}
+        <div>
+          <Button
+            text="Post a new ad"
+            onClick={() => navigate("/advertisements/create")}
+          />
+        </div>
       </div>
       <div className="flex w-full justify-end">
         <span

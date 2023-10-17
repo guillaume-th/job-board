@@ -49,7 +49,7 @@ export const adminConfig: Record<string, Conf> = {
       {
         type: "radio",
         name: "role",
-        fields: ["admin", "candidate", "recruiter"],
+        fields: ["candidate", "recruiter"],
       },
       { name: "phone", placeholder: "01 02 03 04 05" },
       { name: "avatar", placeholder: "http://url.com/avatar.png" },

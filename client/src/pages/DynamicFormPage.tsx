@@ -86,12 +86,16 @@ const AdminForm: FC<Props> = ({ defaultValues }) => {
   return (
     <div className="w-full grid grid-cols-12 p-8">
       <div className="col-span-2">
-        <AdminNav resource={resource!} action="new" />
+        {currentUser?.role === "admin" && (
+          <AdminNav resource={resource!} action="new" />
+        )}
       </div>
       <div className="col-span-10 px-10">
-        <div className="w-full my-4">
-          <Button onClick={onBack} text="Back to list" />
-        </div>
+        {currentUser?.role === "admin" && (
+          <div className="w-full my-4">
+            <Button onClick={onBack} text="Back to list" />
+          </div>
+        )}
         <h1 className="text-xl my-8 font-semibold text-[#57CC99]">
           {isEdit ? "Edit" : "New"} {config.title}
         </h1>

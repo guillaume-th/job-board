@@ -17,7 +17,6 @@ const List = <T extends {}[]>({
   refetch,
 }: Props<T>) => {
   const navigate = useNavigate();
-
   if (!data.length) {
     return <p>No data yet...</p>;
   }
@@ -49,7 +48,7 @@ const List = <T extends {}[]>({
       <thead className="text-[#57CC99] text-lg">
         <tr className="w-full">
           {cols.map((name) => (
-            <th className={thClass} style={cellStyle} key={name}>
+            <th className={thClass} style={cellStyle}>
               {capitalize(name)}
             </th>
           ))}
@@ -60,9 +59,9 @@ const List = <T extends {}[]>({
       </thead>
       <tbody>
         {rows.map((row, i) => (
-          <tr className="w-full" key={`row-${i}`}>
+          <tr className="w-full">
             {row.map((value) => (
-              <td className={tdClass} style={cellStyle} key={value}>
+              <td className={tdClass} style={cellStyle}>
                 {String(value)}
               </td>
             ))}

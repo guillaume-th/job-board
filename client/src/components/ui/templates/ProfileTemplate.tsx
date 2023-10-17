@@ -6,6 +6,7 @@ import { Card } from "../molecules";
 import { Button } from "../atoms";
 import { useNavigate } from "react-router-dom";
 import LastApplications from "../organisms/LastApplications";
+import { clear } from "../../../helpers/storage";
 
 type Props = {
   user: User;
@@ -17,6 +18,7 @@ const ProfileTemplate: FC<Props> = ({ user, editable }) => {
 
   const logout = () => {
     navigate("/auth");
+    clear();
   };
 
   return (
