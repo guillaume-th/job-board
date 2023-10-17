@@ -13,7 +13,7 @@ const Board: FC = () => {
   }
 
   return (
-    <div className="grid grid-cols-12 h-full overflow-x-hidden">
+    <div className="grid grid-cols-12 h-full overflow-x-hidden p-8">
       <div className="col-span-3">
         <Filter onLocationChange={setLocation} />
       </div>

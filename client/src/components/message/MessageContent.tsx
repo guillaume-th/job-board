@@ -18,11 +18,11 @@ const MessageContent: FC<Props> = ({ data }) => {
   const currentUser = get<User>("user");
   const submit = useMutation<Body, Message>("api/message/");
   const change = useMutation<Object, Message>(
-    "api/JobApplication/" + data.id,
+    "api/applications/" + data.id,
     "PUT"
   );
   const { data: newData, refetch } = useQuery<JobApplication>(
-    "api/JobApplication/" + data.id
+    "api/applications/" + data.id
   );
   const [error, setError] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);

@@ -62,7 +62,7 @@ const ProfileTemplate: FC<Props> = ({ user, editable }) => {
           )}
         </Card>
       </div>
-      <LastApplications user={user} />
+      {user.role !== "admin" && <LastApplications user={user} />}
       {editable && (
         <div className="w-full flex items-end justify-end mt-32">
           <span

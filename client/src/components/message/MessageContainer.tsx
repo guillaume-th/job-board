@@ -6,7 +6,7 @@ import { JobApplication } from "../../types/jobApplication";
 
 const AdvertisementContainer: FC = () => {
   const { id } = useParams();
-  const { data, error } = useQuery<JobApplication>("api/JobApplication/" + id);
+  const { data, error } = useQuery<JobApplication>("api/applications/" + id);
 
   if (data) {
     return <MessageContent data={data} />;
