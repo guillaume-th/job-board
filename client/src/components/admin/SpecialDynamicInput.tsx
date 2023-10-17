@@ -33,7 +33,14 @@ const SpecialDynamicInput: FC<Props> = ({
   }>({});
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [searchParams] = useSearchParams();
-  const computedKey = eval(k ?? "");
+
+  let computedKey = null;
+  try {
+    computedKey = eval(k ?? "");
+  } catch (e) {
+    console.warn(e);
+  }
+
   const { data } = useQuery<Record<string, unknown>>(
     resource && (props.defaultValue || computedKey)
       ? `api/${resource}/${props.defaultValue ?? computedKey}`

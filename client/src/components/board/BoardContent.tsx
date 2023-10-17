@@ -34,8 +34,8 @@ const BoardContent: FC<Props> = ({ data }) => {
             <hr />
             <div className="text-gray-400 italic">{item.place}</div>
             <br />
-            <div className="flex justify-between w-5/6">
-              <p className="truncate ...">{item.description}</p>
+            <div className="flex justify-between">
+              <span className="truncate">{item.description}</span>
             </div>
             <div className="flex flex-row-reverse space-x-4 space-x-reverse items-end">
               <span>
