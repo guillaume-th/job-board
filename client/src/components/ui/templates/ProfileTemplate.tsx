@@ -17,6 +17,13 @@ const ProfileTemplate: FC<Props> = ({ user, editable }) => {
   const logout = () => {
     navigate("/auth");
   };
+  const application = () => {
+    if (user.role == "recruiter") {
+      navigate("/candidate");
+    } else if (user.role == "cadidate") {
+      navigate("/Application");
+    }
+  };
 
   return (
     <div className="w-6/12 flex m-10 flex-col">
@@ -70,6 +77,16 @@ const ProfileTemplate: FC<Props> = ({ user, editable }) => {
             Logout
           </span>
         </div>
+      )}
+      {(user.role == "recruiter" || user.role == "candidate") && (
+        <Card className="bg-[#2F2963] text-white ">
+          <span
+            className="underline cursor-pointer block w-fit"
+            onClick={application}
+          >
+            job Advertisment
+          </span>
+        </Card>
       )}
     </div>
   );

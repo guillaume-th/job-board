@@ -14,6 +14,7 @@ import ApplicationList from "./pages/ApplicationList";
 import Message from "./pages/Message";
 import DynamicForm from "./pages/DynamicFormPage";
 import DynamicEditContainer from "./pages/DynamicEditContainer";
+import Candidate from "./pages/Candidate";
 
 const router = createBrowserRouter([
   {
@@ -85,6 +86,14 @@ const router = createBrowserRouter([
     element: (
       <Wrapper>
         <Message />
+      </Wrapper>
+    ),
+  },
+  {
+    path: "/candidate",
+    element: (
+      <Wrapper>
+        <Candidate />
       </Wrapper>
     ),
   },

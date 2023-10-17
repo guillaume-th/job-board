@@ -15,7 +15,12 @@ type Body = {
   content: string;
 };
 const MessageContent: FC<Props> = ({ data }) => {
+  const currentUser = get<User>("user");
   const submit = useMutation<Body, Message>("api/message/");
+  const change = useMutation<Object, Message>(
+    "api/JobApplication/" + data.id,
+    "PUT"
+  );
   const { data: newData, refetch } = useQuery<JobApplication>(
     "api/JobApplication/" + data.id
   );
@@ -38,12 +43,24 @@ const MessageContent: FC<Props> = ({ data }) => {
       setError(false);
     }
   };
+  const changeState = async (newState: string) => {
+    let body: Object = {
+      state: newState,
+    };
+    const { data: dataResponse, error } = await change(body);
+    if (error) {
+      setError(true);
+    } else if (dataResponse) {
+      refetch();
+      setError(false);
+    }
+  };
   if (!newData) {
     return <Spinner />;
   }
   return (
-    <div className="w-screen h-screen flex flex-column">
-      <div className="box-content w-5/6 m-4 p-4 shadow-md rounded-md">
+    <div className="w-screen flex flex-column">
+      <div className="box-content w-5/6 min-h-fit h-fullscreen m-4 p-4 shadow-md rounded-md">
         <h1 className="items-center justify-center">
           {newData.advertisement.name.toUpperCase()}
         </h1>
@@ -55,6 +72,29 @@ const MessageContent: FC<Props> = ({ data }) => {
           {newData.advertisement.place}
         </span>
         <hr />
+        <p>Actually : {newData.state}</p>
+        {currentUser.role == "recruiter" && (
+          <div>
+            <Button
+              text="processing"
+              onClick={() => changeState("processing")}
+            />
+            <Button text="refused" onClick={() => changeState("refused")} />
+            <Button text="accepted" onClick={() => changeState("accepted")} />
+          </div>
+        )}
+        {currentUser.role == "admin" && (
+          <div>
+            <div>
+              <Button
+                text="processing"
+                onClick={() => changeState("processing")}
+              />
+              <Button text="refused" onClick={() => changeState("refused")} />
+              <Button text="accepted" onClick={() => changeState("accepted")} />
+            </div>
+          </div>
+        )}
         <br />
         <h2 className="italic">
           Posted by {newData.advertisement.recruiter.firstname}{" "}
@@ -67,8 +107,7 @@ const MessageContent: FC<Props> = ({ data }) => {
         <br />
         <p>{newData.advertisement.description}</p>
         <br />
-        <h2>Vos message avec {newData.advertisement.recruiter.firstname}</h2>
-
+        <h2>Your disscution</h2>
         {newData.messages.map(function (item, i) {
           return (
             <div
