@@ -71,6 +71,7 @@ const DynamicInput: FC<Props> = ({
         <div className="flex justify-evenly">
           {fields?.map((value) => (
             <Input
+              key={value}
               type="radio"
               value={value}
               name={name}

@@ -111,7 +111,7 @@ const MessageContent: FC<Props> = ({ data }) => {
         {newData.messages.map(function (item, i) {
           return (
             <div
-              key={i}
+              key={item.id}
               className="box-content w-4/6 min-h-1/6 m-4  p-4 shadow-md rounded-md"
             >
               <p>By {item.author.firstname}</p>

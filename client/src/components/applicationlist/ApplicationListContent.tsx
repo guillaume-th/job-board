@@ -15,7 +15,7 @@ const ApplicationContent: FC<Props> = ({ user }) => {
           {data.map(function (item, i) {
             return (
               <li
-                key={i}
+                key={item.id}
                 className="box-content w-4/6 min-h-1/6 m-4  p-4 shadow-md rounded-md"
               >
                 <div className="flex justify-between text-[#57CC99]">

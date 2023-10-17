@@ -7,6 +7,7 @@ class JobApplicationSchema(Schema):
     id = fields.Int()
     candidate = fields.Nested("UserSchema", exclude=(
         "job_applications", "created_advertisements", "skills", "company"))
+    advertisement_id= fields.Int()
     candidate_id = fields.Int()
     candidate_name = fields.Str()
     candidate_text = fields.Str()

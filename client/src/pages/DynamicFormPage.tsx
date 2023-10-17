@@ -107,6 +107,7 @@ const AdminForm: FC<Props> = ({ defaultValues }) => {
                 dropdownValues={dropdownValues}
                 setDropdownValues={setDropdownValues}
                 defaultValue={defaultValues?.[props.name || ""]}
+                key={props.name}
               />
             ))}
 

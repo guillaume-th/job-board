@@ -15,6 +15,7 @@ const Chips: FC<ChipsProps> = ({ data, onDelete }) => {
     <div className="mx-2 flex gap-4">
       {data.map(({ name, color, id }) => (
         <div
+          key={id}
           className="flex justify-between items-center px-4 py-1 border-1 border-[#2F2963] rounded"
           style={{ backgroundColor: color ?? "#57CC99" }}
         >

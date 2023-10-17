@@ -23,9 +23,13 @@ export const useQuery = <T extends {}>(url: string, method: Method = "GET") => {
   };
 
   useEffect(() => {
-    fetchData();
+    if (url !== "forbidden") fetchData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [url, method]);
+
+  if (url === "forbidden") {
+    return { data: null, error: null, refetch: () => {} };
+  }
 
   return { data, error, refetch: fetchData };
 };

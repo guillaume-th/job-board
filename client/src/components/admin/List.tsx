@@ -49,7 +49,7 @@ const List = <T extends {}[]>({
       <thead className="text-[#57CC99] text-lg">
         <tr className="w-full">
           {cols.map((name) => (
-            <th className={thClass} style={cellStyle}>
+            <th className={thClass} style={cellStyle} key={name}>
               {capitalize(name)}
             </th>
           ))}
@@ -60,9 +60,9 @@ const List = <T extends {}[]>({
       </thead>
       <tbody>
         {rows.map((row, i) => (
-          <tr className="w-full">
+          <tr className="w-full" key={`row-${i}`}>
             {row.map((value) => (
-              <td className={tdClass} style={cellStyle}>
+              <td className={tdClass} style={cellStyle} key={value}>
                 {String(value)}
               </td>
             ))}
