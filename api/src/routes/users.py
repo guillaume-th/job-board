@@ -16,6 +16,7 @@ def users():
         if request.method == "GET":
             schema = UserSchema(many=True)
             users = UserController().get_all()
+            print(users[0].company)
             response = schema.dump(users)
 
             return {"data": response}

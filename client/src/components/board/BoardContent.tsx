@@ -23,7 +23,9 @@ const BoardContent: FC<Props> = ({ data }) => {
                   </Link>
                 </strong>
                 <span> - </span>
-                <span>{item.contract_type.replace("_", " ")}</span>
+                {item.contract_type && (
+                  <span>{item.contract_type.replace("_", " ")}</span>
+                )}
               </div>
               <hr />
               <div className="text-gray-400 italic">{item.place}</div>

@@ -1,21 +1,34 @@
 import { FC } from "react";
 
-export type ChipsProps = { data: { name: string; color?: string }[] };
+type Id = string | number;
+export type ChipsProps = {
+  data: { name: string; color?: string; id: Id }[];
+  onDelete?: (id: Id) => void;
+};
 
-const Chips: FC<ChipsProps> = ({ data }) => {
+const Chips: FC<ChipsProps> = ({ data, onDelete }) => {
   if (!data?.length) {
     return null;
   }
 
   return (
-    <div className="mx-2">
-      {data.map(({ name, color }) => (
-        <span
-          className="px-4 py-1 border-1 border-[#2F2963] rounded mx-2 select-none"
+    <div className="mx-2 flex gap-4">
+      {data.map(({ name, color, id }) => (
+        <div
+          className="flex justify-between items-center px-4 py-1 border-1 border-[#2F2963] rounded"
           style={{ backgroundColor: color ?? "#57CC99" }}
         >
-          {name}
-        </span>
+          <span className="mx-2 select-none block ">{name}</span>
+          {onDelete && (
+            <div className="cursor-pointer block" onClick={() => onDelete(id)}>
+              <img
+                src="/cross.png"
+                alt="delete"
+                className="w-4 h-4 ml-3 hover:scale-105"
+              />
+            </div>
+          )}
+        </div>
       ))}
     </div>
   );

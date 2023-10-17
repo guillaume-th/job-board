@@ -8,11 +8,13 @@ type Data = {
   id: number;
 };
 
+export type DropdownElement = { id: number } & Record<string, unknown>;
+
 type Props = {
   resource: string;
   label: string;
   placeholder?: string;
-  onAddValue: (element: unknown) => void;
+  onAddValue: (element: DropdownElement) => void;
 };
 
 const FullAutoComplete: FC<Props> = ({
@@ -46,7 +48,7 @@ const FullAutoComplete: FC<Props> = ({
 
     const handleSelect = (id: number) => {
       const element = data.find((x) => x.id === id);
-      onAddValue(element);
+      if (element) onAddValue(element as DropdownElement);
     };
 
     return (

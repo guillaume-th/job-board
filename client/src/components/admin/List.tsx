@@ -36,7 +36,7 @@ const List = <T extends {}[]>({
     "text-[#2F2963] p-4 border-2 border-[#57CC99] text-ellipsis overflow-hidden ... whitespace-nowrap";
 
   const edit = (index: number) => {
-    navigate(`/admin/${resource}/${(data[index] as { id: string }).id}/edit`);
+    navigate(`/${resource}/${(data[index] as { id: string }).id}/edit`);
   };
 
   const del = async (index: number) => {

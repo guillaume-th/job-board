@@ -2,12 +2,13 @@ import { HTMLProps, forwardRef } from "react";
 
 export type InputProps = HTMLProps<HTMLInputElement> & {
   label: string;
+  wrapperClassName?: string;
 };
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
-  ({ label, className, ...props }, ref) => {
+  ({ label, className, wrapperClassName, ...props }, ref) => {
     return (
-      <label className="block m-2">
+      <label className={`block m-2 ${wrapperClassName || ""}`}>
         <span className="block m-2">{label}</span>
         <input
           {...props}

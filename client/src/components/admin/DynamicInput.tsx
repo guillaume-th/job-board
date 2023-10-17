@@ -4,7 +4,7 @@ import { TextArea, Input } from "../ui/atoms";
 import { Chips } from "../ui/organisms";
 import { capitalize } from "../../helpers/format";
 import { InputProps } from "../ui/atoms/Input";
-import { ChipsProps } from "../ui/organisms/Chips";
+import SpecialDynamicInput from "./SpecialDynamicInput";
 
 const nameToLabel = (name: string) => {
   return capitalize(name.replace("_", " "));
@@ -15,6 +15,8 @@ type Props = Partial<InputProps> & {
   setDropdownValues: Dispatch<SetStateAction<Record<string, unknown[]>>>;
   dropdownValues: Record<string, unknown[]>;
   fields?: string[];
+  special?: string;
+  k?: string;
 };
 
 const DynamicInput: FC<Props> = ({
@@ -28,6 +30,8 @@ const DynamicInput: FC<Props> = ({
   value,
   fields,
   defaultValue,
+  special,
+  k,
 }) => {
   const props = {
     name,
@@ -35,9 +39,12 @@ const DynamicInput: FC<Props> = ({
     type: type ?? "text",
     placeholder,
     value,
-    defaultValue,
+    defaultValue: name === "password" ? "" : defaultValue,
   };
-  // TODO: handle when there is no name
+
+  if (special) {
+    return <SpecialDynamicInput {...props} special={special} k={k} />;
+  }
 
   if (name === "description") {
     return <TextArea {...props} />;
@@ -69,17 +76,30 @@ const DynamicInput: FC<Props> = ({
       }));
     };
 
+    const handleRemoveValue = (id: string | number) => {
+      const index = (dropdownValues[dropdown] as { id: string }[]).findIndex(
+        (el) => el.id === id
+      );
+
+      if (index !== -1) {
+        const newValues = { ...dropdownValues };
+        newValues[dropdown].splice(index, 1);
+        setDropdownValues(newValues);
+      }
+    };
+
     const rawValues =
       (dropdownValues[dropdown] as Record<string, string>[]) || [];
 
-    const chipsData = rawValues.map((values) => {
+    const chipsData = rawValues.map(({ color, id, ...values }) => {
       if (name === "users") {
         return {
           name: `${values?.firstname} ${values.lastname}`,
-          color: values?.color,
+          color,
+          id,
         };
       }
-      return { name: values.name, color: values?.color };
+      return { name: values.name, color, id };
     });
 
     return (
@@ -90,7 +110,7 @@ const DynamicInput: FC<Props> = ({
           placeholder={placeholder}
           onAddValue={handleAddValue}
         />
-        <Chips data={chipsData} />
+        <Chips data={chipsData} onDelete={handleRemoveValue} />
       </>
     );
   }

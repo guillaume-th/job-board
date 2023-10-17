@@ -13,7 +13,7 @@ const AdminNav: FC<Props> = ({ resource, action }) => {
       <ul>
         {resources.map((name) => (
           <li className="mb-2">
-            <Link to={`/admin/${name}`}>{capitalize(name)}</Link>
+            <Link to={`/${name}`}>{capitalize(name)}</Link>
           </li>
         ))}
       </ul>
