@@ -65,7 +65,9 @@ const AdminForm: FC<Props> = ({ defaultValues }) => {
 
     // Add dropdown values to body
     Object.entries(dropdownValues).forEach(([key, value]) => {
-      body[key] = (value as { id: string }[]).map(({ id }) => Number(id));
+      body[key] = ((value as { id: string }[]) || []).map(({ id }) =>
+        Number(id)
+      );
     });
 
     const { data, error, message } = await submit(body);

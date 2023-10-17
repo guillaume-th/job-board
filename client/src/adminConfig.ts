@@ -5,6 +5,7 @@ export type Field = Partial<InputProps> & {
   fields?: string[];
   special?: string;
   k?: string;
+  labelK?: string;
 };
 type Conf = {
   fields: Field[];
@@ -87,10 +88,13 @@ export const adminConfig: Record<string, Conf> = {
         label: "Skills you are looking for:",
       },
       {
-        name: "company_id",
+        special: "prefill-admin",
         label: "Company",
-        special: "ad-company",
+        k: "currentUser.company.id",
+        labelK: "currentUser.company.name",
+        name: "company_id",
         placeholder: "Browse companies...",
+        resource: "companies",
       },
       { name: "place", placeholder: "12 Tech Street" },
       {
@@ -115,5 +119,26 @@ export const adminConfig: Record<string, Conf> = {
       "contract_type",
     ],
     auth: ["admin", "recruiter"],
+  },
+  applications: {
+    fields: [
+      {
+        label: "Candidate",
+        special: "prefill-admin",
+        k: "currentUser.id",
+        labelK: "currentUser.user.email",
+        name: "recruiter_id",
+        resource: "users",
+      },
+    ],
+    title: "application",
+    auth: ["admin", "recruiter", "user"],
+    columns: [
+      "id",
+      "candidate_name",
+      "candidate_email",
+      "candidate_phone",
+      "state",
+    ],
   },
 };

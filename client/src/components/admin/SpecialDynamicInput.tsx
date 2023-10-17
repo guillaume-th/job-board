@@ -1,3 +1,4 @@
+/* eslint-disable no-eval */
 import { FC, useState } from "react";
 import { get } from "../../helpers/storage";
 import { User } from "../../types/user";
@@ -8,40 +9,48 @@ import { InputProps } from "../ui/atoms/Input";
 type Props = Pick<
   InputProps,
   "name" | "label" | "type" | "placeholder" | "value" | "defaultValue"
-> & { special: string; k?: string };
+> & { special: string; k?: string; resource?: string; labelK?: string };
 
-const SpecialDynamicInput: FC<Props> = ({ special, k, ...props }) => {
+const SpecialDynamicInput: FC<Props> = ({
+  special,
+  k,
+  labelK,
+  resource,
+  ...props
+}) => {
   const currentUser = get<User>("user");
   const [specialInput, setSpecialInput] = useState<{
     label?: string;
     value?: string;
   }>({});
 
-  if (currentUser.role === "recruiter" && !specialInput.value) {
-    setSpecialInput({
-      label: currentUser.company.name,
-      value: String(currentUser.company.id),
-    });
-  }
+  console.log(special, resource, labelK, k);
+  if (special === "prefill-admin" && resource && labelK && k) {
+    console.log("in", resource);
 
-  const handleAddValue = (element: DropdownElement) => {
-    setSpecialInput({
-      value: String(element.id),
-      label: element?.name as string,
-    });
-  };
+    if (currentUser.role !== "admin" && !specialInput.value) {
+      setSpecialInput({
+        label: eval(labelK),
+        value: eval(k),
+      });
+    }
 
-  if (special === "ad-company") {
+    const handleAddValue = (element: DropdownElement) => {
+      setSpecialInput({
+        value: String(element.id),
+        label: element?.name as string,
+      });
+    };
     return (
       <>
         <p className="p-4">
-          Selected company:{" "}
+          Selected {props.label}:{" "}
           <span className="font-semibold">{specialInput.label ?? "None"}</span>
         </p>
         {currentUser?.role === "admin" && (
           <DropdownContainer
-            resource="companies"
-            label="Select a company"
+            resource={resource}
+            label={`Select a ${props.label.toLowerCase()}`}
             placeholder={props.placeholder}
             onAddValue={handleAddValue}
           />

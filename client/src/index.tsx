@@ -3,7 +3,6 @@ import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
 import "./index.css";
-import App from "./pages/App";
 import Auth from "./pages/Auth";
 import Board from "./pages/Board";
 import Advertisement from "./pages/Advertisement";
@@ -19,7 +18,11 @@ import Candidate from "./pages/Candidate";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: (
+      <Wrapper>
+        <Board />
+      </Wrapper>
+    ),
   },
   {
     path: "/auth",
@@ -74,7 +77,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/Application",
+    path: "/applications",
     element: (
       <Wrapper>
         <ApplicationList />
@@ -82,7 +85,7 @@ const router = createBrowserRouter([
     ),
   },
   {
-    path: "/Application/:id",
+    path: "/applications/:id",
     element: (
       <Wrapper>
         <Message />

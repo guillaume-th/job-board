@@ -17,6 +17,8 @@ type Props = Partial<InputProps> & {
   fields?: string[];
   special?: string;
   k?: string;
+  labelK?: string;
+  resource?: string;
 };
 
 const DynamicInput: FC<Props> = ({
@@ -32,6 +34,8 @@ const DynamicInput: FC<Props> = ({
   defaultValue,
   special,
   k,
+  labelK,
+  resource,
 }) => {
   const props = {
     name,
@@ -43,7 +47,15 @@ const DynamicInput: FC<Props> = ({
   };
 
   if (special) {
-    return <SpecialDynamicInput {...props} special={special} k={k} />;
+    return (
+      <SpecialDynamicInput
+        {...props}
+        special={special}
+        k={k}
+        labelK={labelK}
+        resource={resource}
+      />
+    );
   }
 
   if (name === "description") {

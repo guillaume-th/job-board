@@ -3,11 +3,11 @@ from connect import db
 from controllers.Job_applicationController import JobApplicationController
 from schema.JobApplicationSchema import JobApplicationSchema
 
-JobApplication_routes = Blueprint('JobApplication_routes', __name__)
+job_application_routes = Blueprint('applications', __name__)
 
 
-@JobApplication_routes.route("/", methods=["GET", "POST"])
-def JobApplications(params: str = None):
+@job_application_routes.route("/", methods=["GET", "POST"])
+def job_applications(params: str = None):
     if request.method == "GET":
         try:
             schema = JobApplicationSchema(many=True)
@@ -36,8 +36,8 @@ def JobApplications(params: str = None):
                 jsonify(message=f"Error on JobApplication create: {e}", error=True))
 
 
-@JobApplication_routes.route("/<int:id>", methods=["PUT", "GET", "DELETE"])
-def JobApplication(id: int):
+@job_application_routes.route("/<int:id>", methods=["PUT", "GET", "DELETE"])
+def job_application(id: int):
     if request.method == "GET":
 
         try:

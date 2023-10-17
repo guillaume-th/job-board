@@ -3,9 +3,9 @@ import { FC } from "react";
 import { Advertisement } from "../../types/advertisement";
 import { Button } from "../ui/atoms";
 
-type Props = { data: Advertisement };
+type Props = { data: Advertisement; onApply: () => void };
 
-const AdvertisementContent: FC<Props> = ({ data }) => {
+const AdvertisementContent: FC<Props> = ({ data, onApply }) => {
   return (
     <div className="w-screen h-screen flex flex-column">
       <div className="box-content w-5/6 m-4 p-4 shadow-md rounded-md">
@@ -31,7 +31,7 @@ const AdvertisementContent: FC<Props> = ({ data }) => {
         <br />
         <p>{data.description}</p>
         <br />
-        <Button text="Apply" />
+        <Button text="Apply" onClick={onApply} />
       </div>
     </div>
   );
