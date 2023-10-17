@@ -33,7 +33,6 @@ const DynamicInput: FC<Props> = ({
   special,
   k,
 }) => {
-  console.log({ k });
   const props = {
     name,
     label: label ?? nameToLabel(name || ""),
@@ -84,7 +83,7 @@ const DynamicInput: FC<Props> = ({
 
       if (index !== -1) {
         const newValues = { ...dropdownValues };
-        newValues[dropdown].splice(index);
+        newValues[dropdown].splice(index, 1);
         setDropdownValues(newValues);
       }
     };

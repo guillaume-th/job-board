@@ -92,6 +92,17 @@ export const adminConfig: Record<string, Conf> = {
         special: "ad-company",
         placeholder: "Browse companies...",
       },
+      { name: "place", placeholder: "12 Tech Street" },
+      {
+        type: "radio",
+        name: "contract_type",
+        fields: [
+          "permanent_contract",
+          "temporary_contract",
+          "internship",
+          "apprenticeship",
+        ],
+      },
       { special: "prefill", k: "id", name: "recruiter_id" },
     ],
     columns: [
