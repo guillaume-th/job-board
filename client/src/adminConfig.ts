@@ -160,6 +160,10 @@ export const adminConfig: Record<string, Conf> = {
         label: "Phone number",
       },
       {
+        name: "candidate_text",
+        placeholder: "I am very interested in your offer, because...",
+      },
+      {
         special: "prefill-admin",
         labelK: "searchParams.get('advertisement_id')",
         k: "searchParams.get('advertisement_id')",
@@ -170,7 +174,7 @@ export const adminConfig: Record<string, Conf> = {
       { special: "prefill", name: "state", k: "'sent'", hidden: true },
     ],
     title: "application",
-    auth: ["admin", "recruiter", "user"],
+    auth: ["admin", "recruiter", "candidate"],
     columns: [
       "id",
       "candidate_name",

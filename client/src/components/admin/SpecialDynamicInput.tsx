@@ -41,7 +41,7 @@ const SpecialDynamicInput: FC<Props> = ({
   );
 
   if (special === "prefill-admin" && resource && labelK && k) {
-    if (!specialInput.label && !specialInput.value) {
+    if (specialInput.label === undefined && specialInput.value === undefined) {
       if (data) {
         const label = (data?.name ??
           `${data?.firstname} ${data?.lastname}`) as string;
@@ -50,8 +50,7 @@ const SpecialDynamicInput: FC<Props> = ({
           label,
           value: data.id ?? computedKey,
         });
-      }
-      if (currentUser.role !== "admin") {
+      } else if (currentUser.role !== "admin") {
         setSpecialInput({
           label: eval(labelK),
           value: computedKey,

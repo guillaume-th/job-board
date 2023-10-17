@@ -1,12 +1,17 @@
 // affichage de la donnée
 import { FC } from "react";
 import { Advertisement } from "../../types/advertisement";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Button } from "../ui/atoms";
 
-type Props = { data: Advertisement[]; onApply: () => void };
+type Props = { data: Advertisement[] };
 
-const BoardContent: FC<Props> = ({ data, onApply }) => {
+const BoardContent: FC<Props> = ({ data }) => {
+  const navigate = useNavigate();
+
+  const handleApply = (id: number) =>
+    navigate(`/applications/create?advertisement_id=${id.toString()}`);
+
   return (
     <div className="w-screen h-screen">
       <ul className="w-screen h-screen">
@@ -34,7 +39,7 @@ const BoardContent: FC<Props> = ({ data, onApply }) => {
             </div>
             <div className="flex flex-row-reverse space-x-4 space-x-reverse items-end">
               <span>
-                <Button text="Apply" onClick={onApply} />
+                <Button text="Apply" onClick={() => handleApply(item.id)} />
               </span>
               <Link
                 className="font-medium hover:underline text-[#DED9E2]"

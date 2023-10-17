@@ -11,7 +11,7 @@ const AdvertisementContainer: FC = () => {
   const navigate = useNavigate();
 
   const handleApply = () => {
-    navigate("/applications/create");
+    navigate(`/applications/create?advertisement_id=${id}`);
   };
 
   if (!data || !error) {

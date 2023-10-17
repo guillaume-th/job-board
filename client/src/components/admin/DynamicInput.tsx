@@ -60,7 +60,7 @@ const DynamicInput: FC<Props> = ({
     );
   }
 
-  if (name === "description") {
+  if (["description", "candidate_text"].includes(name ?? "")) {
     return <TextArea {...props} />;
   }
 
