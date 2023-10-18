@@ -57,11 +57,18 @@ const LastApplications: FC<Props> = ({ user }) => {
             )}
           </Card>
         ))}
-        <div>
-          <Button
-            text="Post a new ad"
-            onClick={() => navigate("/advertisements/create")}
-          />
+        <div className="flex items-center p-4">
+          {user.role === "recruiter" ? (
+            <Button
+              text="Post a new ad"
+              onClick={() => navigate("/advertisements/create")}
+            />
+          ) : (
+            <Button
+              text="Browse job offers"
+              onClick={() => navigate("/board")}
+            />
+          )}
         </div>
       </div>
       <div className="flex w-full justify-end">

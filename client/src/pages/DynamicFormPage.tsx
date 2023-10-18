@@ -75,7 +75,7 @@ const AdminForm: FC<Props> = ({ defaultValues }) => {
     if (error) {
       setError(message ?? "Something went wrong. Please contact an admin.");
     } else if (data) {
-      onBack();
+      navigate(-1);
     }
   };
 
