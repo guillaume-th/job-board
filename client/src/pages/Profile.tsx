@@ -1,5 +1,5 @@
-import { FC } from "react";
-import { useParams } from "react-router-dom";
+import { FC, useEffect } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { get } from "../helpers/storage";
 import { User } from "../types/user";
 import { useQuery } from "../hooks/useQuery";
@@ -10,16 +10,23 @@ type Props = {};
 
 const Profile: FC<Props> = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const currentUser = get<User>("user");
   const userId = id === "me" ? currentUser.id : id;
-  const { data, error } = useQuery<User>(`api/users/${userId}`);
+  const { data, error } = useQuery<User>(
+    userId ? `api/users/${userId}` : "forbidden"
+  );
   const isEditable =
     id === "me" ||
     currentUser?.role === "admin" ||
     Number(id) === currentUser?.id;
 
+  useEffect(() => {
+    if (!userId) navigate("/auth");
+  }, [navigate, userId]);
+
   if (!userId) {
-    return <ErrorMessage text="Something went wrong. Please log in." />;
+    return null;
   }
 
   if (!data && !error) {

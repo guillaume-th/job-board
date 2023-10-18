@@ -41,7 +41,7 @@ const AdminForm: FC<Props> = ({ defaultValues }) => {
   const formRef = useRef<HTMLFormElement>(null);
   const currentUser = get<User>("user");
 
-  if (!config.auth.includes(currentUser?.role)) {
+  if (!config.auth.includes(currentUser?.role ?? "guest")) {
     return (
       <div className="flex w-full justify-center items-center m-4">
         <ErrorMessage text="You don't have enough rights to access this resource" />
@@ -70,7 +70,12 @@ const AdminForm: FC<Props> = ({ defaultValues }) => {
       );
     });
 
-    const { data, error, message } = await submit(body);
+    const cleaned_body = Object.entries(body).reduce(
+      (acc, [key, value]) => (value ? { ...acc, [key]: value } : acc),
+      {}
+    );
+
+    const { data, error, message } = await submit(cleaned_body);
 
     if (error) {
       setError(message ?? "Something went wrong. Please contact an admin.");

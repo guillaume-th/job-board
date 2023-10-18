@@ -55,9 +55,11 @@ const MessageContent: FC<Props> = ({ data }) => {
       setError(false);
     }
   };
+
   if (!newData) {
     return <Spinner />;
   }
+
   return (
     <div className="w-screen flex flex-column">
       <div className="box-content w-5/6 min-h-fit h-fullscreen m-4 p-4 shadow-md rounded-md">
@@ -65,7 +67,7 @@ const MessageContent: FC<Props> = ({ data }) => {
           {newData.advertisement.name.toUpperCase()}
         </h1>
         <span className="text-gray-400 italic">
-          {newData.advertisement.contract_type.replace("_", " ")}
+          {newData.advertisement?.contract_type?.replace("_", " ")}
         </span>
         <span> - </span>
         <span className="text-gray-400 italic">

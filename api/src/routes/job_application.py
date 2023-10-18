@@ -23,11 +23,11 @@ def job_applications(params: str = None):
     if request.method == "POST":
         try:
             data = request.get_json()
-            JobApplication = JobApplicationController().create(data)
-            db.session.add(JobApplication)
+            job_application = JobApplicationController().create(data)
+            db.session.add(job_application)
             db.session.commit()
             schema = JobApplicationSchema()
-            response = schema.dump(JobApplication)
+            response = schema.dump(job_application)
 
             return {"data": response}
 

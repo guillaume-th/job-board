@@ -141,7 +141,7 @@ export const adminConfig: Record<string, Conf> = {
       {
         special: "prefill",
         name: "candidate_name",
-        k: "`${currentUser.firstname} ${currentUser.lastname}`",
+        k: "currentUser?.firstname && currentUser?.lastname ? `${currentUser.firstname} ${currentUser.lastname}` : ''",
         placeholder: "Bob Bidou",
         label: "Name",
       },
@@ -174,7 +174,7 @@ export const adminConfig: Record<string, Conf> = {
       { special: "prefill", name: "state", k: "'sent'", hidden: true },
     ],
     title: "application",
-    auth: ["admin", "recruiter", "candidate"],
+    auth: ["admin", "recruiter", "candidate", "guest"],
     columns: [
       "id",
       "candidate_name",

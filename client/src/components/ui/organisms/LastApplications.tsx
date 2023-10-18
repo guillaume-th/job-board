@@ -39,9 +39,9 @@ const LastApplications: FC<Props> = ({ user }) => {
         Your last applications
       </h3>
       <div className="grid grid-cols-4 text-sm">
-        {data.slice(0, 2).map((application) => (
+        {data.slice(0, 3).map((application) => (
           <Card className="bg-white min-h-[100px]">
-            <p>{application?.advertisement.name}</p>
+            <p>{application?.advertisement?.name}</p>
             {application && (
               <>
                 <p className="text-[#DED9E2]">
