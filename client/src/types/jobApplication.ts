@@ -5,10 +5,10 @@ import { Message } from "./message";
 export type JobApplication = {
   id: number;
   candidate: User;
-  candidate_name: String;
-  candidate_text: String;
-  candidate_email: String;
-  candidate_phone: String;
+  candidate_name: string;
+  candidate_text: string;
+  candidate_email: string;
+  candidate_phone: string;
   advertisement: Advertisement;
   state: string;
   messages: Message[];

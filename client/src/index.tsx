@@ -10,11 +10,11 @@ import Profile from "./pages/Profile";
 import Wrapper from "./components/Wrapper";
 import AdminList from "./pages/AdminList";
 import ApplicationList from "./pages/ApplicationList";
-import Message from "./pages/Message";
 import DynamicForm from "./pages/DynamicFormPage";
 import DynamicEditContainer from "./pages/DynamicEditContainer";
 import Candidate from "./pages/Candidate";
 import Recruiter from "./pages/Recruiter";
+import ApplicationDetails from "./pages/ApplicationDetails";
 
 const router = createBrowserRouter([
   {
@@ -89,7 +89,7 @@ const router = createBrowserRouter([
     path: "/applications/me/:id",
     element: (
       <Wrapper>
-        <Message />
+        <ApplicationDetails />
       </Wrapper>
     ),
   },

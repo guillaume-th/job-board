@@ -7,8 +7,8 @@ type Props = {
 const config: Record<string, string> = {
   sent: "black",
   processing: "#57CC99",
-  accepted: "#d9f99d",
-  refused: "#fca5a5",
+  accepted: "#16a34a",
+  refused: "#ef4444",
 };
 
 const ApplicationState: FC<Props> = ({ state }) => {
