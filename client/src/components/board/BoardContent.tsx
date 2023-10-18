@@ -37,7 +37,7 @@ const BoardContent: FC<Props> = ({ data }) => {
             <div className="flex justify-between">
               <span className="truncate">{item.description}</span>
             </div>
-            <div className="flex flex-row-reverse space-x-4 space-x-reverse items-end">
+            <div className="flex flex-row-reverse space-x-4 space-x-reverse items-end mt-4">
               <span>
                 <Button text="Apply" onClick={() => handleApply(item.id)} />
               </span>

@@ -57,11 +57,14 @@ const SpecialDynamicInput: FC<Props> = ({
           label,
           value: data.id ?? computedKey,
         });
-      } else if (currentUser.role !== "admin") {
-        setSpecialInput({
-          label: eval(labelK),
-          value: computedKey,
-        });
+      } else if (currentUser?.role !== "admin") {
+        const label = eval(labelK);
+        if (label || computedKey) {
+          setSpecialInput({
+            label: eval(labelK),
+            value: computedKey,
+          });
+        }
       }
     }
 
@@ -72,23 +75,25 @@ const SpecialDynamicInput: FC<Props> = ({
       });
     };
 
-    console.log("in");
-
     delete props["defaultValue"];
 
     return (
       <>
-        <p className="p-4">
-          Selected {props.label.toLowerCase()}:{" "}
-          <span className="font-semibold">{specialInput.label ?? "None"}</span>
-        </p>
         {currentUser?.role === "admin" && (
-          <DropdownContainer
-            resource={resource}
-            label={`Select a ${props.label.toLowerCase()}`}
-            placeholder={props.placeholder}
-            onAddValue={handleAddValue}
-          />
+          <>
+            <p className="p-4">
+              Selected {props.label.toLowerCase()}:{" "}
+              <span className="font-semibold">
+                {specialInput.label ?? "None"}
+              </span>
+            </p>
+            <DropdownContainer
+              resource={resource}
+              label={`Select a ${props.label.toLowerCase()}`}
+              placeholder={props.placeholder}
+              onAddValue={handleAddValue}
+            />
+          </>
         )}
         <Input
           {...props}

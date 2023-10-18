@@ -27,6 +27,9 @@ const ProfileTemplate: FC<Props> = ({ user, editable }) => {
         <div>
           <h2 className="text-3xl font-semibold text-[#57CC99]">
             {capitalize(user.firstname)} {capitalize(user.lastname)}
+            <span className="text-[#2F2963] text-2xl ml-6">
+              [{user?.role.toUpperCase()}]
+            </span>
           </h2>
           <p className="text-[#DED9E2] text-md font-italic">@{user.username}</p>
         </div>

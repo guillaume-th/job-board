@@ -25,27 +25,27 @@ const ApplicationContent: FC<Props> = ({ user }) => {
                         className="hover:underline"
                         to={"/board/" + item.id}
                       >
-                        {item.advertisement.name.toUpperCase()}
+                        {item?.advertisement?.name.toUpperCase()}
                       </Link>
                     </strong>
                     <span> - </span>
                     <span>
-                      {item.advertisement.contract_type.replace("_", " ")}
+                      {item?.advertisement?.contract_type?.replace("_", " ")}
                     </span>
                   </div>
                   <div>
                     <span>
-                      <strong>{item.state.toUpperCase()}</strong>
+                      <strong>{item?.state?.toUpperCase()}</strong>
                     </span>
                   </div>
                 </div>
                 <hr />
                 <div className="text-gray-400 italic">
-                  {item.advertisement.place}
+                  {item?.advertisement?.place}
                 </div>
                 <br />
                 <div className="flex justify-between">
-                  <span>{item.advertisement.description}</span>
+                  <span>{item?.advertisement?.description}</span>
                 </div>
                 <div className="flex flex-row-reverse space-x-4 space-x-reverse items-end">
                   <Link

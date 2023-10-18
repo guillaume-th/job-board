@@ -43,6 +43,7 @@ const List = <T extends {}[]>({
     await deleteResource(resource, id);
     refetch();
   };
+
   return (
     <table className="rounded shadow-lg my-4 border-2 border-[#57CC99] w-full overflow-scroll table-fixed	">
       <thead className="text-[#57CC99] text-lg">
@@ -66,11 +67,15 @@ const List = <T extends {}[]>({
               </td>
             ))}
             <td className={tdClass} style={cellStyle}>
-              <div className="flex justify-center gap-6">
-                <Button text="Edit" className="block" onClick={() => edit(i)} />
+              <div className="flex justify-center gap-2">
+                <Button
+                  text="Edit"
+                  onClick={() => edit(i)}
+                  className="block scale-85 px-3"
+                />
                 <Button
                   text="Delete"
-                  className="block"
+                  className="block scale-85 px-3"
                   onClick={() => del(i)}
                 />
               </div>

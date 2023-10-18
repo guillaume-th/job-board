@@ -2,7 +2,7 @@ import { FC, FormEvent, useRef, useState } from "react";
 import { useMutation } from "../hooks/useMutation";
 import { useNavigate, useParams } from "react-router-dom";
 import { Button, ErrorMessage } from "../components/ui/atoms";
-import { get } from "../helpers/storage";
+import { get, save } from "../helpers/storage";
 import { User } from "../types/user";
 import { Field, adminConfig } from "../adminConfig";
 import DynamicInput from "../components/admin/DynamicInput";
@@ -41,7 +41,7 @@ const AdminForm: FC<Props> = ({ defaultValues }) => {
   const formRef = useRef<HTMLFormElement>(null);
   const currentUser = get<User>("user");
 
-  if (!config.auth.includes(currentUser?.role)) {
+  if (!config.auth.includes(currentUser?.role ?? "guest")) {
     return (
       <div className="flex w-full justify-center items-center m-4">
         <ErrorMessage text="You don't have enough rights to access this resource" />
@@ -70,12 +70,21 @@ const AdminForm: FC<Props> = ({ defaultValues }) => {
       );
     });
 
-    const { data, error, message } = await submit(body);
+    const cleaned_body = Object.entries(body).reduce(
+      (acc, [key, value]) => (value ? { ...acc, [key]: value } : acc),
+      {}
+    );
+
+    const { data, error, message } = await submit(cleaned_body);
 
     if (error) {
       setError(message ?? "Something went wrong. Please contact an admin.");
     } else if (data) {
-      onBack();
+      if (resource === "users" && isEdit && currentUser?.id === data.id) {
+        // refresh user data with updated infos
+        save("user", JSON.stringify(data));
+      }
+      navigate(-1);
     }
   };
 

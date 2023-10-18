@@ -5,17 +5,22 @@ import { useQuery } from "../../hooks/useQuery";
 
 type Props = { query: string; current: number };
 
-const Sugestion: FC<Props> = ({ query, current }) => {
-  const { data, error } = useQuery<Advertisement[]>(
-    `api/advertisements?${query}`
-  );
+const SuggestionsList: FC<Props> = ({ query, current }) => {
+  const { data } = useQuery<Advertisement[]>(`api/advertisements?${query}`);
+
+  if (!data || data?.length === 1) {
+    return null;
+  }
 
   return (
-    <div className="w-2/10 m-8">
+    <div className="w-[25vw] my-14 mx-8">
+      <h2 className="font-semibold text-[#57CC99] text-lg">
+        Other offers at <span className="underline">{data[0]?.company.name}</span>
+      </h2>
       <ul>
         {data?.slice(0, 3).map((item) => (
           <div>
-            {item.id != current && (
+            {item.id !== current && (
               <li
                 key={item.id}
                 className="box-content w-6/6 min-h-1/6 m-4 p-4 shadow-md rounded-md"
@@ -23,12 +28,12 @@ const Sugestion: FC<Props> = ({ query, current }) => {
                 <div>
                   <strong>
                     <Link className="hover:underline" to={"/board/" + item.id}>
-                      {item.name.toUpperCase()}
+                      {item?.name?.toUpperCase()}
                     </Link>
                   </strong>
                   <span> - </span>
-                  {item.contract_type && (
-                    <span>{item.contract_type.replace("_", " ")}</span>
+                  {item?.contract_type && (
+                    <span>{item?.contract_type?.replace("_", " ")}</span>
                   )}
                 </div>
                 <hr />
@@ -50,4 +55,4 @@ const Sugestion: FC<Props> = ({ query, current }) => {
   );
 };
 
-export default Sugestion;
+export default SuggestionsList;

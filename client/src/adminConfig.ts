@@ -23,7 +23,7 @@ export const adminConfig: Record<string, Conf> = {
       { name: "name", placeholder: "PHP" },
       { name: "color", type: "color" },
     ],
-    columns: ["id", "name", "color"],
+    columns: ["name", "color"],
     auth: ["admin"],
   },
   companies: {
@@ -35,7 +35,7 @@ export const adminConfig: Record<string, Conf> = {
       { name: "banner", placeholder: "http://url.com/banner.png" },
       { name: "users", placeholder: "Browse users", dropdown: "users" },
     ],
-    columns: ["id", "name", "description"],
+    columns: ["name", "description"],
     auth: ["admin"],
   },
   users: {
@@ -57,15 +57,15 @@ export const adminConfig: Record<string, Conf> = {
       { name: "adress", placeholder: "31 rue de la Paix, Paris" },
       { name: "skills", placeholder: "Browse skills", dropdown: "skills" },
     ],
-    columns: ["id", "email", "firstname", "lastname", "role"],
+    columns: ["email", "firstname", "lastname", "role"],
     auth: ["admin", "recruiter", "candidate"],
   },
-  industries: {
-    title: "industry",
-    columns: ["id", "name", "color"],
-    fields: [{ name: "name", placeholder: "IT" }],
-    auth: ["admin"],
-  },
+  // industries: {
+  //   title: "industry",
+  //   columns: [ "name", "color"],
+  //   fields: [{ name: "name", placeholder: "IT" }],
+  //   auth: ["admin"],
+  // },
   advertisements: {
     title: "advertisement",
     fields: [
@@ -117,7 +117,6 @@ export const adminConfig: Record<string, Conf> = {
       },
     ],
     columns: [
-      "id",
       "name",
       "description",
       "salary",
@@ -141,7 +140,7 @@ export const adminConfig: Record<string, Conf> = {
       {
         special: "prefill",
         name: "candidate_name",
-        k: "`${currentUser.firstname} ${currentUser.lastname}`",
+        k: "currentUser?.firstname && currentUser?.lastname ? `${currentUser.firstname} ${currentUser.lastname}` : ''",
         placeholder: "Bob Bidou",
         label: "Name",
       },
@@ -174,13 +173,7 @@ export const adminConfig: Record<string, Conf> = {
       { special: "prefill", name: "state", k: "'sent'", hidden: true },
     ],
     title: "application",
-    auth: ["admin", "recruiter", "candidate"],
-    columns: [
-      "id",
-      "candidate_name",
-      "candidate_email",
-      "candidate_phone",
-      "state",
-    ],
+    auth: ["admin", "recruiter", "candidate", "guest"],
+    columns: ["candidate_name", "candidate_email", "candidate_phone", "state"],
   },
 };
