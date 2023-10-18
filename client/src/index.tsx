@@ -14,6 +14,7 @@ import Message from "./pages/Message";
 import DynamicForm from "./pages/DynamicFormPage";
 import DynamicEditContainer from "./pages/DynamicEditContainer";
 import Candidate from "./pages/Candidate";
+import Recruiter from "./pages/Recruiter";
 
 const router = createBrowserRouter([
   {
@@ -97,6 +98,14 @@ const router = createBrowserRouter([
     element: (
       <Wrapper>
         <Candidate />
+      </Wrapper>
+    ),
+  },
+  {
+    path: "/advertisements/me",
+    element: (
+      <Wrapper>
+        <Recruiter />
       </Wrapper>
     ),
   },
