@@ -7,6 +7,7 @@ import { Button } from "../atoms";
 import { useNavigate } from "react-router-dom";
 import LastApplications from "../organisms/LastApplications";
 import { clear } from "../../../helpers/storage";
+import LastAdvertisements from "../organisms/LastAdvertisements";
 
 type Props = {
   user: User;
@@ -68,6 +69,7 @@ const ProfileTemplate: FC<Props> = ({ user, editable }) => {
         </Card>
       </div>
       {user.role !== "admin" && <LastApplications user={user} />}
+      {user.role !== "candidate" && <LastAdvertisements user={user} />}
       {editable && (
         <div className="w-full flex items-end justify-end mt-32">
           <span
