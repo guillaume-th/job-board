@@ -35,6 +35,8 @@ const Dropdown: FC<Props> = ({
     setSelectedIndex(0);
   };
 
+  console.log(selectedIndex);
+
   const handleElementClick = ({ id, name }: Element) => {
     reset();
     onSelectValue(id);
@@ -52,7 +54,9 @@ const Dropdown: FC<Props> = ({
     }
     if (e.key === "Enter") {
       e.preventDefault();
-      handleElementClick(filteredElements[selectedIndex]);
+      if (filteredElements.length) {
+        handleElementClick(filteredElements[selectedIndex]);
+      }
     }
 
     if (e.key === "Escape") {
@@ -74,7 +78,7 @@ const Dropdown: FC<Props> = ({
           ref={inputRef}
         />
       </label>
-      <div className="my-2 rounded shadow absolute z-10 bg-white left-4  right-0">
+      <div className="my-2 rounded shadow absolute z-10 bg-white left-4 right-0">
         {filteredElements.map(({ name, id }, i) => (
           <div
             className="p-2 cursor-pointer"
