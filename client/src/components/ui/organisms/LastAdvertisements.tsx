@@ -11,12 +11,7 @@ type Props = {
 const LastAdvertisements: FC<Props> = ({ user }) => {
   const navigate = useNavigate();
 
-  const data =
-    user.role === "recruiter" || user.role === "admin"
-      ? user.created_advertisements?.map((application) => ({
-          ...application,
-        }))
-      : user.created_advertisements;
+  const data = user.created_advertisements
 
   const goToApplicationDetails = (id: number) => {
     navigate(`/board/${id}`);
