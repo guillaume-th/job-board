@@ -1,16 +1,25 @@
 import { FC } from "react";
 import { Advertisement } from "../../types/advertisement";
 import { capitalize } from "../../helpers/format";
+import ApplicationState from "../ui/atoms/ApplicationState";
 
 type Props = { advertisement: Advertisement; applicationState: string };
 
-const ApplicationAdvertisementCard: FC<Props> = ({ advertisement }) => {
+const ApplicationAdvertisementCard: FC<Props> = ({
+  advertisement,
+  applicationState,
+}) => {
   return (
     <div className=" w-full m-4 p-4 shadow-md rounded-md">
       <div className="flex justify-between">
         <h1 className="items-center justify-center text-[#57CC99] font-bold text-xl">
-          {advertisement?.name.toUpperCase()}
+          {advertisement?.name.toUpperCase()}{" "}
+          <span className="text-[#2F2963] text-sm">
+            {" "}
+            @{advertisement?.company?.name}
+          </span>
         </h1>
+        <ApplicationState state={applicationState} />
       </div>
       <span className="text-gray-400 italic">
         {advertisement?.contract_type?.replace("_", " ")}

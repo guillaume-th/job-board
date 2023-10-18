@@ -1,4 +1,4 @@
-import { FC, FormEvent, useRef, useState } from "react";
+import { FC, FormEvent, useLayoutEffect, useRef, useState } from "react";
 import { get } from "../../helpers/storage";
 import { User } from "../../types/user";
 import { TextArea, Button, ErrorMessage } from "../ui/atoms";
@@ -22,6 +22,14 @@ const Messages: FC<Props> = ({ data, refetch, applicationId }) => {
   const submit = useMutation<Body, Message>("api/message/");
   const [error, setError] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
+  const textAreaRef = useRef<HTMLTextAreaElement>(null);
+  const lastMessageRef = useRef<HTMLDivElement>(null);
+
+  useLayoutEffect(() => {
+    if (lastMessageRef.current) {
+      lastMessageRef.current.scrollIntoView();
+    }
+  }, []);
 
   const handleSubmit = async (e: FormEvent) => {
     setError(false);
@@ -36,26 +44,56 @@ const Messages: FC<Props> = ({ data, refetch, applicationId }) => {
     if (error) {
       setError(true);
     } else if (dataResponse) {
+      if (textAreaRef.current) {
+        textAreaRef.current.value = "";
+      }
       refetch();
     }
   };
 
   return (
-    <div>
-      {data.map((item, i) => (
-        <div
-          key={item.id}
-          className="box-content w-4/6 min-h-1/6 m-4  p-4 shadow-md rounded-md"
-        >
-          <p>By {item.author.firstname}</p>
-          {item.content}
+    <div className="mt-6">
+      <h3 className="font-semibold text-xl mb-4 text-[#2F2963]">Exchanges</h3>
+      <hr className="h-2 bg-[#57CC99] w-full block my-4" />
+
+      {data.length ? (
+        <div className="border-2 border-#57CC99 bg-[#DED9E2]/20 ml-4 max-h-[55vh] overflow-y-scroll py-4 scroll-smooth">
+          {data.map((message, i) => (
+            <div
+              className="flex"
+              style={{
+                justifyContent:
+                  message?.author.id === currentUser?.id
+                    ? "flex-end"
+                    : "flex-start",
+              }}
+              ref={i === data.length - 1 ? lastMessageRef : null}
+            >
+              <div
+                key={message.id}
+                className="w-3/6 min-h-1/6 m-2 p-4 shadow-md bg-white"
+              >
+                <p className="font-semibold text-[#57CC99]">
+                  {message.author.firstname}
+                </p>
+                {message.content}
+              </div>
+            </div>
+          ))}
         </div>
-      ))}
+      ) : null}
       <br />
       {currentUser && (
         <form onSubmit={handleSubmit} ref={formRef}>
-          <TextArea label="Message" name="content"></TextArea>
-          <Button text="Envoi" type="submit"></Button>
+          <TextArea
+            label="Message"
+            name="content"
+            placeholder="Your message goes here..."
+            ref={textAreaRef}
+          ></TextArea>
+          <div className="flex w-full justify-end">
+            <Button text="Send" type="submit"></Button>
+          </div>
         </form>
       )}
       {error && <ErrorMessage />}
