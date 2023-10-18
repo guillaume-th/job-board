@@ -52,7 +52,7 @@ const ProfileTemplate: FC<Props> = ({ user, editable }) => {
             <Chips data={user.skills} />
           </div>
         )}
-        <Card className="bg-[#2F2963] text-white ">
+        <Card className="bg-[#2F2963] text-white h-fit ">
           <h4 className="text-lg ">Contact</h4>
           <a
             href={`mailto:${user.email}`}

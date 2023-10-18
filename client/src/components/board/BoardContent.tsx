@@ -22,13 +22,18 @@ const BoardContent: FC<Props> = ({ data }) => {
           >
             <div>
               <strong>
-                <Link className="hover:underline" to={"/board/" + item.id}>
+                <Link
+                  className="hover:underline text-[#57CC99] text-xl"
+                  to={"/board/" + item.id}
+                >
                   {item.name.toUpperCase()}
                 </Link>
               </strong>
               <span> - </span>
               {item.contract_type && (
-                <span>{item.contract_type.replace("_", " ")}</span>
+                <span className="italic text-sm">
+                  {item.contract_type.replace("_", " ")}
+                </span>
               )}
             </div>
             <hr />

@@ -24,7 +24,7 @@ const AdvertisementContent: FC<Props> = ({ data, onApply }) => {
       <div className="w-10/12 flex m-10 flex-col">
         <div className=" w-full m-4 p-4 shadow-md rounded-md">
           <div className="flex items-center justify-between gap-2">
-            <div>
+            <div className="flex gap-2 items-center">
               <h1 className="items-center justify-center text-[#57CC99] font-bold text-xl">
                 {data.name.toUpperCase()}
               </h1>
