@@ -11,7 +11,7 @@ const RecruiterContent: FC<Props> = ({ data }) => {
       <div className="w-screen h-screen flex items-center flex-col">
         <div className="w-8/12 mt-6">
           <h1 className="text-2xl font-semibold text-[#2F2963]">
-            All Advertisement
+            All advertisements
           </h1>
           <hr className="h-2 bg-[#57CC99] w-full block my-4" />
           <ul className="w-5/6 px-6">
