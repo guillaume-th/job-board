@@ -3,7 +3,7 @@ import AdvertisementContainer from "../components/advertisement/AdvertisementCon
 
 const Advertisement: FC = () => {
   return (
-    <div className="flex items-center justify-center w-full">
+    <div className="flex items-center justify-center w-screen">
       <AdvertisementContainer />
     </div>
   );

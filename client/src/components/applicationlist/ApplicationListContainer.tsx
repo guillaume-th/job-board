@@ -9,10 +9,12 @@ const ApplicationContainer: FC = () => {
   const currentUser = get<User>("user");
   const { data, error } = useQuery<User>(`api/users/${currentUser?.id}`);
 
-  if (!data || !error) {
-    <div className="flex items-center justify-center w-full">
-      return <Spinner />
-    </div>;
+  if (!data && !error) {
+    return (
+      <div className="flex items-center justify-center w-full">
+        <Spinner />
+      </div>
+    );
   }
 
   if (error) {

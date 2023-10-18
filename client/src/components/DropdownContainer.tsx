@@ -27,10 +27,12 @@ const FullAutoComplete: FC<Props> = ({
     `api/${resource}`
   );
 
-  if (!data || !error) {
-    <div className="flex items-center justify-center w-full">
-      return <Spinner />
-    </div>;
+  if (!data && !error) {
+    return (
+      <div className="flex items-center justify-center w-full">
+        <Spinner />
+      </div>
+    );
   }
 
   if (error) {
