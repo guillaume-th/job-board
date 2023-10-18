@@ -6,13 +6,20 @@ type Props = {
 
 const config: Record<string, string> = {
   sent: "black",
-  processing: "#2F2963",
+  processing: "#57CC99",
   accepted: "#d9f99d",
   refused: "#fca5a5",
 };
 
 const ApplicationState: FC<Props> = ({ state }) => {
-  return <div style={{ color: config[state] ?? "#57CC99" }}>{state}</div>;
+  return (
+    <div
+      className="font-semibold"
+      style={{ color: config[state] ?? "#57CC99" }}
+    >
+      {state.toUpperCase()}
+    </div>
+  );
 };
 
 export default ApplicationState;
