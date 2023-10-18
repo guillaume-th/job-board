@@ -14,10 +14,10 @@ class AdvertisementSchema(Schema):
     skills = fields.Nested("SkillSchema", many=True,
                            exclude=("advertisements", "users",))
     recruiter = fields.Nested(
-        "UserSchema", exclude=("created_advertisements", "skills", "job_applications", "company"))
+        "UserSchema", exclude=("created_advertisements", "skills", "job_applications", "company",))
     company = fields.Nested(
-        "CompanySchema", exclude=("advertisements", "users"))
+        "CompanySchema", exclude=("advertisements", "users",))
     job_applications = fields.Nested(
-        "JobApplicationSchema", many=True, exclude=("advertisement",))
+        "JobApplicationSchema", many=True, exclude=("advertisement","candidate","messages"))
     created_at = fields.DateTime()
     updated_at = fields.DateTime()
