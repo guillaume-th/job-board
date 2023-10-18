@@ -2,7 +2,7 @@ import { FC, FormEvent, useRef, useState } from "react";
 import { useMutation } from "../hooks/useMutation";
 import { useNavigate, useParams } from "react-router-dom";
 import { Button, ErrorMessage } from "../components/ui/atoms";
-import { get } from "../helpers/storage";
+import { get, save } from "../helpers/storage";
 import { User } from "../types/user";
 import { Field, adminConfig } from "../adminConfig";
 import DynamicInput from "../components/admin/DynamicInput";
@@ -80,6 +80,10 @@ const AdminForm: FC<Props> = ({ defaultValues }) => {
     if (error) {
       setError(message ?? "Something went wrong. Please contact an admin.");
     } else if (data) {
+      if (resource === "users" && isEdit && currentUser?.id === data.id) {
+        // refresh user data with updated infos
+        save("users", JSON.stringify(data));
+      }
       navigate(-1);
     }
   };
