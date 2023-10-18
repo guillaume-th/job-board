@@ -8,8 +8,15 @@ type Props = { query: string; current: number };
 const SuggestionsList: FC<Props> = ({ query, current }) => {
   const { data } = useQuery<Advertisement[]>(`api/advertisements?${query}`);
 
+  if (!data || data?.length === 1) {
+    return null;
+  }
+
   return (
-    <div className="w-2/10 m-8">
+    <div className="w-[25vw] my-14 mx-8">
+      <h2 className="font-semibold text-[#57CC99] text-lg">
+        Other offers at <span className="underline">{data[0]?.company.name}</span>
+      </h2>
       <ul>
         {data?.slice(0, 3).map((item) => (
           <div>
