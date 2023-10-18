@@ -12,7 +12,7 @@ const Chips: FC<ChipsProps> = ({ data, onDelete }) => {
   }
 
   return (
-    <div className="mx-2 flex gap-4">
+    <div className="mx-2 flex gap-4 flex-wrap mt-4">
       {data.map(({ name, color, id }) => (
         <div
           key={id}
