@@ -4,7 +4,7 @@ import { Advertisement } from "../../types/advertisement";
 import { Button } from "../ui/atoms";
 import { capitalize } from "../../helpers/format";
 import { Chips } from "../ui/organisms";
-import Sugestion from "../suggestion/suggestion";
+import SuggestionsList from "../suggestion/SuggestionsList";
 
 type Props = { data: Advertisement; onApply: () => void };
 
@@ -54,7 +54,7 @@ const AdvertisementContent: FC<Props> = ({ data, onApply }) => {
           </div>
         </div>
       </div>
-      <Sugestion query={data.company.name} current={data.id} />
+      <SuggestionsList query={data.company.name} current={data.id} />
     </div>
   );
 };
