@@ -31,7 +31,7 @@ const MessageContent: FC<Props> = ({ data }) => {
     const currentUser = get<User>("user");
     e.preventDefault();
     let body: Body = {
-      author_id: currentUser.id,
+      author_id: currentUser?.id!,
       job_application_id: data.id,
       content: formRef?.current?.content.value,
     };
@@ -75,7 +75,7 @@ const MessageContent: FC<Props> = ({ data }) => {
         </span>
         <hr />
         <p>Actually : {newData.state}</p>
-        {currentUser.role === "recruiter" && (
+        {["recruiter", "admin"].includes(currentUser?.role ?? "") && (
           <div>
             <Button
               text="processing"
@@ -83,18 +83,6 @@ const MessageContent: FC<Props> = ({ data }) => {
             />
             <Button text="refused" onClick={() => changeState("refused")} />
             <Button text="accepted" onClick={() => changeState("accepted")} />
-          </div>
-        )}
-        {currentUser.role === "admin" && (
-          <div>
-            <div>
-              <Button
-                text="processing"
-                onClick={() => changeState("processing")}
-              />
-              <Button text="refused" onClick={() => changeState("refused")} />
-              <Button text="accepted" onClick={() => changeState("accepted")} />
-            </div>
           </div>
         )}
         <br />
@@ -122,10 +110,12 @@ const MessageContent: FC<Props> = ({ data }) => {
           );
         })}
         <br />
-        <form onSubmit={handleSubmit} ref={formRef}>
-          <TextArea label="Message" name="content"></TextArea>
-          <Button text="Envoi" type="submit"></Button>
-        </form>
+        {currentUser && (
+          <form onSubmit={handleSubmit} ref={formRef}>
+            <TextArea label="Message" name="content"></TextArea>
+            <Button text="Envoi" type="submit"></Button>
+          </form>
+        )}
         {error && <ErrorMessage />}
       </div>
     </div>

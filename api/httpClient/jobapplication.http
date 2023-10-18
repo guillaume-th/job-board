@@ -1,6 +1,6 @@
 
-### Creates JobApplication
-POST  http://127.0.0.1:5000/api/JobApplication/ HTTP/1.1
+### Creates applications
+POST  http://127.0.0.1:5000/api/applications/ HTTP/1.1
 content-type: application/json
 
 {
@@ -13,15 +13,15 @@ content-type: application/json
     "state" : "sent"
 }
 
-### Get all JobApplication
-GET  http://127.0.0.1:5000/api/JobApplication/ HTTP/1.1
+### Get all applications
+GET  http://127.0.0.1:5000/api/applications/ HTTP/1.1
 
-### Get JobApplication with id 1
-GET  http://127.0.0.1:5000/api/JobApplication/1 HTTP/1.1
-###delete JobApplication with id 1
-DELETE http://127.0.0.1:5000/api/JobApplication/22 HTTP/1.1
-### update JobApplication
-PUT http://127.0.0.1:5000/api/JobApplication/1 HTTP/1.1
+### Get applications with id 1
+GET  http://127.0.0.1:5000/api/applications/1 HTTP/1.1
+###delete applications with id 1
+DELETE http://127.0.0.1:5000/api/applications/22 HTTP/1.1
+### update applications
+PUT http://127.0.0.1:5000/api/applications/1 HTTP/1.1
 content-type: application/json
 
 {

@@ -26,6 +26,8 @@ class JobApplicationController():
         return job_application
 
     def update(self, data, id):
+        if data.get("recruiter_id"):
+            del data['recruiter_id']
         job_application = db.session.query(JobApplication).filter(
             JobApplication.id == id).update(data)
         return job_application

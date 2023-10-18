@@ -39,24 +39,33 @@ const LastApplications: FC<Props> = ({ user }) => {
         Your last applications
       </h3>
       <div className="grid grid-cols-4 text-sm gap-4">
-        {data.slice(0, 3).map((application) => (
-          <Card className="bg-white min-h-[100px]">
-            <p>{application?.advertisement?.name}</p>
-            {application && (
-              <>
-                <p className="text-[#DED9E2]">
-                  {new Date(application.created_at).toUTCString()}
-                </p>
-                <span
-                  className="underline cursor-pointer block w-fit my-2"
-                  onClick={() => goToApplicationDetails(application.id)}
-                >
-                  Show details
-                </span>
-              </>
-            )}
-          </Card>
-        ))}
+        {data
+          .reverse()
+          .slice(0, 3)
+          .map((application) => (
+            <Card className="bg-white min-h-[100px]">
+              <p>{application?.advertisement?.name}</p>
+              {application && (
+                <>
+                  <p className="text-[#DED9E2]">
+                    {new Date(application.created_at).toUTCString()}
+                  </p>
+                  {user?.role === "recruiter" && (
+                    <p>
+                      {application.candidate?.firstname}{" "}
+                      {application.candidate?.lastname}
+                    </p>
+                  )}
+                  <span
+                    className="underline cursor-pointer block w-fit my-2"
+                    onClick={() => goToApplicationDetails(application.id)}
+                  >
+                    Show details
+                  </span>
+                </>
+              )}
+            </Card>
+          ))}
         <div className="flex items-center p-4">
           {user.role === "recruiter" ? (
             <Button

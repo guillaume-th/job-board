@@ -82,7 +82,7 @@ const AdminForm: FC<Props> = ({ defaultValues }) => {
     } else if (data) {
       if (resource === "users" && isEdit && currentUser?.id === data.id) {
         // refresh user data with updated infos
-        save("users", JSON.stringify(data));
+        save("user", JSON.stringify(data));
       }
       navigate(-1);
     }

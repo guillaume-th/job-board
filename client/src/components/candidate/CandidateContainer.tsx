@@ -6,7 +6,7 @@ import { User } from "../../types/user";
 
 const CandidateContainer: FC = () => {
   const currentUser = get<User>("user");
-  const { data, error } = useQuery<User>(`api/users/${currentUser.id}`);
+  const { data, error } = useQuery<User>(`api/users/${currentUser?.id}`);
 
   if (data) {
     return <CandidateContent user={data} />;

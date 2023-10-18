@@ -43,6 +43,7 @@ const List = <T extends {}[]>({
     await deleteResource(resource, id);
     refetch();
   };
+
   return (
     <table className="rounded shadow-lg my-4 border-2 border-[#57CC99] w-full overflow-scroll table-fixed	">
       <thead className="text-[#57CC99] text-lg">

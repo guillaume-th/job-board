@@ -12,7 +12,7 @@ const Profile: FC<Props> = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const currentUser = get<User>("user");
-  const userId = id === "me" ? currentUser.id : id;
+  const userId = id === "me" ? currentUser?.id : id;
   const { data, error } = useQuery<User>(
     userId ? `api/users/${userId}` : "forbidden"
   );

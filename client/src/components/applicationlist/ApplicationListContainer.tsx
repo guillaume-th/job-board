@@ -7,7 +7,7 @@ import { Spinner, ErrorMessage } from "../ui/atoms";
 
 const ApplicationContainer: FC = () => {
   const currentUser = get<User>("user");
-  const { data, error } = useQuery<User>(`api/users/${currentUser.id}`);
+  const { data, error } = useQuery<User>(`api/users/${currentUser?.id}`);
 
   if (!data || !error) {
     <div className="flex items-center justify-center w-full">

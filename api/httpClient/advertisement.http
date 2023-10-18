@@ -22,9 +22,9 @@ GET  http://127.0.0.1:5000/api/advertisements/1 HTTP/1.1
 ###delete advertisements with id 1
 DELETE http://127.0.0.1:5000/api/advertisements/3 HTTP/1.1
 ### update advertisements
-PUT http://127.0.0.1:5000/api/advertisements/1 HTTP/1.1
+PUT http://127.0.0.1:5000/api/advertisements/8 HTTP/1.1
 content-type: application/json
 
 {
-    "name" : "pas bnp"
+    "recruiter_id": 3
 }
