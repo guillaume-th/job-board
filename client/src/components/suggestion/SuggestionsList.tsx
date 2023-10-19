@@ -2,16 +2,16 @@ import { FC } from "react";
 import { Advertisement } from "../../types/advertisement";
 import { Link } from "react-router-dom";
 import { useQuery } from "../../hooks/useQuery";
+import { Company } from "../../types/company";
 
-type Props = { query: string; current: number };
+type Props = { query: number; current: number };
 
 const SuggestionsList: FC<Props> = ({ query, current }) => {
-  const { data } = useQuery<Advertisement[]>(`api/advertisements?${query}`);
-
+  const { data: dataCompany } = useQuery<Company>(`api/companies/${query}`);
+  const data = dataCompany?.advertisements;
   if (!data || data?.length === 1) {
     return null;
   }
-
   return (
     <div className="w-[25vw] my-14 mx-8">
       <h2 className="font-semibold text-[#57CC99] text-lg">

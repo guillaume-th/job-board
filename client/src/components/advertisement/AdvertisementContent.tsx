@@ -68,7 +68,7 @@ const AdvertisementContent: FC<Props> = ({ data, onApply }) => {
           </div>
         </div>
       </div>
-      <SuggestionsList query={data.company.name} current={data.id} />
+      <SuggestionsList query={data.company.id} current={data.id} />
     </div>
   );
 };
