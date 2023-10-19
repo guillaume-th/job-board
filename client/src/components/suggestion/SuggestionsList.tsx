@@ -1,5 +1,4 @@
 import { FC } from "react";
-import { Advertisement } from "../../types/advertisement";
 import { Link } from "react-router-dom";
 import { useQuery } from "../../hooks/useQuery";
 import { Company } from "../../types/company";
