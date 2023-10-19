@@ -2,12 +2,12 @@ import { FC } from "react";
 import { User } from "../../../types/user";
 import { capitalize } from "../../../helpers/format";
 import Chips from "../organisms/Chips";
-import { Card } from "../molecules";
 import { Button } from "../atoms";
 import { useNavigate } from "react-router-dom";
 import LastApplications from "../organisms/LastApplications";
 import { clear } from "../../../helpers/storage";
 import LastAdvertisements from "../organisms/LastAdvertisements";
+import Avatar from "../atoms/Avatar";
 
 type Props = {
   user: User;
@@ -26,34 +26,43 @@ const ProfileTemplate: FC<Props> = ({ user, editable }) => {
     <div className="w-6/12 flex m-10 flex-col">
       <div className="flex justify-between">
         <div>
-          <h2 className="text-3xl font-semibold text-[#57CC99]">
-            {capitalize(user.firstname)} {capitalize(user.lastname)}
-            <span className="text-[#2F2963] text-2xl ml-6">
-              [{user?.role.toUpperCase()}]
-            </span>
-          </h2>
-          <p className="text-[#DED9E2] text-md font-italic">@{user.username}</p>
+          <div className="flex gap-4 items-center">
+            {user.avatar && <Avatar url={user.avatar} />}
+            <div>
+              <h2 className="text-3xl font-semibold text-[#57CC99]">
+                {capitalize(user.firstname)} {capitalize(user.lastname)}
+                <span className="text-[#2F2963] text-2xl ml-6">
+                  [{user?.role.toUpperCase()}]
+                </span>
+              </h2>
+              <p className="text-[#DED9E2] text-md font-italic">
+                @{user.username}
+              </p>
+            </div>
+          </div>
         </div>
         {editable && (
-          <Button
-            text="Edit"
-            onClick={() => {
-              navigate(`/users/${user.id}/edit`);
-            }}
-          />
+          <div className="flex items-center">
+            <Button
+              text="Edit"
+              onClick={() => {
+                navigate(`/users/${user.id}/edit`);
+              }}
+            />
+          </div>
         )}
       </div>
       <hr className="h-2 bg-[#57CC99] w-full block my-4" />
 
       <p className="my-4">{user.description}</p>
-      <div className="grid grid-cols-2">
+      <div className="grid grid-cols-2 my-4 ">
         {user.skills && (
-          <div className="my-8">
+          <div className="">
             <h4 className="underline text-lg text-[#2F2963]">Skills</h4>
             <Chips data={user.skills} />
           </div>
         )}
-        <Card className="bg-[#2F2963] text-white h-fit ">
+        <div className="border-2 h-fit border-[#2F2963] p-3 pb-5 mt-6">
           <h4 className="text-lg ">Contact</h4>
           <a
             href={`mailto:${user.email}`}
@@ -66,7 +75,7 @@ const ProfileTemplate: FC<Props> = ({ user, editable }) => {
               {user.phone}
             </a>
           )}
-        </Card>
+        </div>
       </div>
       {user.role !== "admin" && <LastApplications user={user} />}
       {user.role !== "candidate" && <LastAdvertisements user={user} />}
