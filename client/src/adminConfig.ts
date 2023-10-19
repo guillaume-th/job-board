@@ -98,7 +98,6 @@ export const adminConfig: Record<string, Conf> = {
         resource: "companies",
         hidden: true,
       },
-      { name: "place", placeholder: "12 Tech Street" },
       {
         type: "radio",
         name: "contract_type",
