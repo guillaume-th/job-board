@@ -73,7 +73,7 @@ const Messages: FC<Props> = ({ data, refetch, applicationId }) => {
                 key={message.id}
                 className="w-3/6 min-h-1/6 m-2 p-4 shadow-md bg-white"
               >
-                <div className="flex justify-between items-center mb-1">
+                <div className=" mb-1">
                   <p className="font-semibold text-[#57CC99]">
                     {message?.author?.firstname ?? "Anonymous"}
                   </p>
