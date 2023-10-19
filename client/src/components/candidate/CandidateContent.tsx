@@ -16,7 +16,7 @@ const CandidateContent: FC<Props> = ({ user }) => {
 
   if (data && data.length >= 1) {
     return (
-      <div className="w-screen h-screen flex items-center flex-col">
+      <div className="w-full h-full flex items-center flex-col">
         <div className="w-8/12 mt-6">
           <h1 className="text-2xl font-semibold text-[#2F2963]">
             All applications
