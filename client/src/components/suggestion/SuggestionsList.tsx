@@ -15,8 +15,7 @@ const SuggestionsList: FC<Props> = ({ query, current }) => {
   return (
     <div className="w-[25vw] my-14 mx-8">
       <h2 className="font-semibold text-[#57CC99] text-lg">
-        Other offers at{" "}
-        <span className="underline">{data[0]?.company.name}</span>
+        Other offers at <span className="underline">{dataCompany.name}</span>
       </h2>
       <ul>
         {data?.slice(0, 4).map((item) => (
