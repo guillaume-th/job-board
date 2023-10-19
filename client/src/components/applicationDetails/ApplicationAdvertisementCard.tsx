@@ -28,7 +28,6 @@ const ApplicationAdvertisementCard: FC<Props> = ({
       <span className="text-gray-400 italic">{advertisement?.place}</span>
       <hr />
 
-      <span className="text-gray-400 italic">{advertisement?.place}</span>
       <p className="font-semibold mt-4">Job description</p>
       <div className="bg-[#DED9E2]/20 my-6 shadow p-6 mx-10 whitespace-pre-wrap max-h-[500px] overflow-y-scroll">
         <p className="text-justify leading-relaxed">
