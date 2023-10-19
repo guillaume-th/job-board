@@ -13,7 +13,9 @@ const BoardContent: FC<Props> = ({ data }) => {
     navigate(`/applications/create?advertisement_id=${id.toString()}`);
 
   return (
-    <div className="w-screen h-screen">
+    <div className="w-full h-full">
+      <h1 className="text-2xl font-semibold text-[#2F2963]">Job offers</h1>
+      <hr className="h-2 bg-[#57CC99] w-full block my-4" />
       <ul className="w-screen h-screen">
         {data.map((item) => (
           <li
