@@ -34,9 +34,7 @@ const LastApplications: FC<Props> = ({ user }) => {
     }
   };
 
-  console.log(data);
-  const reversed = data?.reverse();
-  console.log(reversed);
+  const reversed = data?.slice(0).reverse() || [];
 
   return data ? (
     <div className="bg-[#DED9E2]/50 my-6 p-4 shadow">
@@ -44,7 +42,7 @@ const LastApplications: FC<Props> = ({ user }) => {
         Your last applications
       </h3>
       <div className="grid grid-cols-4 text-sm gap-4">
-        {data.slice(0, 3).map((application) => (
+        {reversed.slice(0, 3).map((application) => (
           <Card className="bg-white min-h-[100px]">
             <p>{application?.advertisement?.name}</p>
             {application && (
