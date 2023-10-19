@@ -23,11 +23,12 @@ const Messages: FC<Props> = ({ data, refetch, applicationId }) => {
   const [error, setError] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
-  const lastMessageRef = useRef<HTMLDivElement>(null);
+  const messageContainer = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
-    if (lastMessageRef.current) {
-      lastMessageRef.current.scrollIntoView();
+    if (messageContainer.current) {
+      messageContainer.current.scrollTop =
+        messageContainer.current.scrollHeight;
     }
   }, [data]);
 
@@ -57,7 +58,10 @@ const Messages: FC<Props> = ({ data, refetch, applicationId }) => {
       <hr className="h-2 bg-[#57CC99] w-full block my-4" />
 
       {data.length ? (
-        <div className="border-2 border-#57CC99 bg-[#DED9E2]/20 ml-4 max-h-[55vh] overflow-y-scroll py-4 scroll-smooth">
+        <div
+          className="border-2 border-#57CC99 bg-[#DED9E2]/20 ml-4 max-h-[55vh] overflow-y-scroll py-4 scroll-smooth"
+          ref={messageContainer}
+        >
           {data.map((message, i) => (
             <div
               className="flex"
@@ -67,7 +71,6 @@ const Messages: FC<Props> = ({ data, refetch, applicationId }) => {
                     ? "flex-end"
                     : "flex-start",
               }}
-              ref={i === data.length - 1 ? lastMessageRef : null}
             >
               <div
                 key={message.id}
