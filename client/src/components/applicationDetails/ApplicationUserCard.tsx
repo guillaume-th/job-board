@@ -17,7 +17,7 @@ type Props = {
 const ApplicationUserCard: FC<Props> = ({ application, refetch }) => {
   const currentUser = get<User>("user");
   const updateState = useMutation<Object, Message>(
-    "api/applications/" + application.id,
+    "api/applications/" + application?.id,
     "PUT"
   );
   const [error, setError] = useState(false);
@@ -46,27 +46,27 @@ const ApplicationUserCard: FC<Props> = ({ application, refetch }) => {
             />
           )}
           <h1 className="items-center justify-center text-[#57CC99] font-bold text-xl">
-            {capitalize(application.candidate_name)}'s application
+            {capitalize(application?.candidate_name)}'s application
           </h1>
         </div>
-        <ApplicationState state={application.state} />
+        <ApplicationState state={application?.state} />
       </div>
       <p className="my-2">
         Join by email at{" "}
         <a
-          href={`mailto:${application.candidate_email}`}
+          href={`mailto:${application?.candidate_email}`}
           className="font-semibold text-[#57CC99]"
         >
-          {application.candidate_email}
+          {application?.candidate_email}
         </a>
       </p>
       <p className="my-2">
         By phone at{" "}
         <a
-          href={`tel:${application.candidate_phone}`}
+          href={`tel:${application?.candidate_phone}`}
           className="font-semibold text-[#57CC99]"
         >
-          {application.candidate_phone}
+          {application?.candidate_phone}
         </a>{" "}
       </p>
       <div className="border-2 border-[#2F2963] p-2">

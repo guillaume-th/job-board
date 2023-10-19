@@ -63,7 +63,7 @@ const Messages: FC<Props> = ({ data, refetch, applicationId }) => {
               className="flex"
               style={{
                 justifyContent:
-                  message?.author.id === currentUser?.id
+                  message?.author?.id === currentUser?.id
                     ? "flex-end"
                     : "flex-start",
               }}
@@ -75,7 +75,7 @@ const Messages: FC<Props> = ({ data, refetch, applicationId }) => {
               >
                 <div className="flex justify-between items-center mb-1">
                   <p className="font-semibold text-[#57CC99]">
-                    {message.author.firstname}
+                    {message?.author?.firstname}
                   </p>
                   <p className="text-xs text-[#DED9E2]">
                     {new Date(message.created_at).toUTCString()}

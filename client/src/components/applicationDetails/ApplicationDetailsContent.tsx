@@ -53,7 +53,6 @@ const ApplicationDetailsContent: FC<Props> = ({ data }) => {
             applicationState={application.state}
           />
         </div>
-
         <div className="col-span-5">
           <Messages
             data={application.messages}
