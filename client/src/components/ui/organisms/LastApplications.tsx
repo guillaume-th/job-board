@@ -34,6 +34,10 @@ const LastApplications: FC<Props> = ({ user }) => {
     }
   };
 
+  console.log(data);
+  const reversed = data?.reverse();
+  console.log(reversed);
+
   return data ? (
     <div className="bg-[#DED9E2]/50 my-6 p-4 shadow">
       <h3 className="mb-4 text-[#2F2963] font-semibold">

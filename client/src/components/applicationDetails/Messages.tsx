@@ -81,7 +81,7 @@ const Messages: FC<Props> = ({ data, refetch, applicationId }) => {
                     {new Date(message.created_at).toUTCString()}
                   </p>
                 </div>
-                <p>{message.content}</p>
+                <p className="break-words w-full">{message.content}</p>
               </div>
             </div>
           ))}

@@ -47,7 +47,7 @@ const CandidateContent: FC<Props> = ({ user }) => {
                         {item.advertisement.contract_type.replace("_", " ")}
                       </span>
                     </div>
-                    <ApplicationState state={item.state}/>
+                    <ApplicationState state={item.state} />
                   </div>
                   <hr />
                   <div className="text-gray-400 italic">
