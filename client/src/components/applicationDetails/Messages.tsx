@@ -73,10 +73,15 @@ const Messages: FC<Props> = ({ data, refetch, applicationId }) => {
                 key={message.id}
                 className="w-3/6 min-h-1/6 m-2 p-4 shadow-md bg-white"
               >
-                <p className="font-semibold text-[#57CC99]">
-                  {message.author.firstname}
-                </p>
-                {message.content}
+                <div className="flex justify-between items-center mb-1">
+                  <p className="font-semibold text-[#57CC99]">
+                    {message.author.firstname}
+                  </p>
+                  <p className="text-xs text-[#DED9E2]">
+                    {new Date(message.created_at).toUTCString()}
+                  </p>
+                </div>
+                <p>{message.content}</p>
               </div>
             </div>
           ))}

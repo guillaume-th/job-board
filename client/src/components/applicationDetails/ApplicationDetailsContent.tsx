@@ -41,6 +41,9 @@ const ApplicationDetailsContent: FC<Props> = ({ data }) => {
     return (
       <div className="w-full grid p-10 grid-cols-12 gap-10">
         <div className="col-span-7">
+          <h1 className="text-2xl font-semibold text-[#2F2963] mb-6">
+            Application details
+          </h1>
           {shouldDisplayUserData && (
             <ApplicationUserCard application={application} refetch={refetch} />
           )}
