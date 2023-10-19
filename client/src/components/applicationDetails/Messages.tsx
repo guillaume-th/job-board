@@ -29,7 +29,7 @@ const Messages: FC<Props> = ({ data, refetch, applicationId }) => {
     if (lastMessageRef.current) {
       lastMessageRef.current.scrollIntoView();
     }
-  }, []);
+  }, [data]);
 
   const handleSubmit = async (e: FormEvent) => {
     setError(false);
