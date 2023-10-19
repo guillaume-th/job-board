@@ -75,7 +75,7 @@ const Messages: FC<Props> = ({ data, refetch, applicationId }) => {
               >
                 <div className="flex justify-between items-center mb-1">
                   <p className="font-semibold text-[#57CC99]">
-                    {message?.author?.firstname}
+                    {message?.author?.firstname ?? "Anonymous"}
                   </p>
                   <p className="text-xs text-[#DED9E2]">
                     {new Date(message.created_at).toUTCString()}
