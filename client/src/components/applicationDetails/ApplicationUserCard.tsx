@@ -39,7 +39,7 @@ const ApplicationUserCard: FC<Props> = ({ application, refetch }) => {
     <div className=" w-full m-4 p-4 shadow-md rounded-md">
       <div className="flex justify-between">
         <div className="flex items-center gap-3 ">
-          {application.candidate.avatar && (
+          {application?.candidate?.avatar && (
             <Avatar
               url={application.candidate.avatar}
               className="w-[80px] h-[80px]"
