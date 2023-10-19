@@ -18,6 +18,7 @@ const ApplicationContainer: FC = () => {
   }
 
   if (error) {
+    console.warn(error);
     return <ErrorMessage text={error} />;
   }
 

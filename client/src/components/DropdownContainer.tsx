@@ -36,7 +36,8 @@ const FullAutoComplete: FC<Props> = ({
   }
 
   if (error) {
-    return <ErrorMessage text={error} />;
+    console.warn(error);
+    return <ErrorMessage />;
   }
 
   if (data) {

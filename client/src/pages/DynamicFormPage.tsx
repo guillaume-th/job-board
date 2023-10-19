@@ -78,6 +78,7 @@ const AdminForm: FC<Props> = ({ defaultValues }) => {
     const { data, error, message } = await submit(cleaned_body);
 
     if (error) {
+      console.warn(error);
       setError(message ?? "Something went wrong. Please contact an admin.");
     } else if (data) {
       if (resource === "users" && isEdit && currentUser?.id === data.id) {
@@ -127,7 +128,7 @@ const AdminForm: FC<Props> = ({ defaultValues }) => {
             <div className="flex w-full justify-end my-4">
               <Button type="submit" text="Save" />
             </div>
-            {error && <ErrorMessage text={error} />}
+            {error && <ErrorMessage />}
           </form>
         </div>
       </div>

@@ -39,7 +39,7 @@ const SkillPage: FC<Props> = () => {
 
     if (error) {
       setGlobalError(true);
-      console.error(error);
+      console.warn(error);
     } else if (data) {
       setGlobalError(false);
       refetch();
@@ -64,7 +64,7 @@ const SkillPage: FC<Props> = () => {
           <Chips data={data} />
         </div>
       ) : (
-        <ErrorMessage text={error} />
+        <ErrorMessage />
       )}
     </div>
   );

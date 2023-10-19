@@ -23,7 +23,8 @@ const AdvertisementContainer: FC = () => {
   }
 
   if (error) {
-    return <ErrorMessage text={error} />;
+    console.warn(error);
+    return <ErrorMessage />;
   }
 
   if (data) {

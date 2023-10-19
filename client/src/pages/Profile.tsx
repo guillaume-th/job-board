@@ -42,7 +42,7 @@ const Profile: FC<Props> = () => {
       {data ? (
         <ProfileTemplate user={data!} editable={isEditable} />
       ) : (
-        <ErrorMessage text={error} />
+        <ErrorMessage />
       )}
     </div>
   );

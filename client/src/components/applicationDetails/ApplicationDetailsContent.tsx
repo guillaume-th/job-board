@@ -30,6 +30,7 @@ const ApplicationDetailsContent: FC<Props> = ({ data }) => {
   }
 
   if (error) {
+    console.warn(error);
     return (
       <div className="flex w-full justify-center">
         <ErrorMessage />

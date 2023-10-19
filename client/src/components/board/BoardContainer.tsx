@@ -23,6 +23,7 @@ const BoardContainer: FC<Props> = ({ query }) => {
   }
 
   if (error) {
+    console.warn(error);
     return <ErrorMessage text={error} />;
   }
 
