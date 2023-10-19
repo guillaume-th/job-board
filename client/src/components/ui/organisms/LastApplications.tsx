@@ -3,6 +3,7 @@ import { Card } from "../molecules";
 import { useNavigate } from "react-router-dom";
 import { User } from "../../../types/user";
 import { Button } from "../atoms";
+import { capitalize } from "../../../helpers/format";
 
 type Props = {
   user: User;
@@ -52,8 +53,9 @@ const LastApplications: FC<Props> = ({ user }) => {
                   </p>
                   {user?.role === "recruiter" && (
                     <p>
-                      {application.candidate?.firstname}{" "}
-                      {application.candidate?.lastname}
+                      <strong className="text-[#2F2963]">
+                        {capitalize(application.candidate_name)}
+                      </strong>
                     </p>
                   )}
                   <span

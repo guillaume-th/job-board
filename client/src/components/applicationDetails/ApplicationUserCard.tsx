@@ -7,6 +7,7 @@ import { get } from "../../helpers/storage";
 import { useMutation } from "../../hooks/useMutation";
 import { Message } from "../../types/message";
 import { JobApplication } from "../../types/jobApplication";
+import Avatar from "../ui/atoms/Avatar";
 
 type Props = {
   application: JobApplication;
@@ -37,9 +38,17 @@ const ApplicationUserCard: FC<Props> = ({ application, refetch }) => {
   return (
     <div className=" w-full m-4 p-4 shadow-md rounded-md">
       <div className="flex justify-between">
-        <h1 className="items-center justify-center text-[#57CC99] font-bold text-xl">
-          {capitalize(application.candidate_name)}'s application
-        </h1>
+        <div className="flex items-center gap-3 ">
+          {application.candidate.avatar && (
+            <Avatar
+              url={application.candidate.avatar}
+              className="w-[80px] h-[80px]"
+            />
+          )}
+          <h1 className="items-center justify-center text-[#57CC99] font-bold text-xl">
+            {capitalize(application.candidate_name)}'s application
+          </h1>
+        </div>
         <ApplicationState state={application.state} />
       </div>
       <p className="my-2">
