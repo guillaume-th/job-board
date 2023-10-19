@@ -3,7 +3,7 @@ import { FC, useState } from "react";
 import { get } from "../../helpers/storage";
 import { User } from "../../types/user";
 import DropdownContainer, { DropdownElement } from "../DropdownContainer";
-import { Input } from "../ui/atoms";
+import { ErrorMessage, Input } from "../ui/atoms";
 import { InputProps } from "../ui/atoms/Input";
 import { useSearchParams } from "react-router-dom";
 import { useQuery } from "../../hooks/useQuery";
@@ -58,12 +58,16 @@ const SpecialDynamicInput: FC<Props> = ({
           value: data.id ?? computedKey,
         });
       } else if (currentUser?.role !== "admin") {
-        const label = eval(labelK);
-        if (label || computedKey) {
-          setSpecialInput({
-            label: eval(labelK),
-            value: computedKey,
-          });
+        try {
+          const label = eval(labelK);
+          if (label || computedKey) {
+            setSpecialInput({
+              label: eval(labelK),
+              value: computedKey,
+            });
+          }
+        } catch (e) {
+          console.warn(e);
         }
       }
     }
