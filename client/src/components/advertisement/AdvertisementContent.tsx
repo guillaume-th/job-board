@@ -42,10 +42,20 @@ const AdvertisementContent: FC<Props> = ({ data, onApply }) => {
               {formatContract(data?.contract_type)}
             </span>
           )}
-          <span> - </span>
-          <span className="text-gray-400 italic">
-            {data.working_time} hours{" "}
-          </span>
+          {data?.working_time && (
+            <>
+              <span> - </span>
+              <span className="text-gray-400 italic">
+                {data.working_time} hours{" "}
+              </span>
+            </>
+          )}
+          {data?.salary && (
+            <>
+              <span> - </span>
+              <span className="text-gray-400 italic">{data.salary} € </span>
+            </>
+          )}
           <hr />
           <span className="text-gray-400 italic">{data.place}</span>
           <p className="font-semibold mt-4">Job description</p>
